@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Affordable for Whom? — I-AB</title>
+  <meta name="description" content="Exploring rental affordability in Berlin, 2013–2023.">
+  <meta property="og:title" content="Affordable for Whom? — I-AB">
+  <meta property="og:description" content="Exploring rental affordability in Berlin, 2013–2023.">
+  <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/affordable-cover.png">
+  <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="project" data-project="affordable-for-whom">
+  <div data-nav></div>
+
+  <main class="case">
+    <aside class="case-side" data-case-side></aside>
+
+    <article class="case-content">
+      <div class="cs-hero">
+        <video src="assets/video/afw-hero.mp4" muted loop playsinline preload="metadata" data-autoplay aria-label="Animated maps of rental affordability across Berlin"></video>
+      </div>
+
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Student Project</dd></div>
+        <div><dt>Category</dt><dd>Urban Data</dd></div>
+        <div><dt>Timeframe</dt><dd>1 month</dd></div>
+        <div><dt>Tools</dt><dd>Figma, Photoshop</dd></div>
+      </dl>
+
+      <!-- Intro -->
+      <section class="cs-section" id="context" data-toc="Context">
+        <header class="cs-head"><h2>Berlin has changed. But who has been priced out?</h2></header>
+        <div class="prose">
+          <p>This project looks at how rent prices, income, and housing dynamics have reshaped access to housing in Berlin — and who can still afford to live here.</p>
+          <p>Over the past decade, rising rents have outpaced income growth for many, making large parts of the city increasingly unaffordable, especially for low-income residents.</p>
+        </div>
+      </section>
+
+      <!-- Key questions -->
+      <section class="cols-3 cs-section" id="questions" data-toc="Key Questions" style="display:grid">
+        <div class="tile">
+          <span class="badge badge--lg">1</span>
+          <h3 class="tile__q">Who is actually being priced out?</h3>
+          <p>I wanted to understand which groups of people are most affected by the rising rents — who can still afford to live in the city, and who’s slowly being pushed away.</p>
+        </div>
+        <div class="tile">
+          <span class="badge badge--lg">2</span>
+          <h3 class="tile__q">What does affordable even mean in this context?</h3>
+          <p>The term <em>affordable housing</em> is often used, but I wanted to see what it really means in measurable terms, how much rent can people realistically pay, and where does the threshold of affordability begin to break?</p>
+        </div>
+        <div class="tile">
+          <span class="badge badge--lg">3</span>
+          <h3 class="tile__q">How does rent affordability compare across the city and by income?</h3>
+          <p>To make the picture clearer, I looked at how affordability changes from one district to another, and how these differences grow when we factor in household income and local rent trends.</p>
+        </div>
+      </section>
+
+      <!-- Concepts -->
+      <section class="concepts cs-section" id="concepts" data-toc="Key Concepts">
+        <div class="concept">
+          <header class="cs-head"><h2>What is Housing Affordability?</h2></header>
+          <div class="concept__row concept__row--center">
+            <div class="prose"><p>Housing is considered <strong>affordable</strong> if a household spends no more than <strong>30% of its net income</strong> on rent.<br>Rent burden above this threshold is considered financially straining — especially for low-income households.</p></div>
+            <img class="concept__img" src="assets/img/afw-affordability.png" alt="Diagram: rent should take at most 30% of net income" width="1156" height="320" loading="lazy">
+          </div>
+        </div>
+
+        <div class="concept">
+          <header class="cs-head"><h2>What are LOR?</h2></header>
+          <div class="concept__row">
+            <div class="prose">
+              <p>The <em>Lebensweltlich Orientierte Räume</em> system divides the city into standardized spatial units to support neighborhood-level analysis and policy-making based on social and everyday life structures. As of the 2021 update, Berlin is divided into:</p>
+              <ul>
+                <li><strong>12</strong> Bezirke (districts)</li>
+                <li><strong>52</strong> Prognoseräume (PGRs) — upper-level forecasting areas</li>
+                <li><strong>143</strong> Bezirksräume (BZRs) — medium-level forecasting areas</li>
+                <li><strong>542</strong> Planungsräume (PLRs) — the smallest, most granular unit in this analysis</li>
+              </ul>
+            </div>
+            <img class="concept__img" src="assets/img/afw-lor.png" alt="Nested LOR spatial units of Berlin" width="500" height="500" loading="lazy">
+          </div>
+        </div>
+
+        <div class="concept">
+          <header class="cs-head"><h2>What kind of Rent is analyzed?</h2></header>
+          <div class="concept__row concept__row--center" style="gap:20px">
+            <div class="prose"><p>This project uses <strong>cold rent (Kaltmiete)</strong> from <strong>new listings</strong>, reflecting market entry prices between 2013 and 2023.<br>These prices are not the same as the <strong>Mietspiegel</strong>, which represents average rents across existing contracts.<br>Warm rent (<em>Warmmiete</em>), which includes heating and service charges, is not analyzed here.</p></div>
+            <div class="prose">
+              <p>Apartments are grouped by number of rooms:</p>
+              <ul>
+                <li><strong>1-room</strong>: up to 50 m²</li>
+                <li><strong>2-room</strong>: ~50–65 m²</li>
+                <li><strong>3 rooms</strong>: over 80 m²</li>
+              </ul>
+              <p>Most affordability comparisons focus on <strong>1-room apartments</strong>, as they are typically the most accessible for low-income residents.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept">
+          <header class="cs-head"><h2>What is Subsidized Housing?</h2></header>
+          <div class="concept__row" style="gap:20px">
+            <div class="prose"><p>Subsidized housing includes units with <strong>rent or access restrictions</strong>, often tied to public funding.<br>Tenants typically need a <strong>WBS certificate</strong> <em>(Wohnungsberechtigungsschein)</em> to qualify.<br>These units can be owned by either <strong>public</strong> or <strong>private</strong> landlords.</p></div>
+            <img class="concept__img" style="max-height:250px; object-position:50% 50%" src="assets/img/afw-subsidies.png" alt="Public and private subsidized housing" width="500" height="500" loading="lazy">
+          </div>
+        </div>
+
+        <div class="concept">
+          <header class="cs-head"><h2>What Income is used?</h2></header>
+          <div class="concept__row" style="gap:20px">
+            <div class="prose"><p>This project uses <strong>monthly net income per inhabitant</strong> <em>(Verfügbares Einkommen der privaten Haushalte je Einwohner)</em></p></div>
+            <div class="prose">
+              <p>It compares:</p>
+              <ul>
+                <li><strong>Median net income</strong></li>
+                <li><strong>Bürgergeld</strong> allowance and maximum coverage for rent.</li>
+              </ul>
+              <p>These values are used to estimate <strong>rent burden</strong> and assess affordability across groups.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Outro: the whole video links to the live app -->
+      <section class="cs-section" id="app" data-toc="The App">
+        <a class="cs-media cs-media--link" href="https://affordable-to-whom-app-448752664124.europe-west3.run.app/" target="_blank" rel="noopener" aria-label="Open the live Affordable for Whom? app">
+          <video src="assets/video/afw-outro.mp4" poster="assets/img/afw-outro-poster.png" muted loop playsinline preload="metadata" data-autoplay></video>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <section data-more-projects></section>
+  <div data-footer></div>
+
+  <script src="js/projects.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

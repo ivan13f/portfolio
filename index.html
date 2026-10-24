@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I-AB — Iván Alfonso Burgos</title>
+  <meta name="description" content="Portfolio of Iván Alfonso Burgos, a Data Analyst with a designer’s eye — blending design, research, and analytics.">
+  <meta property="og:title" content="I-AB — Iván Alfonso Burgos">
+  <meta property="og:description" content="Data Analyst with a designer’s eye — blending design, research, and analytics.">
+  <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="home" data-nav-appear>
+  <div data-nav></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="wrap hero" aria-label="Introduction">
+      <div class="hero__row">
+        <div class="hero__text">
+          <p class="available" data-appear="down"><span class="available__dot" aria-hidden="true"></span>Available for work</p>
+
+          <div class="hero__copy" data-appear="right">
+            <h1 class="t-display">I’m Iván Alfonso Burgos, a Data Analyst with a designer’s eye</h1>
+            <p class="ticker" data-ticker>
+              <span class="ticker__line">– blending design, research, and analytics.</span>
+              <span class="ticker__line">– eager to apply my diverse skillset.</span>
+              <span class="ticker__line">– equal parts detail-oriented and big-picture thinker.</span>
+              <span class="ticker__line">– passionate about transforming data into visual insights.</span>
+            </p>
+          </div>
+
+          <a class="scroll-hint" href="#works" data-appear="right"><span>Scroll for more</span><span aria-hidden="true">↓</span></a>
+        </div>
+
+        <a class="link-card" href="works.html" data-appear="up">
+          <div class="link-card__media">
+            <img src="assets/img/hero-apps.gif" alt="Animated preview of project screens" width="450" height="366">
+          </div>
+          <span class="link-card__label">View all projects
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12.5m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <div class="wrap home-sections" id="works">
+      <hr class="rule">
+
+      <!-- Selected works (cards come from js/projects.js) -->
+      <section class="home-works" aria-labelledby="works-title">
+        <div class="section-title">
+          <p class="t-small">Overview</p>
+          <h2 class="t-h2" id="works-title">Selected Works</h2>
+        </div>
+        <div class="project-list" data-project-list></div>
+        <div class="project-list__more"><a class="btn btn--outline" href="works.html">View all projects →</a></div>
+      </section>
+
+      <!-- About teaser -->
+      <section class="home-about" aria-labelledby="about-title">
+        <hr class="rule">
+        <div class="home-about__row">
+          <div class="home-about__text" data-reveal>
+            <p class="t-small" id="about-title">About me</p>
+            <p class="t-lead c-soft">My focus is on uncovering insights from data through careful analysis and clear communication. I aim to make complexity understandable and findings useful for decision-making and deeper understanding.</p>
+          </div>
+          <a class="link-card" href="about.html" data-reveal="left">
+            <div class="link-card__media">
+              <img src="assets/img/about-card.jpg" alt="Iván at work" width="1024" height="932" loading="lazy">
+            </div>
+            <span class="link-card__label">More about me
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12.5m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="js/projects.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

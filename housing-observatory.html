@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Housing Observatory — I-AB</title>
+  <meta name="description" content="An interactive dashboard examining rental affordability, purchase accessibility, and displacement pressure across Berlin's 58 neighbourhoods.">
+  <meta property="og:title" content="Housing Observatory — I-AB">
+  <meta property="og:description" content="An interactive dashboard examining rental affordability, purchase accessibility, and displacement pressure across Berlin's 58 neighbourhoods.">
+  <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/housing-observatory-cover.png">
+  <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="project" data-project="housing-observatory">
+  <div data-nav></div>
+
+  <main class="case">
+    <!-- Sidebar: card + section index + live link, built from projects.js and the data-toc sections below -->
+    <aside class="case-side" data-case-side></aside>
+
+    <article class="case-content">
+      <div class="cs-hero">
+        <img src="assets/img/housing-observatory-cover.png" alt="Housing Observatory dashboard over a Berlin street, with rental, property and city-pressure charts" width="1771" height="1321">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Mentorship Project</dd></div>
+        <div><dt>Category</dt><dd>Urban Data</dd></div>
+        <div><dt>Timeframe</dt><dd>10 weeks</dd></div>
+        <div><dt>Tools</dt><dd>PostgreSQL, dbt, Tableau, Python</dd></div>
+      </dl>
+
+      <div class="cs-sections">
+        <!-- Context -->
+        <section class="cs-section cs-section--loose" id="context" data-toc="Context">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">Context</p><h2>The city has a price, where do I stand?</h2></header>
+            <div class="prose">
+              <p>Berlin has 3.8 million residents and roughly 85% of them rent. That makes housing not a real estate question but a social one. Yet most housing data tools are built for the minority who own, or who are looking to invest.</p>
+              <p>The <strong>Housing Observatory</strong> is a public-facing interactive dashboard that puts residents at the centre: Enter an income and apartment size, and the tool immediately maps how much of the city is within reach across 58 neighbourhoods, four analytical views, and a decade of market data.</p>
+              <p>Built over ten weeks as part of a structured mentorship programme with the Data Visualization Society, it follows a full end-to-end pipeline from raw government sources to a published interactive dashboard.</p>
+            </div>
+          </div>
+          <div class="cs-media">
+            <video src="assets/video/ho-dashboard.mp4" muted loop playsinline preload="metadata" data-autoplay aria-label="Screen recording of the Housing Observatory dashboard"></video>
+          </div>
+        </section>
+
+        <!-- Personas -->
+        <section class="cs-section" id="personas" data-toc="Personas &amp; Questions">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">Personas &amp; Questions</p><h2>Who is it for?</h2></header>
+            <div class="prose">
+              <p>Three personas shaped every analytical and design decision in the project. Each one arrives at the dashboard with a different stake in the housing market and a different question the tool is designed to answer.</p>
+              <p>Every design decision (every chart type, every metric, every callout) was tested against one of their three questions.</p>
+            </div>
+          </div>
+          <div class="cols-3">
+            <article class="persona" style="--accent:#c8440a">
+              <div>
+                <span class="persona__num">01</span>
+                <h3 class="persona__name">The Newcomer</h3>
+                <p class="persona__desc">Arriving to a city they don’t know yet.</p>
+              </div>
+              <p class="persona__q">“Considering my income, which neighbourhood are affordable to rent, and how has it been changing?”</p>
+            </article>
+            <article class="persona" style="--accent:#2952cc">
+              <div>
+                <span class="persona__num">02</span>
+                <h3 class="persona__name">The Resident</h3>
+                <p class="persona__desc">Already here. Deciding whether to keep renting or decide to buy.</p>
+              </div>
+              <p class="persona__q">“Does buying an apartment make sense for me here, or is the market pricing me out?”</p>
+            </article>
+            <article class="persona" style="--accent:#1a6b5c">
+              <div>
+                <span class="persona__num">03</span>
+                <h3 class="persona__name">The Researcher</h3>
+                <p class="persona__desc">Following the data to understand the market.</p>
+              </div>
+              <p class="persona__q">“Where is affordability eroding the fastest and which neighbourhoods show the highest indicators of displacement risk?”</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Sources -->
+        <section class="cs-section cs-section--tight" id="sources" data-toc="Sources">
+          <header class="cs-head"><p class="eyebrow">Sources</p><h2>Public Data. Private Effort.</h2></header>
+          <div class="prose">
+            <p>The dashboard draws on 24 different tables from several different sources:</p>
+            <ul>
+              <li>The primary source is the <strong>IBB Wohnungsmarktbericht</strong>, the Investment Bank Berlin's annual housing market report, which contains rental asking prices at neighbourhood level, construction completions, building permits, and social housing projections.</li>
+              <li>Purchase prices came from the <strong>Gutachterausschuss</strong>, Berlin's official property valuation committee.</li>
+              <li>Neighbourhood-level deprivation data came from the <strong>GSSA Berlin</strong> Senate's Sozialstrukturatlas.</li>
+              <li>Social housing share, residency stability, welfare dependency came from the <strong>Wohnatlas 2022</strong>.</li>
+              <li>Rent burden and ownership rates came from the <strong>Mikrozensus</strong>.</li>
+              <li>Income data stretching back to 1991 came from <strong>Amt für Statistik Berlin-Brandenburg</strong>.</li>
+            </ul>
+            <p>Some of these figures were buried inside PDF tables, not downloadable datasets, and required manual extraction into structured CSVs.</p>
+            <p>One significant geographic problem sat underneath all of it. Berlin redesigned its neighbourhood hierarchy in 2021, reorganising 60 Prognoseräume into 58. Datasets predating that change use the old boundaries. Joining them required building a weighted crosswalk.</p>
+          </div>
+          <aside class="callout">
+            <img src="assets/img/ho-callout-icon.png" alt="" width="60" height="60" loading="lazy">
+            <div class="prose">
+              <p><strong>What is a Prognoseraum?</strong></p>
+              <p>Berlin's LOR spatial system divides the city into nested geographic units. The Prognoseraum (PRG) sits between the 12 Bezirke (districts) and the 542 Planungsräume. The project operates primarily at this level: 58 areas, each granular enough to reflect real neighbourhood differences, each large enough to carry statistically stable data.</p>
+            </div>
+          </aside>
+        </section>
+
+        <!-- Engineering -->
+        <section class="cs-section cs-section--mid" id="engineering" data-toc="Engineering &amp; Architecture">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">Engineering &amp; Architecture</p><h2>The Infrastructure Behind the Story</h2></header>
+            <div class="prose">
+              <p>All sources were loaded into PostgreSQL with every column as text. Type casting and cleaning were deferred entirely to the transformation layer. Transformation ran in dbt, following a three-layer architecture.</p>
+            </div>
+          </div>
+          <div class="stack stack--40">
+            <div class="cs-media">
+              <img src="assets/img/ho-dbt-dag.png" alt="dbt lineage graph from raw sources through staging, intermediate and mart models" width="1524" height="2048" loading="lazy" data-zoom>
+            </div>
+            <div class="cols-3">
+              <div class="tile" style="--tile-bg:#d6eaf8; --tile-border:#1d4e89">
+                <h3 class="tile__title">Staging layers</h3>
+                <p>Casts types, normalises decimal separators, applies LPAD formatting to LOR IDs, and renames columns consistently. A silent join failure between flat CSV neighbourhood IDs and the district shapefile integers was caught and fixed here.</p>
+              </div>
+              <div class="tile" style="--tile-bg:#d1f2eb; --tile-border:#0e6655">
+                <h3 class="tile__title">Intermediate layers</h3>
+                <p>Computes derived metrics: year-over-year rent growth, cumulative indexed series from 2014, the mortgage affordability formula, and the four displacement score dimensions.</p>
+              </div>
+              <div class="tile" style="--tile-bg:#dcccff; --tile-border:#874fff">
+                <h3 class="tile__title">Mart layers</h3>
+                <p>Seven output tables, one per dashboard section. No joins happen in Tableau. Tableau Public cannot connect live to a database, so all data was pre-computed and exported as static CSV extracts.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Displacement Risk Score -->
+        <section class="cs-section" id="drs" data-toc="Original Methodology">
+          <header class="cs-head"><p class="eyebrow">Original Methodology</p><h2>The Displacement Risk Score</h2></header>
+          <div class="prose">
+            <p>The most analytically original element is a composite neighbourhood-level indicator: the <strong>Displacement Risk Score (DRS)</strong>.</p>
+            <p>It asks which neighbourhoods concentrate the conditions under which displacement is most likely to occur, a question no single dataset can answer alone.</p>
+            <p>The score is grounded in Andrej Holm's gentrification research and Zuk et al.'s (2018) multidimensional displacement framework. It combines four equally weighted dimensions:</p>
+          </div>
+          <div class="cols-2">
+            <div class="tile tile--drs">
+              <p class="tile__big">1</p>
+              <div><p class="tile__title">Rent growth 2021–2024</p><p>The most direct signal of displacement pressure.</p></div>
+            </div>
+            <div class="tile tile--drs">
+              <p class="tile__big">2</p>
+              <div><p class="tile__title">Socioeconomic vulnerability</p><p>The ESIx 2022 z-score from the GSSA Berlin Senate capturing: income, employment, and social integration at neighbourhood level.</p></div>
+            </div>
+            <div class="tile tile--drs">
+              <p class="tile__big">3</p>
+              <div><p class="tile__title">Unprotected tenure share</p><p>1 minus the combined social and municipal housing share. Residents outside the protected sector face full market exposure.</p></div>
+            </div>
+            <div class="tile tile--drs">
+              <p class="tile__big">4</p>
+              <div><p class="tile__title">Residential instability</p><p>1 minus the normalised 5-year residency share. Low long-term residency signals a neighbourhood already in transition.</p></div>
+            </div>
+          </div>
+          <p class="note"><em>A high score means the conditions enabling displacement are present and compounding, not that displacement has already occurred.</em></p>
+        </section>
+
+        <!-- Design -->
+        <section class="cs-section" id="design" data-toc="Design Process &amp; Decisions">
+          <header class="cs-head"><p class="eyebrow">Design Process &amp; Decisions</p><h2>Four Views, One Story</h2></header>
+
+          <div class="cs-media" style="max-width:628px; border-radius:0">
+            <img src="assets/img/ho-wireframes.gif" alt="Wireframes of the four dashboard views evolving into the final design" width="1440" height="1816" loading="lazy">
+          </div>
+
+          <div class="step">
+            <span class="badge">1</span>
+            <div class="prose"><p>The persistent <strong>left panel</strong> carries the global parameters (income slider and apartment size toggle) across all four views without resetting.</p></div>
+          </div>
+
+          <figure class="annotated" style="margin:0">
+            <img src="assets/img/ho-anatomy.png" alt="Annotated dashboard view showing the left panel, view question, callout banner and chart anatomy" width="915" height="1024" loading="lazy">
+            <span class="badge" style="left:7.4%; top:54.7%">1</span>
+            <span class="badge" style="left:59.2%; top:7.1%">2</span>
+            <span class="badge" style="left:97.3%; top:24.9%">3</span>
+            <span class="badge" style="left:39.9%; top:28.2%">4</span>
+          </figure>
+
+          <div class="step">
+            <span class="badge">2</span>
+            <div class="prose"><p>The dashboard opens each view with a question. The question is the argument. Every chart below it, exists to answer or deepen it.</p></div>
+          </div>
+          <div class="step">
+            <span class="badge">3</span>
+            <div class="prose"><p><strong>The callout banner</strong> is the most deliberately editorial element. Each view contains a full-width statement that carries the argument with specific numbers, and responds to the income parameter.</p></div>
+          </div>
+          <div class="step">
+            <span class="badge">4</span>
+            <div class="prose">
+              <p>Every chart in the dashboard follows the same internal anatomy. A <strong>question as the title</strong>: direct, specific, answerable.</p>
+              <p>A <strong>short descriptive subtitle</strong> underneath that names the data being shown and the unit of measurement, without repeating the question.</p>
+              <p>And a <strong>single concept per card</strong>: one argument, one chart type, one conclusion.</p>
+            </div>
+          </div>
+
+          <div class="prose"><ul><li><strong>Views 02 and 03 are structurally identical.</strong> Map top-left, ranked bar chart top-right, two analytical charts below. The parallelism is intentional, moving from rental to property, the user sees the same questions answered for a different market without relearning the interface.</li></ul></div>
+          <div class="prose"><ul><li><strong>One accent colour per view</strong>. Colour functions as navigation, not decoration.</li></ul></div>
+
+          <div class="inset-img">
+            <img src="assets/img/ho-toggle.png" alt="Rent/Buy and PIR/Mortgage toggle states" width="728" height="832" loading="lazy">
+          </div>
+
+          <div class="prose"><ul><li><strong>Toggle behaviour was engineered around Tableau's constraints.</strong> Tableau Public has no native toggle. The Rent/Buy and PIR/Mortgage switches were built using a parameter driving a calculated field, with separate sheets per state swapped inside a layout container. Invisible to the user; explicit in the workbook.</li></ul></div>
+          <div class="prose"><p>The four views form a deliberate arc:</p></div>
+
+          <ol class="arc" style="list-style:none; padding:0">
+            <li class="arc__row"><span class="arc__num">1</span><p>View 01 establishes the <strong>personal baseline</strong>.</p></li>
+            <li class="arc__row"><span class="arc__num">2</span><p>View 02 zooms into the <strong>rental</strong> reality at neighbourhood level.</p></li>
+            <li class="arc__row"><span class="arc__num">3</span><p>View 03 mirrors that structure for <strong>purchasing</strong>.</p></li>
+            <li class="arc__row"><span class="arc__num">4</span><p>View 04 pulls back to the <strong>structural causes</strong>: chronic undersupply, social housing decline, the gap between what new tenants pay and what long-term residents pay.</p></li>
+          </ol>
+        </section>
+
+        <!-- Retrospective -->
+        <section class="cs-section" id="retrospective" data-toc="Retrospective">
+          <header class="cs-head"><p class="eyebrow">Retrospective</p><h2>What I learned</h2></header>
+          <div class="prose" style="max-width:600px">
+            <p>Designing wireframes before the mart layer was stable meant making chart decisions and then working backward to check whether the data could support them. Some required significant rework. The correct sequence is mart layer first, wireframes second — the data structure should constrain the design, not chase it.</p>
+            <p>Choosing Tableau Public late in the process meant designing interactions the platform doesn't natively support. I made them work, but knowing the constraints from day one would have produced cleaner solutions faster. The lesson is not to avoid constrained tools. It is to choose them before you design.</p>
+            <p>Building the DRS taught me that composite indicators carry responsibility. Labelling it exploratory, citing the theoretical framework, and documenting its limitations on every chart that uses it is not a disclaimer — it is part of the methodology.</p>
+          </div>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <section data-more-projects></section>
+  <div data-footer></div>
+
+  <script src="js/projects.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
