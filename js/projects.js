@@ -36,7 +36,7 @@ window.PROJECTS = [
     accent: "#D4583B",
     cover: "assets/img/affordable-cover.png",
     card: "assets/img/affordable-card.png",
-    live: "https://affordable-to-whom-app-448752664124.europe-west3.run.app/",
+    live: "https://ivan13f.github.io/affordable-for-whom/",
     liveLabel: "See live project ↗︎",
   },
 ];

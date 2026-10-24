@@ -361,6 +361,32 @@
     });
   }
 
+  // Case studies: the sidebar and the hero always share one height. CSS sizes the sidebar from
+  // the hero's ratio; when the sidebar's content needs more room (narrower desktops), the hero
+  // grows to match instead (its image/video is cropped with object-fit: cover).
+  function initCaseHeights() {
+    var kase = document.querySelector(".case");
+    var side = document.querySelector(".case-side");
+    var hero = document.querySelector(".cs-hero");
+    if (!kase || !side || !hero) return;
+    var queued = false;
+    function sync() {
+      queued = false;
+      kase.style.removeProperty("--case-h");
+      if (getComputedStyle(side).position !== "sticky") return; // stacked layout below 1024px
+      side.style.minHeight = "0px";
+      var natural = side.offsetHeight;
+      side.style.minHeight = "";
+      if (natural > hero.offsetHeight + 1) kase.style.setProperty("--case-h", natural + "px");
+    }
+    function schedule() {
+      if (!queued) { queued = true; requestAnimationFrame(sync); }
+    }
+    sync();
+    window.addEventListener("resize", schedule);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  }
+
   // Highlights the section you're reading in the case-study sidebar
   function initScrollSpy() {
     var links = [].slice.call(document.querySelectorAll(".toc a"));
@@ -461,6 +487,7 @@
   initDropdowns();
   initTicker();
   initAccordions();
+  initCaseHeights();
   initScrollSpy();
   initLightbox();
   initVideos();

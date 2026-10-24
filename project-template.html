@@ -6,6 +6,9 @@
      The nav dropdown, the Home/Works cards, this page's sidebar and "More projects" all update from that.
   3. Set data-project="<your-slug>" on <body> below and fill in the sections.
   Every <section> with data-toc="…" (and an id) gets a link in the sidebar index automatically.
+  The sidebar (title card + index + live button) is always as tall as the .cs-hero next to it and
+  stays fixed while the content scrolls — keep .cs-hero as the first block in .case-content.
+  Hero images/videos are cropped to 966 × 746; change --hero-ratio on .case in css/style.css to use another shape.
   Delete this comment when you're done.
 -->
 <html lang="en">

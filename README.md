@@ -30,6 +30,8 @@ assets/img, assets/video   media downloaded from the Framer site
 
 A new case study needs one entry in `projects.js` plus a `<slug>.html` page. Copy `project-template.html` to start. Every `<section>` with an `id` and a `data-toc="Label"` attribute gets a link in the sidebar index, which highlights as you scroll.
 
+**Case-study sidebar layout:** on desktop the sidebar (title card, section index, "See live project" button) is always exactly as tall as the hero image or video beside it, with the title card taking up any extra space. It stays fixed while the content scrolls. Heroes are cropped to 966 × 746. To use a different shape, change `--hero-ratio` on `.case` in `css/style.css`. Below 1024px the sidebar stacks above the content.
+
 **Home only shows some projects?** Add `data-limit="3"` to `<div class="project-list" data-project-list>` in `index.html`.
 
 ## How the navigation works
