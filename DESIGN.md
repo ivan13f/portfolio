@@ -4,6 +4,8 @@ The rules behind www.ivan-alfonsoburgos.com. `css/style.css` holds the actual va
 
 **Read this before every visual or content change.** If a change adds or alters a token, component or pattern, update this file in the same change.
 
+**Visual reference:** `design-system.html` (open it locally) shows every token and component live, using the real stylesheet and project data. Items have codes (T = tokens, L = layout, C = components, P = pages, A = accessibility) that match the sections below, and it has a dated changelog. When the design changes, update its demos and add a changelog entry too.
+
 ---
 
 ## 1. Character
@@ -318,6 +320,7 @@ Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image up to
   - Carousel `card` image: portrait (368:459).
   - Compress everything. Prefer MP4 over GIF for anything animated (one GIF on the site is 8.5 MB).
 - **File names:** `assets/img/<project-prefix>-<what>.png` (e.g. `ho-dbt-dag.png`, `afw-lor.png`) and `assets/video/<prefix>-<what>.mp4`.
+- **Proportions:** keep the `width` and `height` attributes on every `<img>`. The base CSS sets `height: auto`, so images scale without stretching. Only boxes that deliberately crop (hero, card images) set a fixed height with `object-fit: cover`.
 - **Alt text:** describe what the image shows and why it matters. Use `alt=""` for decorative images, such as icons beside text that already says the same thing.
 - **Videos:** always `muted loop playsinline preload="metadata" data-autoplay`. They play only while on screen.
 - **Projects:** add, remove or reorder them only in `js/projects.js`. Cards, nav, sidebars and the carousel all follow from it.
@@ -353,7 +356,7 @@ Other rules:
 
 ## 8. Rules for changes
 
-1. Read this file first. Afterwards, update it if any token, component or pattern changed.
+1. Read this file first. Afterwards, update it if any token, component or pattern changed. Also update `design-system.html` (its demos and a changelog entry).
 2. Plain HTML, CSS and JS only: no framework, no build step, no dependencies.
 3. New colors, radii, shadows and easings become tokens in `:root`. No raw values in component rules. The exception is per-project content colors, which are set inline.
 4. Projects come only from `js/projects.js`; never hand-write cards, nav entries or carousel items.

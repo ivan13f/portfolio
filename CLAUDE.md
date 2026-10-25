@@ -6,6 +6,8 @@ Static portfolio site for www.ivan-alfonsoburgos.com. Plain HTML, CSS and JavaSc
 
 Read `DESIGN.md` first and follow it: tokens, components, motion, accessibility and the rules in §8. If a change adds or alters a token, component or pattern, update `DESIGN.md` in the same change.
 
+`design-system.html` is the visual reference. When the design changes, update its demos and add a dated entry to its changelog (newest first). The owner may paste change notes copied from that page. They name items by code (e.g. "C7 Project card"), and the codes match the sections of `DESIGN.md`.
+
 ## Where things live
 
 - `js/projects.js`: the project list plus site settings (nav pages, email, socials). Add, remove or reorder projects here only.
@@ -23,7 +25,7 @@ Preview with any local static server from this folder, for example `python3 -m h
 - **GitHub:** `ivan13f/portfolio` (private), branch `main`. A plain `git push` can stall waiting for the macOS Keychain, so push with:
   `GIT_TERMINAL_PROMPT=0 git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin main`
 - **Netlify:** site `ivan-alfonsoburgos` (id `8469c014-55e5-4c54-84a6-7c8d5fd355d0`), custom domain `www.ivan-alfonsoburgos.com`. The bare domain redirects to www, and HTTPS is forced. The site is not linked to GitHub, so deploys are manual:
-  1. Copy only the site files into a temporary folder: `git ls-files`, minus `*.md` and `.gitignore`. This leaves out these notes and the local `.claude` and `.netlify` folders.
+  1. Copy only the site files into a temporary folder: `git ls-files`, minus `*.md`, `design-system.html` and `.gitignore`. This leaves out these notes, the design reference page and the local `.claude` and `.netlify` folders.
   2. Run `npx --yes netlify-cli@27.14.2 deploy --prod --dir <that folder> --site 8469c014-55e5-4c54-84a6-7c8d5fd355d0`.
 - **DNS** (GoDaddy, managed by the owner): `A @ → 75.2.60.5`, `CNAME www → ivan-alfonsoburgos.netlify.app`.
 - The "Powered by Netlify" badge is switched off (`built_with_badge_enabled: false`).

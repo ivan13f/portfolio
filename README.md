@@ -12,6 +12,7 @@ housing-observatory.html   Case study
 affordable-for-whom.html   Case study
 imprint.html               Impressum
 project-template.html      Starting point for a new case study (not linked anywhere)
+design-system.html         Visual design system reference, kept off the live site (rules in DESIGN.md)
 
 js/projects.js             ← the list of projects + site settings (email, socials, nav)
 js/site.js                 nav, footer, cards, sidebar, animations

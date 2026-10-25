@@ -1,0 +1,921 @@
+<!doctype html>
+<!--
+  Visual reference for the portfolio's design system. Open it locally (double-click, or via a local server).
+  It loads the site's real css/style.css, js/projects.js and js/site.js, so tokens, type and components
+  shown here are always the live ones. Written rules live in DESIGN.md.
+  Not deployed to the public site (see CLAUDE.md).
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Design System — I-AB</title>
+  <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+  <style>
+    /* Styles for this reference page only (prefixed ds-). The site's own components come from css/style.css. */
+    :root {
+      --ds-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --ds-pass: #0b6b1f; --ds-pass-bg: #e3f3e6;
+      --ds-warn: #8a5300; --ds-warn-bg: #fbefd9;
+    }
+    .ds {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 60px) var(--gutter) 140px;
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 60px;
+    }
+    .ds-side { position: sticky; top: 108px; align-self: start; max-height: calc(100vh - 128px); overflow: auto; scrollbar-width: thin; }
+    .ds-side .toc { padding: 11px; gap: 1px; }
+    .ds-side .toc a { min-height: 30px; padding: 3px 12px; font-size: 14px; }
+    .ds-group { padding: 14px 12px 4px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+    .ds-group:first-child { padding-top: 4px; }
+    .ds-side .toc a .ds-code { margin-right: 8px; }
+
+    .ds-main { display: flex; flex-direction: column; gap: 110px; min-width: 0; }
+    .ds-intro { display: flex; flex-direction: column; gap: 20px; max-width: 760px; }
+    .ds-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ds-pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); font-size: 13px; }
+    .ds-how { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 8px; }
+    .ds-how > div { padding: 19px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .ds-how b { display: block; margin-bottom: 6px; font-weight: 600; }
+    .ds-how p { font-size: 14px; color: var(--muted); }
+
+    .ds-part { display: flex; flex-direction: column; gap: 70px; }
+    .ds-part > .ds-part-title { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .ds-section { display: flex; flex-direction: column; gap: 22px; scroll-margin-top: 108px; }
+    .ds-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .ds-head h2 { font-size: 26px; line-height: 1.4; font-weight: 600; letter-spacing: -0.01em; }
+    .ds-head .ds-note-btn { margin-left: auto; }
+    .ds-code {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 34px; padding: 3px 7px; border: 1px solid var(--line); border-radius: 6px;
+      background: var(--surface); font: 600 12px/1.3 var(--ds-mono); color: var(--ink);
+    }
+    .ds-desc { max-width: 720px; color: var(--muted); }
+    .ds-desc code, .ds-table code, .ds-small code { font: 12.5px/1.4 var(--ds-mono); color: var(--ink); background: var(--fact); padding: 1px 5px; border-radius: 4px; }
+    .ds-small { font-size: 13px; color: var(--muted); }
+
+    .ds-demo {
+      display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;
+      padding: 31px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+    }
+    .ds-demo--bg { background: var(--bg); }
+    .ds-demo--col { flex-direction: column; }
+    .ds-demo--tall { min-height: 300px; }
+    .ds-demo .more { padding: 0; max-width: none; }
+    .ds-demo > .ds-fill { flex: 1 1 320px; min-width: 0; }
+    .ds-caption { width: 100%; font-size: 13px; color: var(--muted); }
+
+    .ds-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ds-table th { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: left; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
+    .ds-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .ds-table tr:last-child td { border-bottom: 0; }
+    .ds-tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 6px 8px; }
+
+    .ds-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+    .ds-swatch { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+    .ds-swatch__color { height: 84px; border-bottom: 1px solid var(--line); }
+    .ds-swatch__meta { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px 14px; }
+    .ds-swatch__name { font: 600 13px/1.4 var(--ds-mono); }
+    .ds-swatch__hex { font: 12.5px/1.4 var(--ds-mono); color: var(--muted); text-transform: uppercase; }
+    .ds-swatch__use { margin-top: 4px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+
+    .ds-aa { display: inline-flex; align-items: center; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .ds-aa--pass { color: var(--ds-pass); background: var(--ds-pass-bg); }
+    .ds-aa--warn { color: var(--ds-warn); background: var(--ds-warn-bg); }
+
+    .ds-accent { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; align-items: center; width: 100%; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .ds-accent:last-child { padding-bottom: 0; border-bottom: 0; }
+    .ds-accent__chip { height: 96px; border-radius: 14px; background: var(--accent); }
+    .ds-accent__body { display: flex; flex-direction: column; gap: 12px; }
+    .ds-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+    .ds-type { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 24px; align-items: baseline; width: 100%; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .ds-type:first-child { padding-top: 0; }
+    .ds-type:last-child { padding-bottom: 0; border-bottom: 0; }
+    .ds-type__spec { display: flex; flex-direction: column; gap: 2px; }
+    .ds-type__spec b { font-weight: 600; font-size: 14px; }
+    .ds-type__spec span { font: 12px/1.5 var(--ds-mono); color: var(--muted); }
+    .ds-type__sample { min-width: 0; overflow-wrap: anywhere; }
+
+    .ds-space { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; width: 100%; font: 12.5px var(--ds-mono); color: var(--muted); }
+    .ds-space i { display: block; height: 14px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 18%, transparent); }
+
+    .ds-radius { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 120px; font-size: 13px; text-align: center; color: var(--muted); }
+    .ds-radius i { display: block; width: 80px; height: 80px; border: 1px solid var(--line); background: var(--bg); }
+
+    .ds-elev { display: flex; flex-direction: column; gap: 8px; width: 210px; }
+    .ds-elev i { display: block; height: 110px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+
+    .ds-motion { display: flex; flex-direction: column; gap: 12px; width: 190px; }
+    .ds-motion__stage { position: relative; display: grid; place-items: center; height: 150px; border: 1px dashed var(--line); border-radius: 14px; background: var(--bg); overflow: hidden; }
+    .ds-motion__box { width: 64px; height: 64px; border-radius: 14px; background: var(--ink); }
+    .ds-motion b { font-weight: 600; font-size: 14px; }
+    .ds-motion span { font-size: 13px; color: var(--muted); }
+    .ds-replay { align-self: flex-start; }
+
+    .ds-bp { display: inline-flex; gap: 8px; align-items: center; }
+    .ds-proportions { display: flex; width: 100%; height: 64px; gap: 0; font-size: 12px; }
+    .ds-proportions > div { display: grid; place-items: center; border-radius: 10px; text-align: center; padding: 4px; }
+
+    .ds-navdemo { position: relative; display: flex; gap: 40px; flex-wrap: wrap; min-height: 330px; }
+    .ds-navdemo .dd { pointer-events: none; }
+    .ds-heightdemo { display: flex; gap: 20px; align-items: stretch; width: 100%; }
+    .ds-heightdemo__side { flex: 0 0 160px; display: flex; flex-direction: column; gap: 8px; }
+    .ds-heightdemo__side i { display: block; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+    .ds-heightdemo__hero { flex: 1; aspect-ratio: 966 / 746; max-height: 260px; border-radius: 12px; background: var(--fact); display: grid; place-items: center; font-size: 13px; color: var(--muted); }
+
+    .ds-pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .ds-page { display: flex; flex-direction: column; gap: 8px; padding: 19px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); text-decoration: none; transition: box-shadow 0.4s var(--ease-spring); }
+    .ds-page:hover { box-shadow: var(--shadow-card); }
+    .ds-page b { font-weight: 600; }
+    .ds-page p { font-size: 14px; color: var(--muted); }
+
+    .ds-log { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+    .ds-log li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .ds-log li:last-child { border-bottom: 0; }
+    .ds-log time { font: 13px/1.6 var(--ds-mono); color: var(--muted); }
+    .ds-log ul { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+    .ds-log .ds-code { margin-right: 6px; }
+
+    /* Change notes */
+    .ds-note-btn {
+      display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px;
+      border: 1px solid var(--line); border-radius: 8px; background: var(--surface);
+      font-size: 13px; cursor: pointer; transition: background-color 0.2s ease;
+    }
+    .ds-note-btn:hover { background: var(--hover); }
+    .ds-note-btn[data-has-note="true"] { border-color: var(--ink); }
+    .ds-note-btn svg { width: 14px; height: 14px; }
+    .ds-note { display: none; }
+    .ds-note.is-open { display: block; }
+    .ds-note textarea {
+      width: 100%; min-height: 84px; padding: 12px 14px; resize: vertical;
+      border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+      font: 15px/1.5 var(--font); color: var(--ink);
+    }
+    .ds-note textarea:focus { outline: 2px solid var(--ink); outline-offset: 1px; }
+    .ds-dock {
+      position: fixed; right: 20px; bottom: 20px; z-index: 60;
+      display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 16px;
+      border-radius: 14px; background: var(--ink); color: #f4f4f4; box-shadow: var(--shadow-card-lg);
+      font-size: 14px;
+    }
+    .ds-dock button { height: 32px; padding: 0 12px; border: 0; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
+    .ds-dock .ds-copy { background: #f4f4f4; color: var(--ink); }
+    .ds-dock .ds-clear { background: transparent; color: #f4f4f4; border: 1px solid rgba(244, 244, 244, 0.35); }
+
+    @media (max-width: 1023.98px) {
+      .ds { grid-template-columns: minmax(0, 1fr); padding-top: calc(var(--nav-h) + 40px); }
+      .ds-side { display: none; }
+    }
+    @media (max-width: 809.98px) {
+      .ds-how { grid-template-columns: minmax(0, 1fr); }
+      .ds-type, .ds-accent, .ds-log li { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+      .ds-demo { padding: 19px; }
+      .ds-heightdemo { flex-direction: column; }
+      .ds-heightdemo__side { flex: none; }
+    }
+  </style>
+</head>
+<body data-page="design">
+  <div data-nav></div>
+
+  <div class="ds">
+    <!-- Section index (uses the site's .toc component; highlights as you scroll) -->
+    <aside class="ds-side" aria-label="Design system sections">
+      <nav class="toc" id="ds-toc"></nav>
+    </aside>
+
+    <main class="ds-main">
+      <!-- ================= Intro ================= -->
+      <section class="ds-intro" id="overview" data-ds-title="Overview" data-ds-group="Start">
+        <p class="t-small">Reference</p>
+        <h1 class="t-page">Design system</h1>
+        <p class="t-lead c-muted"><span class="c-ink">The building blocks of ivan-alfonsoburgos.com, live.</span> Everything below uses the site’s real stylesheet, scripts and project data, so it always shows what the site looks like today.</p>
+        <div class="ds-meta">
+          <span class="ds-pill">Live from <code>css/style.css</code></span>
+          <span class="ds-pill">Written rules: <code>DESIGN.md</code></span>
+          <span class="ds-pill" id="ds-updated">Last change logged: —</span>
+        </div>
+        <div class="ds-how">
+          <div><b>Refer by code</b><p>Each item has a code. When asking for a change, mention it, e.g. “C7 Project card: make the radius 16”.</p></div>
+          <div><b>Leave notes</b><p>Use “Add note” on any section to jot down a change. Notes stay in this browser until you clear them.</p></div>
+          <div><b>Send them</b><p>“Copy for Claude” (bottom right) copies all your notes as one message to paste into the chat.</p></div>
+        </div>
+      </section>
+
+      <!-- ================= Tokens ================= -->
+      <div class="ds-part">
+        <h2 class="t-h2 ds-part-title">Tokens</h2>
+
+        <section class="ds-section" id="t1" data-code="T1" data-ds-title="Color" data-ds-group="Tokens">
+          <p class="ds-desc">Warm off-white canvas, white cards, hairline borders, near-black ink. Color comes from project accents and imagery, not from the interface. Hex values are read live from <code>:root</code>.</p>
+          <div class="ds-swatches" id="ds-colors"></div>
+        </section>
+
+        <section class="ds-section" id="t2" data-code="T2" data-ds-title="Project accents" data-ds-group="Tokens">
+          <p class="ds-desc">One accent per project, set in <code>js/projects.js</code> → <code>accent</code>. Chips and the live button use a 25% tint (35% on hover); badges are filled with the accent and carry white text. Rows are generated from the live project list.</p>
+          <div class="ds-demo ds-demo--col" id="ds-accents"></div>
+          <div class="ds-tablewrap">
+            <table class="ds-table">
+              <thead><tr><th>Content color</th><th>Value</th><th>Where</th></tr></thead>
+              <tbody>
+                <tr><td>Persona: Newcomer / Resident / Researcher</td><td><code>#C8440A</code> <code>#2952CC</code> <code>#1A6B5C</code></td><td>Housing Observatory persona cards (inline <code>--accent</code>)</td></tr>
+                <tr><td>Tile: Staging (bg / border)</td><td><code>#D6EAF8</code> <code>#1D4E89</code></td><td>Housing Observatory dbt layers (inline <code>--tile-bg</code> / <code>--tile-border</code>)</td></tr>
+                <tr><td>Tile: Intermediate</td><td><code>#D1F2EB</code> <code>#0E6655</code></td><td>Housing Observatory dbt layers</td></tr>
+                <tr><td>Tile: Mart</td><td><code>#DCCCFF</code> <code>#874FFF</code></td><td>Housing Observatory dbt layers</td></tr>
+                <tr><td>Not ported from Framer</td><td><code>#8B80CC</code> <code>#FB5C1F</code> <code>#8C7822</code></td><td>Aside, On Site, Spotlight (reference only)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="ds-section" id="t3" data-code="T3" data-ds-title="Typography" data-ds-group="Tokens">
+          <p class="ds-desc">Inter everywhere; weight carries the hierarchy (400 read · 500 UI · 600 headings · 700 logo). Georgia only for persona names. Specs on the left are measured live from each sample. Phone sizes: display 36, tagline 32, page title 28, lead 22.</p>
+          <div class="ds-demo ds-demo--col" id="ds-type"></div>
+          <p class="ds-small">Two-tone lead: <code>&lt;p class="t-lead c-muted"&gt;&lt;span class="c-ink"&gt;Key sentence.&lt;/span&gt; The rest…&lt;/p&gt;</code>. Headings in sentence case; uppercase only via CSS on outline buttons, link-card labels and “Scroll for more”.</p>
+        </section>
+
+        <section class="ds-section" id="t4" data-code="T4" data-ds-title="Spacing" data-ds-group="Tokens">
+          <p class="ds-desc">One scale for everything. Page gutter <code>--gutter</code>: 60 desktop · 30 tablet · 16 phone.</p>
+          <div class="ds-demo ds-demo--col" id="ds-space" style="gap:10px"></div>
+          <div class="ds-tablewrap">
+            <table class="ds-table">
+              <thead><tr><th>Context</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Between paragraphs (<code>.prose</code>)</td><td>12</td></tr>
+                <tr><td>Card padding</td><td>24 (case card, index, tiles, accordion, note) · 20 on large cards</td></tr>
+                <tr><td>Grid and column gaps</td><td>40 · 20 for tight variants and on phones</td></tr>
+                <tr><td>Inside a case-study section</td><td>40 · <code>--tight</code> 20 · <code>--mid</code> 60 · <code>--loose</code> 80</td></tr>
+                <tr><td>Between case-study blocks / sections</td><td>80 / 120 (80 on phones)</td></tr>
+                <tr><td>Home sections</td><td>80 around each divider · project cards 60 apart</td></tr>
+                <tr><td>Top padding: simple pages / case studies</td><td>193 / 122</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="ds-section" id="t5" data-code="T5" data-ds-title="Radius" data-ds-group="Tokens">
+          <p class="ds-desc">Six radii; larger surfaces get larger corners.</p>
+          <div class="ds-demo" id="ds-radius"></div>
+        </section>
+
+        <section class="ds-section" id="t6" data-code="T6" data-ds-title="Borders &amp; elevation" data-ds-group="Tokens">
+          <p class="ds-desc">Cards use <code>1px solid var(--line)</code>; triggers and callouts a <code>0.5px</code> hairline. Framer draws borders inside the box, so bordered cards trim 1px of padding (19 instead of 20, 23 instead of 24). No shadows at rest: elevation only on hover and for overlays.</p>
+          <div class="ds-demo ds-demo--bg">
+            <div class="ds-elev"><i></i><b class="t-small">Border only (rest)</b><span class="ds-small"><code>1px --line</code></span></div>
+            <div class="ds-elev"><i style="box-shadow: var(--shadow-card)"></i><b class="t-small">--shadow-card</b><span class="ds-small">Project + carousel card hover</span></div>
+            <div class="ds-elev"><i style="box-shadow: var(--shadow-card-lg)"></i><b class="t-small">--shadow-card-lg</b><span class="ds-small">Link card hover</span></div>
+            <div class="ds-elev"><i style="box-shadow: var(--shadow-menu); border-color: transparent; border-radius: 10px"></i><b class="t-small">--shadow-menu</b><span class="ds-small">Dropdown panel</span></div>
+          </div>
+        </section>
+
+        <section class="ds-section" id="t7" data-code="T7" data-ds-title="Motion" data-ds-group="Tokens">
+          <p class="ds-desc">Soft and sparing: things slide in once and hover states lift with a small spring. Only the availability pulse and the hero tagline loop. All motion switches off with “reduce motion”. Press Replay to see each effect.</p>
+          <div class="ds-demo ds-demo--bg" id="ds-motion">
+            <div class="ds-motion">
+              <div class="ds-motion__stage"><div class="ds-motion__box" data-appear="down"></div></div>
+              <b>Appear: down</b><span><code>data-appear="down"</code> · 0.6s · nav, “Available” pill</span>
+              <button class="btn btn--outline ds-replay" type="button" data-replay>Replay</button>
+            </div>
+            <div class="ds-motion">
+              <div class="ds-motion__stage"><div class="ds-motion__box" data-appear="right"></div></div>
+              <b>Appear: from left</b><span><code>data-appear="right"</code> · 0.6s · hero and About text</span>
+              <button class="btn btn--outline ds-replay" type="button" data-replay>Replay</button>
+            </div>
+            <div class="ds-motion">
+              <div class="ds-motion__stage"><div class="ds-motion__box" data-appear="up"></div></div>
+              <b>Appear: up</b><span><code>data-appear="up"</code> · 0.6s · hero card, portrait (no fade)</span>
+              <button class="btn btn--outline ds-replay" type="button" data-replay>Replay</button>
+            </div>
+            <div class="ds-motion">
+              <div class="ds-motion__stage"><div class="ds-motion__box" data-reveal></div></div>
+              <b>Reveal on scroll</b><span><code>data-reveal</code> · 0.8s · once · project cards</span>
+              <button class="btn btn--outline ds-replay" type="button" data-replay>Replay</button>
+            </div>
+            <div class="ds-motion">
+              <div class="ds-motion__stage"><div class="ds-motion__box" data-reveal="left"></div></div>
+              <b>Reveal from right</b><span><code>data-reveal="left"</code> · 0.8s · About teaser card</span>
+              <button class="btn btn--outline ds-replay" type="button" data-replay>Replay</button>
+            </div>
+            <div class="ds-motion">
+              <div class="ds-motion__stage"><div class="dd" id="ds-spring"><span class="dd__chev" style="display:block; width:48px; height:48px"><svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5 10 12.5 15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+              <b>Spring</b><span>0.45s · chevrons, hover shadows, accordion</span>
+              <button class="btn btn--outline ds-replay" type="button" id="ds-spring-btn">Flip</button>
+            </div>
+          </div>
+          <div class="ds-tablewrap">
+            <table class="ds-table">
+              <thead><tr><th>Effect</th><th>Duration</th><th>Easing (live)</th><th>Where</th></tr></thead>
+              <tbody>
+                <tr><td>Appear on load</td><td>0.6s</td><td><code data-token="--ease-appear"></code></td><td>Home and About only</td></tr>
+                <tr><td>Reveal on scroll (once)</td><td>0.8s</td><td><code data-token="--ease-reveal"></code></td><td>Project cards, Home About teaser</td></tr>
+                <tr><td>Spring</td><td>0.4–0.5s</td><td><code data-token="--ease-spring"></code></td><td>Hover shadows, chevrons, “+”, accordion, tagline</td></tr>
+                <tr><td>Fades</td><td>0.2–0.3s</td><td><code>ease</code></td><td>Hover backgrounds, dropdown panel, lightbox</td></tr>
+                <tr><td>Tagline</td><td>4s per line</td><td>spring</td><td>Home hero (C5)</td></tr>
+                <tr><td>Availability pulse</td><td>1.3s loop</td><td><code>linear</code></td><td>“Available for work” pill (C4)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================= Layout ================= -->
+      <div class="ds-part">
+        <h2 class="t-h2 ds-part-title">Layout</h2>
+
+        <section class="ds-section" id="l1" data-code="L1" data-ds-title="Breakpoints &amp; widths" data-ds-group="Layout">
+          <p class="ds-desc">Max width <code>1440px</code>, centered. Project cards are left-aligned at 904; text columns stop at 628. <span class="ds-bp">Your window right now: <b id="ds-vw">—</b> <span class="ds-pill" id="ds-bp">—</span></span></p>
+          <div class="ds-tablewrap">
+            <table class="ds-table">
+              <thead><tr><th>Breakpoint</th><th>Width</th><th>What changes</th></tr></thead>
+              <tbody>
+                <tr><td>Desktop</td><td>≥ 1024</td><td>Full layout; case studies have the sticky sidebar</td></tr>
+                <tr><td>Tablet</td><td>810–1023</td><td>Gutter 30; case-study sidebar stacks above the content</td></tr>
+                <tr><td>Phone</td><td>&lt; 810</td><td>Gutter 16; nav collapses; grids become one column; cards stack image-first; type scales down</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ds-demo ds-demo--col">
+            <b class="t-small">Case-study proportions at 1440</b>
+            <div class="ds-proportions">
+              <div style="flex: 0 0 60px; background: var(--fact)">60<br>gutter</div>
+              <div style="flex: 0 0 299px; background: var(--active)">sidebar 299</div>
+              <div style="flex: 0 0 40px">40</div>
+              <div style="flex: 1; background: var(--fact)">content 966 · hero 966 × 746</div>
+              <div style="flex: 0 0 60px; background: var(--fact)">60<br>gutter</div>
+            </div>
+            <span class="ds-caption">Nav is fixed, 84px tall. Other key widths: home hero text 653 · link card 432 · project card 904 · text 628.</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================= Components ================= -->
+      <div class="ds-part">
+        <h2 class="t-h2 ds-part-title">Components</h2>
+
+        <section class="ds-section" id="c1" data-code="C1" data-ds-title="Navigation" data-ds-group="Components">
+          <p class="ds-desc">Two levels, built from <code>js/projects.js</code>. Level 1: Home · About · Selected Works (label shows the current section). Level 2 appears on case studies: <code>Selected Works › Project ▾</code>. Opens on hover (desktop) or tap; keyboard ↑/↓/Esc. On phones the project list folds into the first dropdown. <b>The nav at the top of this page is the live component.</b> Below, both panels shown open.</p>
+          <div class="ds-demo ds-demo--bg ds-navdemo" id="ds-navdemo"></div>
+        </section>
+
+        <section class="ds-section" id="c2" data-code="C2" data-ds-title="Buttons" data-ds-group="Components">
+          <p class="ds-desc">Dark CTA (36h), outline (36h or 50h with <code>.btn--lg</code>), and the accent-tinted live-project button (48h, full width of its column). “↗︎” marks links that leave the site.</p>
+          <div class="ds-demo" id="ds-buttons">
+            <a class="btn btn--dark" href="#c2" onclick="return false">Get in touch ↗︎</a>
+            <a class="btn btn--outline" href="#c2" onclick="return false">View all projects →</a>
+            <a class="btn btn--outline btn--lg" href="#c2" onclick="return false">More projects →</a>
+            <a class="live-btn ds-accented" style="width: 299px" href="#c2" onclick="return false">See live project ↗︎</a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c3" data-code="C3" data-ds-title="Chips" data-ds-group="Components">
+          <p class="ds-desc">Tools and disciplines, three per project at most. <code>tags</code> appear on cards, <code>pageTags</code> in the case-study sidebar.</p>
+          <div class="ds-demo ds-demo--col" id="ds-chips"></div>
+        </section>
+
+        <section class="ds-section" id="c4" data-code="C4" data-ds-title="“Available” pill" data-ds-group="Components">
+          <p class="ds-desc">Home hero only. The green dot pulses (×2, fading out) every 1.3s. Remove it when not looking for work.</p>
+          <div class="ds-demo"><p class="available"><span class="available__dot" aria-hidden="true"></span>Available for work</p></div>
+        </section>
+
+        <section class="ds-section" id="c5" data-code="C5" data-ds-title="Hero tagline" data-ds-group="Components">
+          <p class="ds-desc">One line at a time, 4s each, the next springing up from below. Lines start with an en dash. Keep it to 3–5 lines. (Sample below; the real lines live in <code>index.html</code>.)</p>
+          <div class="ds-demo ds-demo--col">
+            <p class="ticker" data-ticker style="max-width: 653px">
+              <span class="ticker__line">– blending design, research, and analytics.</span>
+              <span class="ticker__line">– eager to apply my diverse skillset.</span>
+              <span class="ticker__line">– equal parts detail-oriented and big-picture thinker.</span>
+              <span class="ticker__line">– passionate about transforming data into visual insights.</span>
+            </p>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c6" data-code="C6" data-ds-title="Link card" data-ds-group="Components">
+          <p class="ds-desc">White card, max 432 wide, image (392:366) and an uppercase label with an arrow. Hover: large shadow, arrow nudges. Used for the Home hero (→ Works) and the About teaser (→ About).</p>
+          <div class="ds-demo ds-demo--bg">
+            <a class="link-card" href="#c6" onclick="return false">
+              <div class="link-card__media"><img src="assets/img/hero-apps.gif" alt="" width="450" height="366"></div>
+              <span class="link-card__label">View all projects
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12.5m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c7" data-code="C7" data-ds-title="Project card" data-ds-group="Components">
+          <p class="ds-desc">Rendered from <code>js/projects.js</code> (first project shown). 904 × 520, info column 346, image with “+” button. Hover: shadow, “+” turns 90°. Reveals on scroll. On phones: image on top.</p>
+          <div class="ds-demo ds-demo--bg ds-demo--col">
+            <div class="project-list" data-project-list data-limit="1" style="margin-top:0; width:100%"></div>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c8" data-code="C8" data-ds-title="Case-study sidebar" data-ds-group="Components">
+          <p class="ds-desc">Title card + section index + live button, 299 wide. <b>Height rule:</b> on desktop the three together are exactly as tall as the hero beside it, and stay sticky while the content scrolls; the title card takes the extra space. If the content can’t fit, the hero grows instead. Index links come from sections with <code>data-toc</code>.</p>
+          <div class="ds-demo ds-demo--bg">
+            <div id="ds-sidebar" style="display:flex; flex-direction:column; gap:20px; width:299px"></div>
+            <div class="ds-fill" style="display:flex; flex-direction:column; gap:12px">
+              <b class="t-small">Height rule</b>
+              <div class="ds-heightdemo">
+                <div class="ds-heightdemo__side"><i style="flex:1"></i><i style="height:70px"></i><i style="height:22px; border-color: var(--ink)"></i></div>
+                <div class="ds-heightdemo__hero">hero 966 : 746</div>
+              </div>
+              <span class="ds-caption">Sidebar top and bottom line up with the hero. Below 1024px it stacks above the content.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c9" data-code="C9" data-ds-title="Hero &amp; quick facts" data-ds-group="Components">
+          <p class="ds-desc">Hero is cropped to 966:746 (export at 2×, 1932 × 1492+); image or muted looping video. Quick facts always list Type · Category · Timeframe · Tools.</p>
+          <div class="ds-demo ds-demo--col">
+            <div class="case" style="padding:0; display:block; width:100%">
+              <div class="cs-hero"><img src="assets/img/housing-observatory-cover.png" alt="" width="1771" height="1321"></div>
+            </div>
+            <dl class="facts" style="width:100%">
+              <div><dt>Type</dt><dd>Mentorship Project</dd></div>
+              <div><dt>Category</dt><dd>Urban Data</dd></div>
+              <div><dt>Timeframe</dt><dd>10 weeks</dd></div>
+              <div><dt>Tools</dt><dd>PostgreSQL, dbt, Tableau, Python</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c10" data-code="C10" data-ds-title="Section heading &amp; text" data-ds-group="Components">
+          <p class="ds-desc">Every case-study section: eyebrow (repeats the index label) + h2 that says something about it, then <code>.prose</code> (max 628, paragraphs 12 apart, bold for key terms).</p>
+          <div class="ds-demo ds-demo--col">
+            <header class="cs-head"><p class="eyebrow">Sources</p><h2>Public Data. Private Effort.</h2></header>
+            <div class="prose">
+              <p>The dashboard draws on 24 different tables from several different sources:</p>
+              <ul>
+                <li>Purchase prices came from the <strong>Gutachterausschuss</strong>, Berlin's official property valuation committee.</li>
+                <li>Rent burden and ownership rates came from the <strong>Mikrozensus</strong>.</li>
+              </ul>
+              <p>Some of these figures were buried inside PDF tables and required manual extraction.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c11" data-code="C11" data-ds-title="Callout &amp; note" data-ds-group="Components">
+          <p class="ds-desc">Callout for a definition (“What is a…?”), with a 60px icon. Note for one caveat or takeaway, in italics.</p>
+          <div class="ds-demo ds-demo--col">
+            <aside class="callout">
+              <img src="assets/img/ho-callout-icon.png" alt="" width="60" height="60">
+              <div class="prose"><p><strong>What is a Prognoseraum?</strong></p><p>A neighbourhood unit between Berlin’s 12 districts and its 542 planning areas: 58 areas, each large enough for stable statistics.</p></div>
+            </aside>
+            <p class="note" style="max-width:628px"><em>A high score means the conditions enabling displacement are present, not that displacement has already occurred.</em></p>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c12" data-code="C12" data-ds-title="Tiles" data-ds-group="Components">
+          <p class="ds-desc">Default tile on <code>--fact</code>; colored tiles set <code>--tile-bg</code> / <code>--tile-border</code> inline; numbered and question variants. Usually in <code>.cols-2</code> / <code>.cols-3</code>.</p>
+          <div class="ds-demo ds-demo--col">
+            <div class="cols-3 ds-accented" style="width:100%">
+              <div class="tile"><h3 class="tile__title">Default tile</h3><p>Short explanation of one idea.</p></div>
+              <div class="tile" style="--tile-bg:#d6eaf8; --tile-border:#1d4e89"><h3 class="tile__title">Colored tile</h3><p>Staging layer colors from Housing Observatory.</p></div>
+              <div class="tile"><span class="badge badge--lg">1</span><h3 class="tile__q">Question tile?</h3><p>Accent badge + 23px question.</p></div>
+            </div>
+            <div class="cols-2" style="width:100%">
+              <div class="tile tile--drs"><p class="tile__big">1</p><div><p class="tile__title">Numbered tile</p><p>Big number, bold title, one sentence.</p></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c13" data-code="C13" data-ds-title="Persona card" data-ds-group="Components">
+          <p class="ds-desc">Accent background with light text, Georgia name, quoted question. Set <code>--accent</code> inline per persona.</p>
+          <div class="ds-demo">
+            <article class="persona" style="--accent:#c8440a; width:295px">
+              <div><span class="persona__num">01</span><h3 class="persona__name">The Newcomer</h3><p class="persona__desc">Arriving to a city they don’t know yet.</p></div>
+              <p class="persona__q">“Considering my income, which neighbourhoods are affordable to rent?”</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c14" data-code="C14" data-ds-title="Steps, annotations &amp; arc" data-ds-group="Components">
+          <p class="ds-desc">Numbered steps (30px accent badge) can point at an annotated image (badges placed in % of the image). The arc list tells a 3–5 step story.</p>
+          <div class="ds-demo ds-accented">
+            <div style="display:flex; flex-direction:column; gap:24px; flex:1 1 320px; min-width:0">
+              <div class="step"><span class="badge">1</span><div class="prose"><p>The persistent <strong>left panel</strong> carries the global parameters.</p></div></div>
+              <ol class="arc" style="list-style:none; padding:0">
+                <li class="arc__row"><span class="arc__num">1</span><p>View 01 establishes the <strong>personal baseline</strong>.</p></li>
+                <li class="arc__row"><span class="arc__num">2</span><p>View 02 zooms into the <strong>rental</strong> reality.</p></li>
+              </ol>
+            </div>
+            <figure class="annotated" style="margin:0; width:260px">
+              <img src="assets/img/ho-anatomy.png" alt="" width="915" height="1024">
+              <span class="badge" style="left:7.4%; top:54.7%">1</span>
+              <span class="badge" style="left:59.2%; top:7.1%">2</span>
+            </figure>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c15" data-code="C15" data-ds-title="Accordion" data-ds-group="Components">
+          <p class="ds-desc">About page questions. Closed cards tint on hover; the body opens with a spring. Several can be open at once. (Live, click it.)</p>
+          <div class="ds-demo ds-demo--bg">
+            <div class="faq" style="flex: 1 1 400px; max-width:585px">
+              <div class="acc" data-acc>
+                <button class="acc__head" type="button" aria-expanded="false"><span>What is my background?</span>
+                  <svg class="acc__chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 15l6-6 6 6" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="acc__body"><div><p>Answers are 16px in the secondary gray.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c16" data-code="C16" data-ds-title="“More projects” carousel" data-ds-group="Components">
+          <p class="ds-desc">Bottom of each case study, built from every other project. Portrait images (368:459, from <code>card</code>). Arrows only appear when the cards overflow. (Live; here it lists all projects.)</p>
+          <div class="ds-demo ds-demo--bg ds-demo--col">
+            <section data-more-projects style="width:100%"></section>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c17" data-code="C17" data-ds-title="Footer" data-ds-group="Components">
+          <p class="ds-desc">Dark, four columns: “Say Hello”, email and socials (from <code>SITE</code> in <code>js/projects.js</code>), then © year, Berlin + live time, “Made with ♡︎︎ from scratch”, Imprint. <b>The footer at the bottom of this page is the live component.</b></p>
+        </section>
+
+        <section class="ds-section" id="c18" data-code="C18" data-ds-title="Lightbox &amp; media" data-ds-group="Components">
+          <p class="ds-desc">Add <code>data-zoom</code> to an image to open it full size on click (Esc closes). Media blocks are full width with radius 16. Videos: <code>muted loop playsinline preload="metadata" data-autoplay</code>; they play only while on screen.</p>
+          <div class="ds-demo">
+            <div class="cs-media" style="width:220px"><img src="assets/img/ho-dbt-dag.png" alt="dbt lineage graph" width="1524" height="2048" data-zoom></div>
+            <span class="ds-caption">Click the diagram to try the lightbox.</span>
+          </div>
+        </section>
+
+        <section class="ds-section" id="c19" data-code="C19" data-ds-title="Small parts" data-ds-group="Components">
+          <p class="ds-desc">Divider, “Scroll for more” hint, the “+” button and numbered badges.</p>
+          <div class="ds-demo ds-demo--col ds-accented">
+            <hr class="rule" style="width:100%">
+            <div class="ds-row">
+              <a class="scroll-hint" href="#c19" onclick="return false"><span>Scroll for more</span><span aria-hidden="true">↓</span></a>
+              <span class="plus" style="position:static; border:1px solid var(--line)"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M12 6v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              <span class="badge">1</span><span class="badge badge--lg">2</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================= Pages ================= -->
+      <div class="ds-part">
+        <h2 class="t-h2 ds-part-title">Pages</h2>
+        <section class="ds-section" id="p1" data-code="P1" data-ds-title="Page templates" data-ds-group="Pages">
+          <p class="ds-desc">How the components combine on each page. Links open the real pages.</p>
+          <div class="ds-pages">
+            <a class="ds-page" href="index.html"><b>Home</b><p>Hero (pill, headline, tagline, link card) → Selected Works cards → About teaser → footer.</p></a>
+            <a class="ds-page" href="works.html"><b>Selected Works</b><p>Page title → all project cards.</p></a>
+            <a class="ds-page" href="about.html"><b>About</b><p>Statement + lead beside portrait → accordion beside “open for opportunities” card.</p></a>
+            <a class="ds-page" href="housing-observatory.html"><b>Case study</b><p>Sidebar + hero → quick facts → sections (eyebrow + h2) → retrospective → more projects.</p></a>
+            <a class="ds-page" href="imprint.html"><b>Imprint</b><p>Title + date → address card beside legal text.</p></a>
+            <a class="ds-page" href="project-template.html"><b>New case study template</b><p>Starting point for the next project (copy it, add the project to <code>projects.js</code>).</p></a>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================= Accessibility ================= -->
+      <div class="ds-part">
+        <h2 class="t-h2 ds-part-title">Accessibility</h2>
+        <section class="ds-section" id="a1" data-code="A1" data-ds-title="Contrast" data-ds-group="Accessibility">
+          <p class="ds-desc">Measured live against WCAG 2.1 (small text 4.5:1, large text 3:1). The amber pairs come from the original Framer design and are kept for fidelity; don’t extend them to new elements.</p>
+          <div class="ds-tablewrap"><table class="ds-table"><thead><tr><th>Text</th><th>On</th><th>Ratio</th><th>Status</th><th>Used for</th></tr></thead><tbody id="ds-contrast"></tbody></table></div>
+          <p class="ds-small">Also: visible focus ring (<code>2px solid --ink</code>), real links and buttons with <code>aria-expanded</code> / <code>aria-current</code>, one <code>&lt;h1&gt;</code> per page, and all motion off for “reduce motion”.</p>
+        </section>
+      </div>
+
+      <!-- ================= Changelog ================= -->
+      <div class="ds-part">
+        <h2 class="t-h2 ds-part-title">Changelog</h2>
+        <section class="ds-section" id="log" data-code="LOG" data-ds-title="Design changes" data-ds-group="Changelog">
+          <p class="ds-desc">Newest first. Claude adds an entry here (and updates <code>DESIGN.md</code>) whenever the design changes.</p>
+          <ol class="ds-log" id="ds-log">
+            <li data-date="2026-10-25">
+              <time>25 Oct 2026</time>
+              <ul>
+                <li><span class="ds-code">T3</span>Home “About me” lead is two-tone: first sentence in ink, the rest in <code>--muted</code> (new <code>.c-ink</code> utility). <code>--soft</code> is now used for the hero tagline only.</li>
+                <li><span class="ds-code">C18</span>Images always keep their proportions (global <code>height: auto</code>); fixes the stretched four-views image on Housing Observatory.</li>
+                <li>Design system documented: <code>DESIGN.md</code> and this page.</li>
+                <li>“Powered by Netlify” badge removed from the live site.</li>
+              </ul>
+            </li>
+            <li data-date="2026-10-24">
+              <time>24 Oct 2026</time>
+              <ul>
+                <li><span class="ds-code">C8</span>Case-study sidebar always matches the hero’s height and stays sticky; the hero grows on narrower desktops if needed.</li>
+                <li><span class="ds-code">C2</span>Affordable for Whom? live link now points to its GitHub Pages app.</li>
+                <li>Site moved from Framer to Netlify on www.ivan-alfonsoburgos.com; old UX project URLs redirect to Selected Works.</li>
+              </ul>
+            </li>
+            <li data-date="2026-10-23">
+              <time>23 Oct 2026</time>
+              <ul>
+                <li>Rebuilt from the Framer site as plain HTML/CSS/JS: tokens, two-level nav, components and motion matched to Framer; projects driven by <code>js/projects.js</code>; the two data viz case studies ported.</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div data-footer></div>
+
+  <div class="ds-dock" id="ds-dock" hidden>
+    <span id="ds-dock-count">0 notes</span>
+    <button class="ds-copy" type="button" id="ds-copy">Copy for Claude</button>
+    <button class="ds-clear" type="button" id="ds-clear">Clear</button>
+  </div>
+
+  <script>
+  /* Section index: built before site.js runs, so its scroll highlighting picks these links up. */
+  (function () {
+    var html = "", group = "";
+    [].forEach.call(document.querySelectorAll("#overview, .ds-section[data-code]"), function (s) {
+      var g = s.dataset.dsGroup;
+      if (g !== group) { html += '<div class="ds-group">' + g + "</div>"; group = g; }
+      html += '<a href="#' + s.id + '">' + (s.dataset.code ? '<span class="ds-code">' + s.dataset.code + "</span>" : "") + s.dataset.dsTitle + "</a>";
+    });
+    document.getElementById("ds-toc").innerHTML = html;
+  })();
+  </script>
+  <script src="js/projects.js"></script>
+  <script src="js/site.js"></script>
+  <script>
+  /* Reference-page behaviour: live token readouts, generated demos, notes and the section index. */
+  (function () {
+    "use strict";
+    var PROJECTS = window.PROJECTS || [];
+    var rootStyle = getComputedStyle(document.documentElement);
+    function token(name) { return rootStyle.getPropertyValue(name).trim(); }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function $(sel) { return document.querySelector(sel); }
+
+    // --- color maths (WCAG relative luminance) ---
+    function toRgb(color) {
+      var probe = document.createElement("span");
+      probe.style.color = color;
+      document.body.appendChild(probe);
+      var m = getComputedStyle(probe).color.match(/[\d.]+/g).map(Number);
+      probe.remove();
+      return m.slice(0, 3);
+    }
+    function hex(rgb) { return "#" + rgb.map(function (v) { return Math.round(v).toString(16).padStart(2, "0"); }).join("").toUpperCase(); }
+    function lum(rgb) {
+      var c = rgb.map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    }
+    function ratio(a, b) { var l1 = lum(a), l2 = lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); }
+    function mix(a, b, t) { return a.map(function (v, i) { return v * t + b[i] * (1 - t); }); }
+    function badge(r, large) {
+      var pass = r >= 4.5 || (large && r >= 3);
+      var label = r >= 4.5 ? "AA" : (r >= 3 ? (large ? "AA large" : "Large text only") : "Below AA");
+      return '<span class="ds-aa ' + (pass ? "ds-aa--pass" : "ds-aa--warn") + '">' + label + "</span>";
+    }
+
+    // --- T1 colors ---
+    var COLORS = [
+      ["--bg", "Page background, nav, dropdown trigger"],
+      ["--surface", "Cards, dropdown panels, accordions"],
+      ["--ink", "Primary text, dark button, footer"],
+      ["--muted", "Secondary text; second half of two-tone leads"],
+      ["--soft", "Hero tagline only"],
+      ["--line", "Every border and divider"],
+      ["--hover", "Hover backgrounds"],
+      ["--active", "Current item (index link, dropdown)"],
+      ["--fact", "Quick facts, default tile, image placeholders"],
+      ["--trigger-hover", "Nav trigger on hover or open"],
+      ["--footer", "Footer background"],
+      ["--footer-ink", "Footer text"],
+      ["--green", "“Available” dot only"]
+    ];
+    $("#ds-colors").innerHTML = COLORS.map(function (c) {
+      return '<div class="ds-swatch"><div class="ds-swatch__color" style="background:var(' + c[0] + ')"></div>' +
+        '<div class="ds-swatch__meta"><span class="ds-swatch__name">' + c[0] + '</span><span class="ds-swatch__hex">' + hex(toRgb(token(c[0]))) + "</span>" +
+        '<span class="ds-swatch__use">' + esc(c[1]) + "</span></div></div>";
+    }).join("");
+
+    // --- T2 accents (from projects.js) ---
+    var white = [255, 255, 255];
+    $("#ds-accents").innerHTML = PROJECTS.map(function (p) {
+      var a = toRgb(p.accent);
+      var chipR = ratio(a, mix(a, white, 0.25));
+      var badgeR = ratio(white, a);
+      return '<div class="ds-accent" style="--accent:' + p.accent + '">' +
+        '<div class="ds-accent__chip"></div>' +
+        '<div class="ds-accent__body">' +
+          '<div class="ds-row"><b>' + esc(p.title) + '</b><code class="ds-small">' + esc(p.accent.toUpperCase()) + "</code></div>" +
+          '<div class="ds-row"><div class="chips">' + p.tags.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div>" +
+            '<span class="badge">1</span><span class="live-btn" style="width:220px">See live project ↗︎</span></div>' +
+          '<span class="ds-small">Chip text on tint ' + chipR.toFixed(1) + ":1 " + badge(chipR) + " · White on accent " + badgeR.toFixed(1) + ":1 " + badge(badgeR) + "</span>" +
+        "</div></div>";
+    }).join("");
+
+    // Components that need an accent use the first project's
+    var firstAccent = PROJECTS[0] ? PROJECTS[0].accent : "#9F693C";
+    [].forEach.call(document.querySelectorAll(".ds-accented"), function (el) { el.style.setProperty("--accent", firstAccent); });
+
+    // --- T3 type specimens (specs measured live) ---
+    var TYPE = [
+      ["Logo", ".logo", '<span class="logo">I-AB</span>'],
+      ["Hero headline", ".t-display", '<p class="t-display">I’m Iván Alfonso Burgos, a Data Analyst</p>'],
+      ["Hero tagline", ".ticker", '<p class="ticker" style="min-height:0">– blending design, research, and analytics.</p>'],
+      ["Page title", ".t-page", '<p class="t-page">Selected Works</p>'],
+      ["Section / card title", ".t-h2", '<p class="t-h2">Housing Observatory</p>'],
+      ["Lead", ".t-lead", '<p class="t-lead c-muted"><span class="c-ink">Key sentence in ink.</span> The rest in the secondary gray.</p>'],
+      ["Case-study heading", ".cs-head h2", '<header class="cs-head"><p class="eyebrow">Eyebrow · 14px</p><h2>Who is it for?</h2></header>'],
+      ["Question tile", ".tile__q", '<p class="tile__q">Who is actually being priced out?</p>'],
+      ["Tile title", ".tile__title", '<p class="tile__title">Staging layers</p>'],
+      ["Body", "body / .prose", '<p class="t-body">Berlin has 3.8 million residents and roughly 85% of them rent.</p>'],
+      ["Small: eyebrows, UI, chips", ".t-small", '<p class="t-small">Overview · Selected Works · VIEW ALL PROJECTS</p>'],
+      ["Extra small: meta", ".t-xs", '<p class="t-xs">© 2026 Iván Alfonso Burgos · Berlin 19:49</p>'],
+      ["Persona name", ".persona__name", '<p class="persona__name">The Newcomer</p>']
+    ];
+    var typeBox = $("#ds-type");
+    typeBox.innerHTML = TYPE.map(function (t, i) {
+      return '<div class="ds-type"><div class="ds-type__spec"><b>' + esc(t[0]) + '</b><span>' + esc(t[1]) + '</span><span data-spec="' + i + '"></span></div><div class="ds-type__sample" data-sample="' + i + '">' + t[2] + "</div></div>";
+    }).join("");
+    function measureType() {
+      TYPE.forEach(function (t, i) {
+        var host = typeBox.querySelector('[data-sample="' + i + '"]');
+        var el = host.querySelector("h2") || host.firstElementChild;
+        var cs = getComputedStyle(el);
+        var fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight);
+        var ls = cs.letterSpacing === "normal" ? 0 : parseFloat(cs.letterSpacing) / fs;
+        var fam = cs.fontFamily.split(",")[0].replace(/["']/g, "");
+        typeBox.querySelector('[data-spec="' + i + '"]').textContent =
+          fam + " " + Math.round(fs) + " / " + Number((lh / fs).toFixed(2)) + " · " + cs.fontWeight + (ls ? " · " + ls.toFixed(2) + "em" : "");
+      });
+    }
+    measureType();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureType);
+
+    // --- T4 spacing / T5 radius ---
+    $("#ds-space").innerHTML = [4, 8, 10, 12, 16, 20, 24, 30, 40, 60, 80, 120].map(function (v) {
+      return '<div class="ds-space"><span>' + v + 'px</span><i style="width:' + v * 3 + 'px"></i></div>';
+    }).join("");
+    $("#ds-radius").innerHTML = [
+      ["4", "Index links"], ["8", "Buttons, dropdown items, inner images"], ["10", "Dropdown panel"],
+      ["16", "Case cards, hero, media, accordion"], ["20", "Project/link cards, tiles, personas"], ["50%", "Badges, “+”, arrows"]
+    ].map(function (r) {
+      return '<div class="ds-radius"><i style="border-radius:' + (r[0].indexOf("%") > -1 ? r[0] : r[0] + "px") + '"></i><b class="t-small" style="color:var(--ink)">' + r[0] + "</b>" + esc(r[1]) + "</div>";
+    }).join("");
+
+    // --- T7 motion: live easing values + replay ---
+    [].forEach.call(document.querySelectorAll("[data-token]"), function (el) { el.textContent = token(el.dataset.token); });
+    [].forEach.call(document.querySelectorAll("[data-replay]"), function (btn) {
+      btn.addEventListener("click", function () {
+        var box = btn.closest(".ds-motion").querySelector("[data-appear],[data-reveal]");
+        box.classList.remove("is-in");
+        void box.offsetHeight;
+        setTimeout(function () { box.classList.add("is-in"); }, 250);
+      });
+    });
+    $("#ds-spring-btn").addEventListener("click", function () { $("#ds-spring").classList.toggle("is-open"); });
+
+    // --- L1 live viewport ---
+    function bp() {
+      var w = window.innerWidth;
+      $("#ds-vw").textContent = w + "px";
+      $("#ds-bp").textContent = w >= 1024 ? "Desktop" : (w >= 810 ? "Tablet" : "Phone");
+    }
+    bp();
+    window.addEventListener("resize", bp);
+
+    // --- C1 nav panels shown open (static copies of the live markup) ---
+    var chev = '<span class="dd__chev" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5 10 12.5 15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+    var pages = (window.SITE && window.SITE.pages) || [];
+    var p0 = PROJECTS[0] || { title: "Project" };
+    $("#ds-navdemo").innerHTML =
+      '<div style="display:flex; flex-direction:column; gap:8px"><span class="ds-small">Level 1</span>' +
+        '<div class="dd dd--main is-open"><span class="dd__trigger"><span class="dd__label">Selected Works</span>' + chev + "</span>" +
+        '<div class="dd__panel"><div class="dd__menu">' + pages.map(function (p, i) { return '<span class="dd__item"' + (i === pages.length - 1 ? ' aria-current="page"' : "") + ">" + esc(p.label) + "</span>"; }).join("") + "</div></div></div></div>" +
+      '<div style="display:flex; flex-direction:column; gap:8px"><span class="ds-small">Level 2 (case studies)</span>' +
+        '<div style="display:flex; align-items:center; gap:10px"><span class="crumb-sep" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5 10 12.5 15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<div class="dd dd--project is-open"><span class="dd__trigger"><span class="dd__label">' + esc(p0.title) + "</span>" + chev + "</span>" +
+        '<div class="dd__panel"><div class="dd__menu">' + PROJECTS.map(function (p, i) { return '<span class="dd__item"' + (i === 0 ? ' aria-current="page"' : "") + ">" + esc(p.title) + "</span>"; }).join("") + "</div></div></div></div></div>";
+
+    // --- C3 chips per project ---
+    $("#ds-chips").innerHTML = PROJECTS.map(function (p) {
+      return '<div class="ds-row" style="--accent:' + p.accent + '"><span class="ds-small" style="width:170px">' + esc(p.title) + '</span><div class="chips">' +
+        (p.pageTags || p.tags).map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div></div>";
+    }).join("");
+
+    // --- C8 sidebar copy (non-interactive index) ---
+    if (PROJECTS[0]) {
+      $("#ds-sidebar").style.setProperty("--accent", p0.accent);
+      $("#ds-sidebar").innerHTML =
+        '<div class="case-card" style="flex:1 0 auto"><div><h3 style="font-size:29px; line-height:1.2; font-weight:600; letter-spacing:-0.01em">' + esc(p0.title) + "</h3><p>" + esc(p0.summary) + "</p></div>" +
+        '<div class="chips">' + (p0.pageTags || p0.tags).map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div></div>" +
+        '<div class="toc"><a>Context</a><a class="is-active">Personas &amp; Questions</a><a>Sources</a><a>Retrospective</a></div>' +
+        '<span class="live-btn">' + esc(p0.liveLabel || "See live project ↗︎") + "</span>";
+    }
+
+    // --- A1 contrast table ---
+    var C = function (t) { return toRgb(token(t)); };
+    var rows = [
+      ["--ink", "--bg", false, "All primary text"],
+      ["--ink", "--surface", false, "Text on cards"],
+      ["--muted", "--bg", false, "Secondary text on the page"],
+      ["--muted", "--surface", false, "Descriptions on cards"],
+      ["--muted", "--fact", false, "Quick-fact values"],
+      ["--soft", "--bg", true, "Hero tagline (38px)"],
+      ["--footer-ink", "--footer", false, "Footer text"]
+    ];
+    $("#ds-contrast").innerHTML = rows.map(function (r) {
+      var v = ratio(C(r[0]), C(r[1]));
+      return "<tr><td><code>" + r[0] + "</code></td><td><code>" + r[1] + "</code></td><td>" + v.toFixed(2) + ":1</td><td>" + badge(v, r[2]) + "</td><td>" + esc(r[3]) + "</td></tr>";
+    }).join("") + PROJECTS.map(function (p) {
+      var a = toRgb(p.accent);
+      var chipR = ratio(a, mix(a, white, 0.25)), badgeR = ratio(white, a);
+      return "<tr><td>Chip text</td><td>" + esc(p.title) + " tint</td><td>" + chipR.toFixed(2) + ":1</td><td>" + badge(chipR) + "</td><td>Tags, live button</td></tr>" +
+             "<tr><td>White</td><td>" + esc(p.title) + " accent</td><td>" + badgeR.toFixed(2) + ":1</td><td>" + badge(badgeR) + "</td><td>Numbered badges</td></tr>";
+    }).join("");
+
+    // --- Changelog: latest date in the header ---
+    var latest = $("#ds-log li");
+    if (latest) $("#ds-updated").textContent = "Last change logged: " + latest.querySelector("time").textContent;
+
+    // --- Section headers: code, title, note button ---
+    var NOTE_KEY = "iab-design-notes";
+    var notes = {};
+    try { notes = JSON.parse(localStorage.getItem(NOTE_KEY) || "{}") || {}; } catch (e) { notes = {}; }
+    function saveNotes() { try { localStorage.setItem(NOTE_KEY, JSON.stringify(notes)); } catch (e) {} }
+    var pencil = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+    var sections = [].slice.call(document.querySelectorAll(".ds-section[data-code]"));
+    sections.forEach(function (sec) {
+      var code = sec.dataset.code, title = sec.dataset.dsTitle;
+      var head = document.createElement("div");
+      head.className = "ds-head";
+      head.innerHTML = '<span class="ds-code">' + esc(code) + "</span><h2>" + title + "</h2>" +
+        '<button class="ds-note-btn" type="button" aria-expanded="false">' + pencil + "<span>Add note</span></button>";
+      var note = document.createElement("div");
+      note.className = "ds-note";
+      note.innerHTML = '<textarea aria-label="Change note for ' + esc(code) + '" placeholder="What should change in ' + esc(code) + " " + title.replace(/&amp;/g, "&") + '?"></textarea>';
+      sec.insertBefore(note, sec.firstChild);
+      sec.insertBefore(head, note);
+      var btn = head.querySelector(".ds-note-btn"), ta = note.querySelector("textarea");
+      function reflect() {
+        var has = !!(notes[code] && notes[code].trim());
+        btn.dataset.hasNote = has;
+        btn.querySelector("span").textContent = has ? "Edit note" : "Add note";
+      }
+      ta.value = notes[code] || "";
+      if (ta.value) note.classList.add("is-open");
+      reflect();
+      btn.addEventListener("click", function () {
+        var open = !note.classList.contains("is-open");
+        note.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", String(open));
+        if (open) ta.focus();
+      });
+      ta.addEventListener("input", function () {
+        if (ta.value.trim()) notes[code] = ta.value; else delete notes[code];
+        saveNotes(); reflect(); dock();
+      });
+    });
+
+    // --- Notes dock ---
+    function noteList() {
+      return sections.filter(function (s) { return notes[s.dataset.code] && notes[s.dataset.code].trim(); })
+        .map(function (s) { return "- " + s.dataset.code + " " + s.dataset.dsTitle.replace(/&amp;/g, "&") + ": " + notes[s.dataset.code].trim().replace(/\n+/g, " "); });
+    }
+    var clearArmed = false;
+    function dock() {
+      var list = noteList();
+      $("#ds-dock").hidden = list.length === 0;
+      $("#ds-dock-count").textContent = list.length + (list.length === 1 ? " note" : " notes");
+    }
+    $("#ds-copy").addEventListener("click", function () {
+      var text = "Design system change requests (design-system.html):\n" + noteList().join("\n");
+      var btn = this;
+      function done() { btn.textContent = "Copied ✓"; setTimeout(function () { btn.textContent = "Copy for Claude"; }, 1600); }
+      function fallback() {
+        var t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select();
+        try { document.execCommand("copy"); done(); } catch (e) { window.prompt("Copy these notes:", text); }
+        t.remove();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    });
+    $("#ds-clear").addEventListener("click", function () {
+      var btn = this;
+      if (!clearArmed) { clearArmed = true; btn.textContent = "Click again to clear"; setTimeout(function () { clearArmed = false; btn.textContent = "Clear"; }, 2500); return; }
+      notes = {}; saveNotes(); clearArmed = false; btn.textContent = "Clear";
+      sections.forEach(function (s) {
+        var ta = s.querySelector(".ds-note textarea"); ta.value = ""; s.querySelector(".ds-note").classList.remove("is-open");
+        var b = s.querySelector(".ds-note-btn"); b.dataset.hasNote = "false"; b.querySelector("span").textContent = "Add note";
+      });
+      dock();
+    });
+    dock();
+
+  })();
+  </script>
+</body>
+</html>
