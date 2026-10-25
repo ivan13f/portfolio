@@ -1,0 +1,5 @@
+# Netlify redirects. Old Framer project pages that are no longer in the portfolio
+# send visitors to Selected Works instead of a 404.
+/onsite      /works  301
+/aside       /works  301
+/spotlight   /works  301
