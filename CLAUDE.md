@@ -14,7 +14,8 @@ Read `DESIGN.md` first and follow it: tokens, components, motion, accessibility 
 - `css/style.css`: all styles, with tokens in `:root`.
 - `js/site.js`: renders the nav, footer, project cards, case-study sidebar and "More projects" carousel, and runs the animations.
 - New case study: copy `project-template.html` (steps in `README.md`).
-- `_redirects`: Netlify redirects for old Framer URLs.
+- `_redirects`: redirect rules for old Framer URLs. The Pages workflow turns each rule into a redirect page.
+- `.github/workflows/pages.yml`: publishes the site to GitHub Pages on every push to `main`.
 
 ## Checking changes
 
@@ -22,10 +23,10 @@ Preview with any local static server from this folder, for example `python3 -m h
 
 ## Publishing (only when asked)
 
-- **GitHub:** `ivan13f/portfolio` (private), branch `main`. A plain `git push` can stall waiting for the macOS Keychain, so push with:
+- **GitHub:** `ivan13f/portfolio` (public), branch `main`. A plain `git push` can stall waiting for the macOS Keychain, so push with:
   `GIT_TERMINAL_PROMPT=0 git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin main`
-- **Netlify:** site `ivan-alfonsoburgos` (id `8469c014-55e5-4c54-84a6-7c8d5fd355d0`), custom domain `www.ivan-alfonsoburgos.com`. The bare domain redirects to www, and HTTPS is forced. The site is not linked to GitHub, so deploys are manual:
-  1. Copy only the site files into a temporary folder: `git ls-files`, minus `*.md`, `design-system.html` and `.gitignore`. This leaves out these notes, the design reference page and the local `.claude` and `.netlify` folders.
-  2. Run `npx --yes netlify-cli@27.14.2 deploy --prod --dir <that folder> --site 8469c014-55e5-4c54-84a6-7c8d5fd355d0`.
-- **DNS** (GoDaddy, managed by the owner): `A @ → 75.2.60.5`, `CNAME www → ivan-alfonsoburgos.netlify.app`.
-- The "Powered by Netlify" badge is switched off (`built_with_badge_enabled: false`).
+- **Hosting:** GitHub Pages, built from GitHub Actions (`.github/workflows/pages.yml`). **Pushing to `main` publishes the live site**, so commit and push only when asked, and check the change locally first. After a push, follow the run with `gh run watch --repo ivan13f/portfolio` (or `gh run list`).
+- The workflow uploads `git ls-files` minus `*.md`, `design-system.html`, `project-template.html`, `_redirects`, `.gitignore` and `.github/`, then generates redirect pages from `_redirects`.
+- **Custom domain:** `www.ivan-alfonsoburgos.com`, set in the repo's Pages settings (no `CNAME` file needed for Actions deploys). HTTPS is enforced. GitHub redirects the bare domain to www.
+- **DNS** (GoDaddy, managed by the owner): `A @ → 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153`, `CNAME www → ivan13f.github.io`.
+- **Old host:** the Netlify site `ivan-alfonsoburgos` (id `8469c014-55e5-4c54-84a6-7c8d5fd355d0`) is no longer used once DNS points to GitHub. It can be deleted.

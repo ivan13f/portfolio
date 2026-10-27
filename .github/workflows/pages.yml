@@ -1,0 +1,56 @@
+# Publishes the site to GitHub Pages (www.ivan-alfonsoburgos.com) on every push to main.
+# Only the website files are uploaded: notes (*.md), design-system.html and the template stay in the repo only.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Collect the website files
+        run: |
+          mkdir _site
+          git ls-files \
+            | grep -vE '\.md$|^design-system\.html$|^project-template\.html$|^_redirects$|^\.gitignore$|^\.github/' \
+            | rsync -a --files-from=- ./ _site/
+
+      - name: Turn old Framer links into redirect pages (rules in _redirects)
+        run: |
+          grep -vE '^[[:space:]]*(#|$)' _redirects | while read -r from to _; do
+            page="_site/${from#/}.html"
+            target="${to#/}"
+            printf '%s\n' \
+              '<!doctype html><html lang="en"><head><meta charset="utf-8">' \
+              '<meta name="robots" content="noindex"><title>Redirecting…</title>' \
+              "<meta http-equiv=\"refresh\" content=\"0; url=${target}\">" \
+              "<script>location.replace(\"${target}\")</script></head>" \
+              "<body><a href=\"${target}\">Continue</a></body></html>" > "$page"
+            echo "$from -> $target"
+          done
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v5

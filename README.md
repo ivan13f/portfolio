@@ -70,14 +70,11 @@ Then open http://localhost:8080.
 
 ## Hosting
 
-Each of these is free for a site this size:
+The site is hosted on **GitHub Pages** at www.ivan-alfonsoburgos.com. Every push to `main` publishes it automatically through `.github/workflows/pages.yml`; you can follow each run under the repo's **Actions** tab.
 
-- **Netlify:** drag this folder onto app.netlify.com/drop. Connect a Git repo later if you want automatic deploys.
-- **Cloudflare Pages:** create a project, upload the folder (or connect a repo). No build command, and the output directory is `/`.
-- **GitHub Pages:** push the folder to a repo, then turn on Settings → Pages → "Deploy from branch".
-- **Vercel:** `npx vercel` from this folder, or import the repo. Framework preset "Other".
+The workflow uploads only the website files. `*.md` notes, `design-system.html` and `project-template.html` stay in the repo but aren't published. It also turns each rule in `_redirects` into a small redirect page, so old links like `/onsite` land on Selected Works.
 
-All four serve `about.html` at `/about` too, so existing links to the Framer URLs keep working. To keep the domain, point `www.ivan-alfonsoburgos.com` at the new host in your DNS settings, and only cancel the Framer plan after the new site is live.
+GitHub Pages serves `about.html` at `/about` too, so links to the old Framer URLs keep working.
 
 ### Notes
 
