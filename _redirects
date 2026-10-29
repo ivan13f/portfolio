@@ -1,5 +1,6 @@
-# Netlify redirects. Old Framer project pages that are no longer in the portfolio
-# send visitors to Selected Works instead of a 404.
+# Redirects for old Framer project pages that are no longer in the portfolio:
+# they send visitors to Selected Works instead of a 404. The Pages workflow
+# (.github/workflows/pages.yml) turns each rule into a small redirect page.
 /onsite      /works  301
 /aside       /works  301
 /spotlight   /works  301

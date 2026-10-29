@@ -29,4 +29,4 @@ Preview with any local static server from this folder, for example `python3 -m h
 - The workflow uploads `git ls-files` minus `*.md`, `design-system.html`, `project-template.html`, `_redirects`, `.gitignore` and `.github/`, then generates redirect pages from `_redirects`.
 - **Custom domain:** `www.ivan-alfonsoburgos.com`, set in the repo's Pages settings (no `CNAME` file needed for Actions deploys). HTTPS is enforced. GitHub redirects the bare domain to www.
 - **DNS** (GoDaddy, managed by the owner): `A @ → 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153`, `CNAME www → ivan13f.github.io`.
-- **Old host:** the Netlify site `ivan-alfonsoburgos` (id `8469c014-55e5-4c54-84a6-7c8d5fd355d0`) is no longer used once DNS points to GitHub. It can be deleted.
+- **Old host:** the Netlify site was deleted on 2026-10-29, and the Netlify account has no sites left. GitHub Pages is the only host.
