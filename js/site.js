@@ -361,23 +361,22 @@
     });
   }
 
-  // Case studies: the sidebar and the hero always share one height. CSS sizes the sidebar from
-  // the hero's ratio; when the sidebar's content needs more room (narrower desktops), the hero
-  // grows to match instead (its image/video is cropped with object-fit: cover).
+  // Case studies: the sidebar and the hero always share one height, which CSS takes from the
+  // window (--side-h). On windows too short for the sidebar's content, both grow to fit it
+  // instead (the hero's image/video is cropped with object-fit: cover).
   function initCaseHeights() {
     var kase = document.querySelector(".case");
     var side = document.querySelector(".case-side");
-    var hero = document.querySelector(".cs-hero");
-    if (!kase || !side || !hero) return;
+    if (!kase || !side) return;
     var queued = false;
     function sync() {
       queued = false;
       kase.style.removeProperty("--case-h");
       if (getComputedStyle(side).position !== "sticky") return; // stacked layout below 1024px
-      side.style.minHeight = "0px";
-      var natural = side.offsetHeight;
-      side.style.minHeight = "";
-      if (natural > hero.offsetHeight + 1) kase.style.setProperty("--case-h", natural + "px");
+      side.style.height = "0px"; // squeezes the index to its minimum, so scrollHeight is what's needed
+      var needed = side.scrollHeight;
+      side.style.height = "";
+      if (needed > side.offsetHeight + 1) kase.style.setProperty("--case-h", needed + "px");
     }
     function schedule() {
       if (!queued) { queued = true; requestAnimationFrame(sync); }
@@ -393,6 +392,7 @@
     if (!links.length) return;
     var targets = links.map(function (a) { return document.getElementById(a.hash.slice(1)); });
     var queued = false;
+    var last = -1;
     function update() {
       queued = false;
       var line = window.innerHeight * 0.35;
@@ -403,6 +403,12 @@
         if (i === idx) a.setAttribute("aria-current", "location");
         else a.removeAttribute("aria-current");
       });
+      // On short windows the index scrolls inside its card: keep the current link in view
+      if (idx !== last && links[idx]) {
+        var toc = links[idx].parentNode;
+        toc.scrollTop = links[idx].offsetTop - toc.offsetTop - (toc.clientHeight - links[idx].offsetHeight) / 2;
+      }
+      last = idx;
     }
     window.addEventListener("scroll", function () {
       if (!queued) { queued = true; requestAnimationFrame(update); }

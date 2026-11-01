@@ -562,32 +562,44 @@ button { font: inherit; color: inherit; }
 .case {
   --side-w: 299px;
   --case-gap: 40px;
-  --hero-ratio: 966 / 746; /* width / height of the hero image or video */
-  container-type: inline-size; /* lets the sidebar size itself from this box's width (cqw) */
+  --case-top: 122px; /* where the sidebar and hero start, below the fixed nav */
+  --case-bottom: 24px; /* gap between their lower edge and the bottom of the window */
+  --hero-ratio: 966 / 746; /* hero shape in the stacked layout, below 1024px */
+  /* On desktop the sidebar and hero share this height: from --case-top to just above the bottom
+     of the window. On very tall windows it stops at a square hero (or 746px on narrow ones), to
+     limit how much gets cropped. --case-h is set by site.js when the sidebar's content needs more. */
+  --side-h: var(--case-h, min(100svh - var(--case-top) - var(--case-bottom), max(100cqw - var(--side-w) - var(--case-gap), 746px)));
+  container-type: inline-size; /* lets the sidebar and hero size themselves from this box's width (cqw) */
   max-width: var(--max);
   margin: 0 auto;
-  padding: 122px var(--gutter) 0;
+  padding: var(--case-top) var(--gutter) 0;
   display: flex;
   gap: var(--case-gap);
   align-items: flex-start;
 }
-/* The sidebar (card + section index + live button) is exactly as tall as the hero
-   beside it: hero width = content width − sidebar − gap, height follows the ratio.
-   The title card absorbs the extra space. */
 .case-side {
-  --side-h: calc((100cqw - var(--side-w) - var(--case-gap)) / (var(--hero-ratio)));
   flex: 0 0 var(--side-w);
   min-width: 0; /* never let long labels widen it, or the hero would shrink */
-  /* --case-h is set by site.js when the sidebar's content is taller than the hero */
-  min-height: var(--case-h, var(--side-h));
+  height: var(--side-h);
   position: sticky;
-  /* 120px below the nav; on short screens it rises just enough to keep the live button visible */
-  top: min(120px, calc(100vh - var(--case-h, var(--side-h)) - 24px));
+  /* on windows too short for its content, it rises just enough to keep the live button visible */
+  top: min(var(--case-top), 100svh - var(--side-h) - var(--case-bottom));
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.case-side > .case-card { flex: 1 0 auto; }
+/* The title card and live button fit their content; the section index takes the space between
+   them. If that's too little for all its links, the index scrolls inside its card, with a
+   scrollbar that stays visible so the hidden links can be found. */
+.case-side > * { flex: none; }
+.case-side > .toc { flex: 1 1 auto; min-height: 116px; overflow-y: auto; }
+.case-side > .toc::-webkit-scrollbar { width: 6px; }
+.case-side > .toc::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+.case-side > .toc::-webkit-scrollbar-track { margin: 16px 0; }
+@supports not selector(::-webkit-scrollbar) {
+  .case-side > .toc { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+}
+.case-side > .live-btn { margin-top: auto; }
 .case-card,
 .toc {
   border: 1px solid var(--line);
@@ -600,6 +612,7 @@ button { font: inherit; color: inherit; }
 .case-card p { margin-top: 24px; color: var(--muted); }
 .toc { display: flex; flex-direction: column; gap: 4px; }
 .toc a {
+  flex: none;
   display: flex;
   align-items: center;
   min-height: 32px;
@@ -627,7 +640,7 @@ button { font: inherit; color: inherit; }
 .live-btn:hover { background: color-mix(in srgb, var(--accent) 35%, transparent); }
 
 .case-content { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 80px; }
-.cs-hero { width: 100%; aspect-ratio: var(--hero-ratio); min-height: var(--case-h, 0px); border-radius: 16px; overflow: hidden; background: var(--fact); }
+.cs-hero { width: 100%; height: var(--side-h); border-radius: 16px; overflow: hidden; background: var(--fact); }
 .cs-hero img, .cs-hero video { width: 100%; height: 100%; object-fit: cover; }
 .facts {
   display: grid;
@@ -861,7 +874,9 @@ button { font: inherit; color: inherit; }
    ========================================================================== */
 @media (max-width: 1023.98px) {
   .case { flex-direction: column; padding-top: calc(var(--nav-h) + 16px); }
-  .case-side { position: static; flex: none; width: 100%; min-height: 0; }
+  .case-side { position: static; flex: none; width: 100%; height: auto; }
+  .case-side > .toc { min-height: 0; overflow-y: visible; }
+  .cs-hero { height: auto; aspect-ratio: var(--hero-ratio); }
   .case-content { width: 100%; }
   .case-card h1 { font-size: 29px; }
   .pcard__info { flex-basis: 300px; }

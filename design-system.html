@@ -352,7 +352,7 @@
               <div style="flex: 0 0 60px; background: var(--fact)">60<br>gutter</div>
               <div style="flex: 0 0 299px; background: var(--active)">sidebar 299</div>
               <div style="flex: 0 0 40px">40</div>
-              <div style="flex: 1; background: var(--fact)">content 966 · hero 966 × 746</div>
+              <div style="flex: 1; background: var(--fact)">content 966 · hero height from the window</div>
               <div style="flex: 0 0 60px; background: var(--fact)">60<br>gutter</div>
             </div>
             <span class="ds-caption">Nav is fixed, 84px tall. Other key widths: home hero text 653 · link card 432 · project card 904 · text 628.</span>
@@ -421,25 +421,25 @@
         </section>
 
         <section class="ds-section" id="c8" data-code="C8" data-ds-title="Case-study sidebar" data-ds-group="Components">
-          <p class="ds-desc">Title card + section index + live button, 299 wide. <b>Height rule:</b> on desktop the three together are exactly as tall as the hero beside it, and stay sticky while the content scrolls; the title card takes the extra space. If the content can’t fit, the hero grows instead. Index links come from sections with <code>data-toc</code>.</p>
+          <p class="ds-desc">Title card + section index + live button, 299 wide. <b>Height rule:</b> on desktop the sidebar and the hero share one height, from below the nav to 24px above the bottom of the window, and the sidebar stays sticky while the content scrolls. The title card fits its content and the section index fills the space down to the button; if it runs out of room, it scrolls inside its card. Index links come from sections with <code>data-toc</code>.</p>
           <div class="ds-demo ds-demo--bg">
             <div id="ds-sidebar" style="display:flex; flex-direction:column; gap:20px; width:299px"></div>
             <div class="ds-fill" style="display:flex; flex-direction:column; gap:12px">
               <b class="t-small">Height rule</b>
               <div class="ds-heightdemo">
-                <div class="ds-heightdemo__side"><i style="flex:1"></i><i style="height:70px"></i><i style="height:22px; border-color: var(--ink)"></i></div>
-                <div class="ds-heightdemo__hero">hero 966 : 746</div>
+                <div class="ds-heightdemo__side"><i style="height:70px"></i><i style="flex:1"></i><i style="height:22px; border-color: var(--ink)"></i></div>
+                <div class="ds-heightdemo__hero">hero, height from the window</div>
               </div>
-              <span class="ds-caption">Sidebar top and bottom line up with the hero. Below 1024px it stacks above the content.</span>
+              <span class="ds-caption">Sidebar top and bottom line up with the hero, and the index takes the spare height. Below 1024px it stacks above the content.</span>
             </div>
           </div>
         </section>
 
         <section class="ds-section" id="c9" data-code="C9" data-ds-title="Hero &amp; quick facts" data-ds-group="Components">
-          <p class="ds-desc">Hero is cropped to 966:746 (export at 2×, 1932 × 1492+); image or muted looping video. Quick facts always list Type · Category · Timeframe · Tools.</p>
+          <p class="ds-desc">Hero is an image or muted looping video. On desktop its height comes from the window (see C8) and it crops to fit, so export at 966:746 or larger (2×, 1932 × 1492+) with the important content near the center. Shown here at 966:746, its shape when stacked. Quick facts always list Type · Category · Timeframe · Tools.</p>
           <div class="ds-demo ds-demo--col">
             <div class="case" style="padding:0; display:block; width:100%">
-              <div class="cs-hero"><img src="assets/img/housing-observatory-cover.png" alt="" width="1771" height="1321"></div>
+              <div class="cs-hero" style="height:auto; aspect-ratio:var(--hero-ratio)"><img src="assets/img/housing-observatory-cover.png" alt="" width="1771" height="1321"></div>
             </div>
             <dl class="facts" style="width:100%">
               <div><dt>Type</dt><dd>Mentorship Project</dd></div>
@@ -596,6 +596,13 @@
         <section class="ds-section" id="log" data-code="LOG" data-ds-title="Design changes" data-ds-group="Changelog">
           <p class="ds-desc">Newest first. Claude adds an entry here (and updates <code>DESIGN.md</code>) whenever the design changes.</p>
           <ol class="ds-log" id="ds-log">
+            <li data-date="2026-11-01">
+              <time>1 Nov 2026</time>
+              <ul>
+                <li><span class="ds-code">C8</span>Case-study sidebar now fills the window height, from below the nav to 24px above the bottom. The title card fits its content and the section index fills the space down to the live button, scrolling inside its card if it runs out of room.</li>
+                <li><span class="ds-code">C9</span>Case-study hero shares the sidebar’s height, so their lower edges line up. Its shape now changes with the window and it crops to fit; 966:746 applies only when stacked, below 1024px.</li>
+              </ul>
+            </li>
             <li data-date="2026-10-27">
               <time>27 Oct 2026</time>
               <ul>

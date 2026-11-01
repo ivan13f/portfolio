@@ -172,7 +172,7 @@ Key widths:
 - **Text columns:** `628px` max
 - **Home hero text:** `653px`
 - **Link cards:** `432px`
-- **Case study:** sidebar `299px` + `40px` gap + content; hero ratio `966 / 746` (`--hero-ratio`)
+- **Case study:** sidebar `299px` + `40px` gap + content. On desktop, the sidebar and hero share one height set by the window (see §4.8). Stacked, the hero's ratio is `966 / 746` (`--hero-ratio`).
 - **Nav:** fixed, `84px` tall (`--nav-h`)
 
 Horizontal overflow is clipped with `overflow-x: clip` on `html` and `body`, so slide-in start positions never widen the page and sticky positioning keeps working. Don't change this to `hidden`.
@@ -234,15 +234,15 @@ External links open in a new tab with `rel="noopener"`, and email links use `mai
 ### 4.8 Case-study sidebar
 
 `<aside class="case-side" data-case-side>`, built by `site.js`. It contains:
-1. **Case card:** title (29/1.2/600), summary (16 `--muted`), chips from `pageTags`. It takes up any extra height.
-2. **Section index** (`.toc`): one link per `<section id data-toc="Label">` on the page. Links are 32h, radius 4, padding `4px 12px 4px 22px`, with a `--hover` background on hover. As you scroll, the section reaching the top 35% of the window is highlighted (`--active` background, weight 600). Omitted if no section has `data-toc`.
-3. **Live button**, if the project has `live`.
+1. **Case card:** title (29/1.2/600), summary (16 `--muted`), chips from `pageTags`. It fits its content.
+2. **Section index** (`.toc`): one link per `<section id data-toc="Label">` on the page. It takes all the space between the case card and the live button. Links are 32h, radius 4, padding `4px 12px 4px 22px`, with a `--hover` background on hover. As you scroll, the section reaching the top 35% of the window is highlighted (`--active` background, weight 600). Omitted if no section has `data-toc`.
+3. **Live button**, if the project has `live`. It sits at the bottom of the sidebar.
 
-**Height rule:** on desktop, the sidebar is always exactly as tall as the hero next to it, and it stays sticky (120px from the top) while the content scrolls.
-- CSS derives the height from `--hero-ratio`.
-- If the sidebar's content is taller than that (narrower desktops), `site.js` sets `--case-h` and the hero grows to match, cropping its image or video with `object-fit: cover`.
-- On short windows, the sticky offset shrinks so the live button stays visible.
-- Below 1024px the sidebar stacks above the content.
+**Height rule:** on desktop, the sidebar and the hero share one height (`--side-h`), so their lower edges always line up. Both start at `--case-top` (122, below the nav) and end `--case-bottom` (24) above the bottom of the window. The sidebar stays sticky at `--case-top` while the content scrolls.
+- The hero fills that height and crops its image or video with `object-fit: cover`, so its shape changes with the window. To limit the cropping on very tall windows, both stop at a square hero (or 746 tall, if that's larger), short of the bottom of the window.
+- If the index doesn't have room for all its links, it scrolls inside its card (min-height 116, about two links), with a visible 6px scrollbar in `--line`. Scroll-spy keeps the current link in view.
+- On windows too short even for that, `site.js` sets `--case-h` and both grow to fit the content. The sticky offset shrinks so the live button stays visible.
+- Below 1024px the sidebar stacks above the content, and the hero goes back to the `--hero-ratio` shape.
 
 Keep `.cs-hero` as the first block of `.case-content`, and don't remove `min-width: 0` from `.case-side`: a long label would widen the sidebar and shrink the hero.
 
@@ -250,7 +250,7 @@ Keep `.cs-hero` as the first block of `.case-content`, and don't remove `min-wid
 
 | Block | Markup | Specs |
 |---|---|---|
-| Hero | `.cs-hero > img/video` | Ratio 966:746, radius 16, cover. Export media at least 1932×1492. Video: `muted loop playsinline preload="metadata" data-autoplay`. |
+| Hero | `.cs-hero > img/video` | Height from the window on desktop (§4.8), ratio 966:746 when stacked; radius 16, cover. Export media at least 1932×1492, with the important content near the center, because the edges crop as the window changes. Video: `muted loop playsinline preload="metadata" data-autoplay`. |
 | Quick facts | `dl.facts` with 4 × `div > dt + dd` | Always Type · Category · Timeframe · Tools. `--fact` background, `1px --line`, radius 8, padding `12px 24px`; dt 13 ink, dd 14 `--muted`; 2 columns on phones. |
 | Section | `section.cs-section#id[data-toc]` | `scroll-margin-top: 120px`. Gap modifiers `--tight`, `--mid`, `--loose`. |
 | Section heading | `header.cs-head > p.eyebrow + h2` | Eyebrow 14px ink (repeats the index label); h2 26/600. Max 628. |
@@ -315,7 +315,7 @@ Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image up to
 - **Voice:** first person, plain and specific. Section headings are claims or questions ("Who is it for?", "Public Data. Private Effort."). The eyebrow names the section; the h2 says something about it.
 - **Project summary** (`projects.js` → `summary`): one sentence of about 10–25 words, saying what was built and for whom.
 - **Images:**
-  - Case-study hero: 966:746, exported at 2× (1932×1492 or larger).
+  - Case-study hero: 966:746, exported at 2× (1932×1492 or larger), with the important content near the center.
   - Project card image: landscape; it's cropped to fill.
   - Carousel `card` image: portrait (368:459).
   - Compress everything. Prefer MP4 over GIF for anything animated (one GIF on the site is 8.5 MB).
