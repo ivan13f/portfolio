@@ -222,6 +222,8 @@ External links open in a new tab with `rel="noopener"`, and email links use `mai
 
 `.link-card`: white, radius 20, `1px --line`, padding 19, max-width 432, content aligned right. It holds an image (ratio `392/366`, radius 8, cover) and a label (14px uppercase + 20px arrow icon). On hover, `--shadow-card-lg` appears and the arrow nudges 3px. Used for the Home hero (→ Works) and the Home About teaser (→ About).
 
+The hero's image is `assets/img/hero-projects.gif`: 392×366 to fit the card exactly, with stills from each project in rotation, held 2s each with hard cuts, looping. To add a project, keep that size and speed.
+
 ### 4.7 Project card
 
 `.pcard > .pcard__box`, rendered from `projects.js` (never hand-write one). White, radius 20, `1px --line`, padding 19, 520 tall, max-width 904.
