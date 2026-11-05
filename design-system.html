@@ -414,9 +414,15 @@
         </section>
 
         <section class="ds-section" id="c7" data-code="C7" data-ds-title="Project card" data-ds-group="Components">
-          <p class="ds-desc">Rendered from <code>js/projects.js</code> (first project shown). 904 × 520, info column 346, image with “+” button. Hover: shadow, “+” turns 90°. Reveals on scroll. On phones: image on top.</p>
+          <p class="ds-desc">Rendered from <code>js/projects.js</code> (first project shown). 904 × 520, info column 346, image with “+” button. Hover: shadow, “+” turns 90°. Reveals on scroll. On phones: image on top. A project with <code>external: true</code> has no case study: it links straight to the live project in a new tab, and the “+” becomes a “↗” that nudges on hover.</p>
           <div class="ds-demo ds-demo--bg ds-demo--col">
             <div class="project-list" data-project-list data-limit="1" style="margin-top:0; width:100%"></div>
+            <div style="display:flex; align-items:center; gap:12px">
+              <span class="plus" style="position:static" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M12 6v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              <span class="ds-caption">Case study</span>
+              <span class="plus plus--out" style="position:static" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="ds-caption">No case study, links out</span>
+            </div>
           </div>
         </section>
 
@@ -466,13 +472,17 @@
         </section>
 
         <section class="ds-section" id="c11" data-code="C11" data-ds-title="Callout &amp; note" data-ds-group="Components">
-          <p class="ds-desc">Callout for a definition (“What is a…?”), with a 60px icon. Note for one caveat or takeaway, in italics.</p>
+          <p class="ds-desc">Callout for a definition (“What is a…?”), with a 60px icon. Note for one caveat or takeaway, in italics, optionally with a 24px icon on the left.</p>
           <div class="ds-demo ds-demo--col">
             <aside class="callout">
               <img src="assets/img/ho-callout-icon.png" alt="" width="60" height="60">
               <div class="prose"><p><strong>What is a Prognoseraum?</strong></p><p>A neighbourhood unit between Berlin’s 12 districts and its 542 planning areas: 58 areas, each large enough for stable statistics.</p></div>
             </aside>
             <p class="note" style="max-width:628px"><em>A high score means the conditions enabling displacement are present, not that displacement has already occurred.</em></p>
+            <p class="note note--icon ds-accented" style="max-width:628px">
+              <svg class="note__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg>
+              <em>TRIP records what the law says, not how it is enforced.</em>
+            </p>
           </div>
         </section>
 
@@ -501,10 +511,14 @@
         </section>
 
         <section class="ds-section" id="c14" data-code="C14" data-ds-title="Steps, annotations &amp; arc" data-ds-group="Components">
-          <p class="ds-desc">Numbered steps (30px accent badge) can point at an annotated image (badges placed in % of the image). The arc list tells a 3–5 step story.</p>
+          <p class="ds-desc">Numbered steps (30px accent badge) can point at an annotated image (badges placed in % of the image). The arc list tells a 3–5 step story. <code>.steps--compact</code> is a short numbered list, one line per item.</p>
           <div class="ds-demo ds-accented">
             <div style="display:flex; flex-direction:column; gap:24px; flex:1 1 320px; min-width:0">
               <div class="step"><span class="badge">1</span><div class="prose"><p>The persistent <strong>left panel</strong> carries the global parameters.</p></div></div>
+              <ol class="steps steps--compact">
+                <li class="step"><span class="badge" aria-hidden="true">1</span><span>No direct criminalization</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">2</span><span>No indirect criminalization</span></li>
+              </ol>
               <ol class="arc" style="list-style:none; padding:0">
                 <li class="arc__row"><span class="arc__num">1</span><p>View 01 establishes the <strong>personal baseline</strong>.</p></li>
                 <li class="arc__row"><span class="arc__num">2</span><p>View 02 zooms into the <strong>rental</strong> reality.</p></li>
@@ -596,10 +610,25 @@
         <section class="ds-section" id="log" data-code="LOG" data-ds-title="Design changes" data-ds-group="Changelog">
           <p class="ds-desc">Newest first. Claude adds an entry here (and updates <code>DESIGN.md</code>) whenever the design changes.</p>
           <ol class="ds-log" id="ds-log">
+            <li data-date="2026-11-05">
+              <time>5 Nov 2026</time>
+              <ul>
+                <li><span class="ds-code">C1</span>In the nav menus, projects without a case study have no “↗” after their name.</li>
+                <li><span class="ds-code">C2</span>Dark button hover is now the page background, ink text and a hairline border.</li>
+                <li><span class="ds-code">C2</span>Housing Observatory live link now points to its web app instead of Tableau Public.</li>
+                <li><span class="ds-code">C6</span>Home hero GIF drops its first frame, the Uneven Ground title screen: 11 stills, still 2s each.</li>
+                <li><span class="ds-code">C9</span>New <code>.cs-hero--fit</code>: a hero chart that must stay whole fits inside the hero instead of cropping.</li>
+                <li><span class="ds-code">C10</span>New <code>.concept__row--thumb</code>: text with a small picture, 3:2.</li>
+                <li><span class="ds-code">C11</span>New <code>.note--icon</code>: a note with a 24px icon on the left.</li>
+                <li><span class="ds-code">C14</span>New <code>.steps--compact</code>: a short numbered list, one line per item.</li>
+              </ul>
+            </li>
             <li data-date="2026-11-04">
               <time>4 Nov 2026</time>
               <ul>
                 <li><span class="ds-code">C6</span>Home hero card has a new GIF, <code>hero-projects.gif</code>: 392 × 366 to fit the card exactly, with 12 stills from four data projects held 2s each, the same speed as before.</li>
+                <li><span class="ds-code">C7</span>Projects without a case study (<code>external: true</code>) link straight to the live project, with a “↗” instead of the “+”. Barcelona Green Spaces is the first.</li>
+                <li>New case study: Uneven Ground.</li>
               </ul>
             </li>
             <li data-date="2026-11-01">

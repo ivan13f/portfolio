@@ -10,6 +10,7 @@ about.html                 About
 works.html                 Selected Works
 housing-observatory.html   Case study
 affordable-for-whom.html   Case study
+uneven-ground.html         Case study
 imprint.html               Impressum
 project-template.html      Starting point for a new case study (not linked anywhere)
 design-system.html         Visual design system reference, kept off the live site (rules in DESIGN.md)
@@ -30,6 +31,8 @@ assets/img, assets/video   media downloaded from the Framer site
 - the "More projects" carousel
 
 A new case study needs one entry in `projects.js` plus a `<slug>.html` page. Copy `project-template.html` to start. Every `<section>` with an `id` and a `data-toc="Label"` attribute gets a link in the sidebar index, which highlights as you scroll.
+
+A project without a case study needs only an entry with `external: true` (see Barcelona Green Spaces). Its cards and nav item link straight to `live` in a new tab.
 
 **Case-study sidebar layout:** on desktop the sidebar (title card, section index, "See live project" button) and the hero image or video beside it share one height: from below the nav to just above the bottom of the window, so their lower edges line up. The title card fits its content and the section index fills the space down to the button, scrolling inside its card if it runs out of room. The sidebar stays fixed while the content scrolls. The hero crops to fit, so its shape changes with the window: export it at 966 × 746 or larger, with the important content near the center. Below 1024px the sidebar stacks above the content and the hero uses `--hero-ratio` (on `.case` in `css/style.css`).
 

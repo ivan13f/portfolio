@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uneven Ground — I-AB</title>
+  <meta name="description" content="An exploration of the Trans Rights Indicator Project, the record that political scientist Myles Williamson built to follow the legal status of trans people across 173 countries.">
+  <meta property="og:title" content="Uneven Ground — I-AB">
+  <meta property="og:description" content="An exploration of the Trans Rights Indicator Project, the record that political scientist Myles Williamson built to follow the legal status of trans people across 173 countries.">
+  <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/uneven-ground-cover.jpg">
+  <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="project" data-project="uneven-ground">
+  <div data-nav></div>
+
+  <main class="case">
+    <aside class="case-side" data-case-side></aside>
+
+    <article class="case-content">
+      <div class="cs-hero cs-hero--fit" style="--hero-bg:#F4F4EF; --hero-ratio:1 / 1">
+        <img src="assets/img/uneven-ground-hero.gif" alt="Animated heatmap from the article: 173 countries by 22 years, filling in year by year, with a dark corner forming at the top right while the bottom rows barely change" width="1281" height="1500">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Personal Project</dd></div>
+        <div><dt>Category</dt><dd>Data Story</dd></div>
+        <div><dt>Timeframe</dt><dd>2026</dd></div>
+        <div><dt>Tools</dt><dd>Python, Observable Framework, D3.js</dd></div>
+      </dl>
+
+      <div class="cs-sections">
+
+        <section class="cs-section" id="dataset" data-toc="The Dataset">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">The Dataset</p><h2>13 indicators in 173 countries from 2000 to 2021</h2></header>
+            <div class="prose">
+              <p><strong>Uneven Ground</strong> is an article about what the world’s laws say about trans people. It is built on the <a href="https://www.myleswilliamson.net/trip-data" target="_blank" rel="noopener">Trans Rights Indicator Project ↗︎</a> (TRIP), which political scientist Myles Williamson created for his doctoral research at the University of Alabama and published in <em>Perspectives on Politics</em> in 2024.</p>
+              <p>Williamson coded the laws of 173 countries by hand, for every year from 2000 to 2021, using 13 yes-or-no indicators in three groups. A country’s score is the number of those 13 it meets.</p>
+            </div>
+          </div>
+          <div class="cols-3">
+            <div class="stack">
+              <h3 class="tile__title">Criminalization</h3>
+              <ol class="steps steps--compact">
+                <li class="step"><span class="badge" aria-hidden="true">1</span><span>No direct criminalization</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">2</span><span>No indirect criminalization</span></li>
+              </ol>
+            </div>
+            <div class="stack">
+              <h3 class="tile__title">Recognition</h3>
+              <ol class="steps steps--compact" start="3">
+                <li class="step"><span class="badge" aria-hidden="true">3</span><span>Legal gender marker change</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">4</span><span>No surgery or physical requirement</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">5</span><span>No divorce requirement</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">6</span><span>No psychiatric diagnosis required</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">7</span><span>Nonbinary or third gender marker</span></li>
+              </ol>
+            </div>
+            <div class="stack">
+              <h3 class="tile__title">Protection</h3>
+              <ol class="steps steps--compact" start="8">
+                <li class="step"><span class="badge" aria-hidden="true">8</span><span>Protection in employment</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">9</span><span>General anti-discrimination law</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">10</span><span>Protection in education</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">11</span><span>Protection in healthcare</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">12</span><span>Protection in housing</span></li>
+                <li class="step"><span class="badge" aria-hidden="true">13</span><span>Constitutional protection</span></li>
+              </ol>
+            </div>
+          </div>
+          <p class="note note--icon">
+            <svg class="note__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg>
+            <em>TRIP records what the law says, not how it is enforced. The score should be read as a map of the law, not as a portrait of daily life.</em>
+          </p>
+        </section>
+
+        <section class="cs-section" id="story" data-toc="Choosing the Story">
+          <div class="concept">
+            <header class="cs-head"><p class="eyebrow">Choosing the Story</p><h2>The average was hiding the story</h2></header>
+            <div class="concept__row">
+              <div class="prose">
+                <p>I explored the data in a Python notebook before deciding what the article should say. The headline looked like good news: the average score more than doubled, from 10.9% in 2000 to 23.5% in 2021.</p>
+                <p>Then I plotted the median and percentiles next to it, and the average stopped looking like a fair summary. A few dozen countries rewrote their laws, often more than once, while 88 ended 2021 with exactly the score they had in 2000. The bottom quarter scored 7.7% in both years.</p>
+                <p>That gap became the story: not whether the world made progress, but who it reached. Comparing scores by region and by income then pointed to the exceptions the article’s map is built around, like Pakistan, which scores 11 of 13 with a GDP per capita of about $1,500, far below every other country scoring 10 or more.</p>
+              </div>
+              <div class="cs-media">
+                <img src="assets/img/ug-explore-pivot.png" alt="Exploratory chart from the Python notebook: the average, median, middle half, top 10% threshold and bottom quarter of TRIP scores from 2000 to 2021. The bottom quarter stays flat while the top 10% threshold climbs past 60%." width="777" height="451" loading="lazy" decoding="async" data-zoom>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section cs-section--mid" id="design" data-toc="Design Process &amp; Decisions">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">Design Process &amp; Decisions</p><h2>From a dashboard to one story</h2></header>
+            <div class="prose">
+              <p>The project didn’t start as an article. My first version, in February 2026, was a dark, multi-page explorer with global, regional and country views, and a chart for each: trend lines, a map, a beeswarm, country comparisons.</p>
+              <p>Once the finding was clear, the structure changed. By June I had cut it down to a single page built on four questions, with one main chart to answer each.</p>
+              <p>In October I redesigned it as a light, editorial piece: a warm paper background, Besley and Inter type, and charts that change as you scroll. I also rewrote the text and checked every number against the notebook.</p>
+            </div>
+          </div>
+
+          <div class="concept__row concept__row--thumb">
+            <div class="stack">
+              <h3 class="tile__title">Fig. 1: Did the world progress?</h3>
+              <div class="prose"><p>One average line would answer this with a flat yes. So the chart starts with the average, then adds the median, the middle half, the top tenth and the bottom quarter one scroll step at a time. By the end, the top tenth’s threshold has reached 61.5% and the bottom quarter hasn’t moved.</p></div>
+            </div>
+            <div class="cs-media"><img src="assets/img/uneven-ground-fig1.png" alt="Fig. 1: the distribution of TRIP scores from 2000 to 2021, with the top 10% threshold climbing to 61.5% while the bottom quarter stays at 7.7%" width="1440" height="1198" loading="lazy" decoding="async" data-zoom></div>
+          </div>
+
+          <div class="concept__row concept__row--thumb">
+            <div class="stack">
+              <h3 class="tile__title">Fig. 2: Where did progress happen?</h3>
+              <div class="prose">
+                <p>A map keeps the geography in view. It flies from region to region as you scroll, so each regional pattern and the countries that break it share one frame, with names and scores written directly on the map.</p>
+                <p>Earlier versions used a continuous colour scale. But 78% of all country-years score 0, 1 or 2 out of 13, so a gradient squeezed most of the world into a sliver of its range. Six fixed classes keep those small differences visible.</p>
+              </div>
+            </div>
+            <div class="cs-media"><img src="assets/img/uneven-ground-map.png" alt="Fig. 2: the world map zoomed into South Asia, with Pakistan at 11 of 13 and India at 8 labelled directly on the map" width="1838" height="1482" loading="lazy" decoding="async" data-zoom></div>
+          </div>
+
+          <div class="concept__row concept__row--thumb">
+            <div class="stack">
+              <h3 class="tile__title">Fig. 3: Which rights improved most?</h3>
+              <div class="prose">
+                <p>Plotting each right over time in the notebook showed the order: gender marker change climbed first, and most protections grew after 2010. For the article, a dot plot keeps only 2000 and 2021, grouped by criminalization, recognition and protection, so all 13 rows read at a glance.</p>
+                <p>The one right that got worse is the only one in orange. Six country cards below the chart then show how different the same score can be.</p>
+              </div>
+            </div>
+            <div class="cs-media"><img src="assets/img/uneven-ground-fig3-thumb.png" alt="Fig. 3: a dot plot of the share of countries with each of the 13 rights in 2000 and 2021, grouped into criminalization, recognition and protection" width="1838" height="1482" loading="lazy" decoding="async" data-zoom="assets/img/uneven-ground-fig3.png"></div>
+          </div>
+
+          <div class="concept__row concept__row--thumb">
+            <div class="stack">
+              <h3 class="tile__title">Fig. 4: What does it all look like at once?</h3>
+              <div class="prose">
+                <p>Every country and every year in one image, sorted by 2021 score, so the finding becomes a shape: a dark corner at the top right and a bottom that barely changes.</p>
+                <p>Scroll steps fade everything except the part being discussed, like the bottom quarter shown here, and a search box lets you find any country.</p>
+              </div>
+            </div>
+            <div class="cs-media"><img src="assets/img/uneven-ground-heatmap.png" alt="Fig. 4: the heatmap with everything faded except the bottom quarter of 44 countries, whose colours barely change from 2000 to 2021" width="1300" height="1048" loading="lazy" decoding="async" data-zoom></div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="retrospective" data-toc="Retrospective">
+          <header class="cs-head"><p class="eyebrow">Retrospective</p><h2>What I learned</h2></header>
+          <div class="prose" style="max-width:600px">
+            <p>I built charts before I had a story. The first version could show almost anything but argued nothing, and most of it was thrown away once the finding was clear. Next time I would start with the notebook and the question, and only then choose the charts.</p>
+            <p>Checking every number changed the article, not just the footnotes. An early draft presented Argentina as the complete case, at 100%. Checked indicator by indicator, it scores 46%: full recognition and no protection at all. The correction gave me a better example than the one I started with.</p>
+            <p>A dataset’s limits belong in the story. TRIP records the law, not daily life, and it stops in 2021. Saying so up front, and closing the article on what the data can’t see, made the argument more honest.</p>
+          </div>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <section data-more-projects></section>
+  <div data-footer></div>
+
+  <script src="js/projects.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

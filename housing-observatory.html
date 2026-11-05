@@ -33,7 +33,7 @@
         <div><dt>Type</dt><dd>Mentorship Project</dd></div>
         <div><dt>Category</dt><dd>Urban Data</dd></div>
         <div><dt>Timeframe</dt><dd>10 weeks</dd></div>
-        <div><dt>Tools</dt><dd>PostgreSQL, dbt, Tableau, Python</dd></div>
+        <div><dt>Tools</dt><dd>PostgreSQL, dbt, Tableau, Python, D3.js</dd></div>
       </dl>
 
       <div class="cs-sections">
@@ -91,7 +91,7 @@
 
         <!-- Sources -->
         <section class="cs-section cs-section--tight" id="sources" data-toc="Sources">
-          <header class="cs-head"><p class="eyebrow">Sources</p><h2>Public Data. Private Effort.</h2></header>
+          <header class="cs-head"><p class="eyebrow">Sources</p><h2>24 tables from six public sources</h2></header>
           <div class="prose">
             <p>The dashboard draws on 24 different tables from several different sources:</p>
             <ul>
@@ -169,30 +169,32 @@
               <div><p class="tile__title">Residential instability</p><p>1 minus the normalised 5-year residency share. Low long-term residency signals a neighbourhood already in transition.</p></div>
             </div>
           </div>
-          <p class="note"><em>A high score means the conditions enabling displacement are present and compounding, not that displacement has already occurred.</em></p>
+          <p class="note note--icon">
+            <svg class="note__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg>
+            <em>A high score means the conditions enabling displacement are present and compounding, not that displacement has already occurred.</em>
+          </p>
         </section>
 
         <!-- Design -->
         <section class="cs-section" id="design" data-toc="Design Process &amp; Decisions">
-          <header class="cs-head"><p class="eyebrow">Design Process &amp; Decisions</p><h2>Four Views, One Story</h2></header>
+          <header class="cs-head"><p class="eyebrow">Design Process &amp; Decisions</p><h2>One full story in four views</h2></header>
 
           <div class="cs-media" style="max-width:628px; border-radius:0">
-            <img src="assets/img/ho-wireframes.gif" alt="Wireframes of the four dashboard views evolving into the final design" width="1440" height="1816" loading="lazy">
+            <img src="assets/img/ho-wireframes.gif" alt="The Property Market view evolving from a wireframe, through the Tableau dashboard, to the current web app" width="1100" height="1387" loading="lazy">
           </div>
+
+          <figure class="annotated" style="margin:0; width:100%">
+            <img src="assets/img/ho-anatomy.png" alt="The Overview view of the current web app, annotated: the left panel, the view's main title, the callout banner after the KPIs, and a chart card" width="1962" height="1591" loading="lazy">
+            <span class="badge" style="left:18.9%; top:29.8%">1</span>
+            <span class="badge" style="left:64.5%; top:4.7%">2</span>
+            <span class="badge" style="left:95.8%; top:32.5%">3</span>
+            <span class="badge" style="left:61.7%; top:42.6%">4</span>
+          </figure>
 
           <div class="step">
             <span class="badge">1</span>
             <div class="prose"><p>The persistent <strong>left panel</strong> carries the global parameters (income slider and apartment size toggle) across all four views without resetting.</p></div>
           </div>
-
-          <figure class="annotated" style="margin:0">
-            <img src="assets/img/ho-anatomy.png" alt="Annotated dashboard view showing the left panel, view question, callout banner and chart anatomy" width="915" height="1024" loading="lazy">
-            <span class="badge" style="left:7.4%; top:54.7%">1</span>
-            <span class="badge" style="left:59.2%; top:7.1%">2</span>
-            <span class="badge" style="left:97.3%; top:24.9%">3</span>
-            <span class="badge" style="left:39.9%; top:28.2%">4</span>
-          </figure>
-
           <div class="step">
             <span class="badge">2</span>
             <div class="prose"><p>The dashboard opens each view with a question. The question is the argument. Every chart below it, exists to answer or deepen it.</p></div>
@@ -212,12 +214,7 @@
 
           <div class="prose"><ul><li><strong>Views 02 and 03 are structurally identical.</strong> Map top-left, ranked bar chart top-right, two analytical charts below. The parallelism is intentional, moving from rental to property, the user sees the same questions answered for a different market without relearning the interface.</li></ul></div>
           <div class="prose"><ul><li><strong>One accent colour per view</strong>. Colour functions as navigation, not decoration.</li></ul></div>
-
-          <div class="inset-img">
-            <img src="assets/img/ho-toggle.png" alt="Rent/Buy and PIR/Mortgage toggle states" width="728" height="832" loading="lazy">
-          </div>
-
-          <div class="prose"><ul><li><strong>Toggle behaviour was engineered around Tableau's constraints.</strong> Tableau Public has no native toggle. The Rent/Buy and PIR/Mortgage switches were built using a parameter driving a calculated field, with separate sheets per state swapped inside a layout container. Invisible to the user; explicit in the workbook.</li></ul></div>
+          <div class="prose"><ul><li><strong>Designed for Tableau, rebuilt as a web app.</strong> I first designed the dashboard for Tableau Public, working within its limitations. I eventually converted it into a web app, which gave me much more freedom of design.</li></ul></div>
           <div class="prose"><p>The four views form a deliberate arc:</p></div>
 
           <ol class="arc" style="list-style:none; padding:0">
@@ -231,10 +228,13 @@
         <!-- Retrospective -->
         <section class="cs-section" id="retrospective" data-toc="Retrospective">
           <header class="cs-head"><p class="eyebrow">Retrospective</p><h2>What I learned</h2></header>
-          <div class="prose" style="max-width:600px">
-            <p>Designing wireframes before the mart layer was stable meant making chart decisions and then working backward to check whether the data could support them. Some required significant rework. The correct sequence is mart layer first, wireframes second — the data structure should constrain the design, not chase it.</p>
-            <p>Choosing Tableau Public late in the process meant designing interactions the platform doesn't natively support. I made them work, but knowing the constraints from day one would have produced cleaner solutions faster. The lesson is not to avoid constrained tools. It is to choose them before you design.</p>
-            <p>Building the DRS taught me that composite indicators carry responsibility. Labelling it exploratory, citing the theoretical framework, and documenting its limitations on every chart that uses it is not a disclaimer — it is part of the methodology.</p>
+          <div class="prose">
+            <ul class="list--spaced">
+              <li><strong>Build the data model before the wireframes.</strong> Designing wireframes before the mart layer was stable meant working backward to check whether the data could support each chart, and some needed significant rework. The data structure should constrain the design, not chase it.</li>
+              <li><strong>Choose the tool before you design.</strong> I chose Tableau Public late, so I ended up designing interactions it doesn’t natively support. I made them work, but knowing its constraints from day one would have been faster.</li>
+              <li><strong>A clean data layer outlives the tool.</strong> When I rebuilt the dashboard as a web app, the data came straight from the existing workbook and dbt marts, so I could change everything the reader sees without redoing the pipeline.</li>
+              <li><strong>Composite indicators carry responsibility.</strong> Labelling the Displacement Risk Score as exploratory, citing the theoretical framework and documenting its limitations isn’t a disclaimer. It is part of the methodology.</li>
+            </ul>
           </div>
         </section>
       </div>

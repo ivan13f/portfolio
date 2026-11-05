@@ -34,6 +34,8 @@
       '<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M18 12H5.5m0 0 6-6m-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     plus:
       '<svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M12 6v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    arrowOut:
+      '<svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7m0 0H8m9 0v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   };
 
   function esc(s) {
@@ -41,7 +43,12 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
     });
   }
-  function projectHref(p) { return p.slug + ".html"; }
+  // A project with `external: true` has no case study: its links go straight to the live project.
+  function projectLink(p) {
+    return p.external
+      ? 'href="' + p.live + '" target="_blank" rel="noopener"'
+      : 'href="' + p.slug + '.html"';
+  }
   function chips(tags) {
     return '<div class="chips">' + tags.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div>";
   }
@@ -73,7 +80,7 @@
     }).join("");
 
     var projectItems = PROJECTS.map(function (p) {
-      return '<a class="dd__item" href="' + projectHref(p) + '"' + (p.slug === currentSlug ? ' aria-current="page"' : "") + ">" + esc(p.title) + "</a>";
+      return '<a class="dd__item" ' + projectLink(p) + (p.slug === currentSlug ? ' aria-current="page"' : "") + ">" + esc(p.title) + "</a>";
     }).join("");
 
     // On phones the second level folds into the first dropdown (see .dd__sub in the CSS).
@@ -154,13 +161,13 @@
      ------------------------------------------------------------------ */
   function projectCard(p) {
     return (
-      '<a class="pcard" href="' + projectHref(p) + '" data-reveal style="--accent:' + p.accent + '">' +
+      '<a class="pcard" ' + projectLink(p) + ' data-reveal style="--accent:' + p.accent + '">' +
       '<div class="pcard__box">' +
       '<div class="pcard__info">' +
       '<div class="pcard__head"><h3 class="t-h2">' + esc(p.title) + '</h3><p class="pcard__desc">' + esc(p.summary) + "</p></div>" +
       chips(p.tags) +
       "</div>" +
-      '<div class="pcard__media"><img src="' + p.cover + '" alt="" loading="lazy" decoding="async"><span class="plus" aria-hidden="true">' + icons.plus + "</span></div>" +
+      '<div class="pcard__media"><img src="' + p.cover + '" alt="" loading="lazy" decoding="async"><span class="plus' + (p.external ? " plus--out" : "") + '" aria-hidden="true">' + (p.external ? icons.arrowOut : icons.plus) + "</span></div>" +
       "</div>" +
       "</a>"
     );
@@ -208,7 +215,7 @@
       '<div class="more__track">' +
       others.map(function (p) {
         return (
-          '<a class="mcard" href="' + projectHref(p) + '">' +
+          '<a class="mcard" ' + projectLink(p) + ">" +
           '<div class="mcard__media"><img src="' + (p.card || p.cover) + '" alt="" loading="lazy" decoding="async"></div>' +
           '<div class="mcard__info"><h3>' + esc(p.title) + "</h3><p>" + esc(p.summary) + "</p></div>" +
           "</a>"

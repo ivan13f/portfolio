@@ -200,7 +200,7 @@ Built by `site.js` from `SITE.pages` and `PROJECTS` in `js/projects.js`. Never h
 
 | Variant | Class | Specs |
 |---|---|---|
-| Dark CTA | `.btn.btn--dark` | 36h, min-width 170, `--ink` background, `#F4F4F4` text 14/500, radius 8, hover `#3A3A3A` |
+| Dark CTA | `.btn.btn--dark` | 36h, min-width 170, `--ink` background, `#F4F4F4` text 14/500, radius 8. Hover: `--bg` background, `--ink` text and a `1px --line` hairline (inset, so the size doesn't shift) |
 | Outline | `.btn.btn--outline` (+ `.btn--lg` for 50h) | Transparent, `1px --line`, ink 14/400 uppercase, radius 8, hover `--surface`. Arrow as text "→". |
 | Live project | `.live-btn` | Full width, 48h, accent tint background (25%, 35% on hover), `1px` accent border, accent text 16/600, radius 8. Label "See live project ↗︎". |
 
@@ -232,6 +232,7 @@ The hero's image is `assets/img/hero-projects.gif`: 392×366 to fit the card exa
 - **Hover:** `--shadow-card`, and the "+" rotates 90°.
 - **Scroll:** reveals once (`data-reveal`).
 - **Phone:** image on top (4:3), text below.
+- **No case study:** a project with `external: true` links straight to `live` in a new tab, from its cards, the "More projects" carousel and the nav, where its label has no arrow. On cards, the "+" becomes a "↗" that nudges 2px on hover (`.plus--out`) instead of rotating.
 
 ### 4.8 Case-study sidebar
 
@@ -252,23 +253,23 @@ Keep `.cs-hero` as the first block of `.case-content`, and don't remove `min-wid
 
 | Block | Markup | Specs |
 |---|---|---|
-| Hero | `.cs-hero > img/video` | Height from the window on desktop (§4.8), ratio 966:746 when stacked; radius 16, cover. Export media at least 1932×1492, with the important content near the center, because the edges crop as the window changes. Video: `muted loop playsinline preload="metadata" data-autoplay`. |
+| Hero | `.cs-hero > img/video` | Height from the window on desktop (§4.8), ratio 966:746 when stacked; radius 16, cover. Export media at least 1932×1492, with the important content near the center, because the edges crop as the window changes. Video: `muted loop playsinline preload="metadata" data-autoplay`. For a chart that must stay whole, add `.cs-hero--fit` with an inline `--hero-bg` matching the media's background: it fits inside the hero instead of cropping. |
 | Quick facts | `dl.facts` with 4 × `div > dt + dd` | Always Type · Category · Timeframe · Tools. `--fact` background, `1px --line`, radius 8, padding `12px 24px`; dt 13 ink, dd 14 `--muted`; 2 columns on phones. |
 | Section | `section.cs-section#id[data-toc]` | `scroll-margin-top: 120px`. Gap modifiers `--tight`, `--mid`, `--loose`. |
 | Section heading | `header.cs-head > p.eyebrow + h2` | Eyebrow 14px ink (repeats the index label); h2 26/600. Max 628. |
 | Grouped heading and text | `.stack` (gap 20) / `.stack--40` | |
-| Body text | `.prose` | Max 628, paragraphs 12 apart, disc bullets indented 20. |
+| Body text | `.prose` | Max 628, paragraphs 12 apart, disc bullets indented 20. Add `.list--spaced` to a `ul` whose bullets run a few lines each, to set them 12 apart. |
 | Media | `.cs-media > img/video` | Full width, radius 16. Add `data-zoom` to an image to open it in the lightbox on click (optionally `data-zoom="larger.png"`). |
 | Inset image | `.inset-img` | 350 wide image, indented 24px; for small UI details. |
 | Callout | `aside.callout > img + .prose` | 60px icon, `0.5px --line` border, radius 16, padding `24px 20px`. For definitions ("What is a…?"). |
-| Note | `p.note > em` | White card, `1px --line`, radius 16, padding 24. One caveat or key takeaway in italics. |
+| Note | `p.note > em` | White card, `1px --line`, radius 16, padding 24. One caveat or key takeaway in italics. `.note--icon` adds a 24px outlined icon on the left (`.note__icon`, in the accent colour): use a circled "i", not an exclamation point, for caveats. |
 | Tile | `.tile` | `--fact` background, `1px --line`, radius 20, padding 24, gap 12. Set `--tile-bg` / `--tile-border` inline for colored tiles. Variants: numbered (`.tile--drs` + `.tile__big`), question (`.badge--lg` + `.tile__q`). |
 | Grids | `.cols-2`, `.cols-3` | Gap 40, single column on phones. |
 | Persona card | `article.persona` with `style="--accent:…"` | Accent background, `#F5F5F5` text, radius 20, padding 24, gap 50, min-height 394. Number in a 33px outlined circle, Georgia name, 14px description, 20px quoted question. |
-| Numbered step | `.step > .badge + .prose` | 30px accent badge, 30 gap. Pair with `.annotated` to point at parts of an image. |
-| Annotated image | `figure.annotated > img + .badge×n` | Badges positioned with `left`/`top` in % of the image, with a white halo. |
+| Numbered step | `.step > .badge + .prose` | 30px accent badge, 30 gap. Pair with `.annotated` to point at parts of an image. For a short numbered list, use `ol.steps.steps--compact > li.step > .badge + span`: gap 12, one line per item. |
+| Annotated image | `figure.annotated > img + .badge×n` | Badges positioned with `left`/`top` in % of the image, with a white halo. Badges shrink to 20px on phones. 564 wide by default; set `width:100%` inline for a wide screenshot. |
 | Arc list | `ol.arc > li.arc__row > .arc__num + p` | 60px outlined circles with 29/600 numbers. For a 3–5 step narrative. |
-| Concept row | `.concept > .cs-head + .concept__row` | Two equal columns (text + image or text + text), gap 40 (20 inline for text + text). |
+| Concept row | `.concept > .cs-head + .concept__row` | Two equal columns (text + image or text + text), gap 40 (20 inline for text + text). `.concept__row--thumb` makes it 3:2, for text with a small picture. |
 
 ### 4.10 Accordion (About)
 

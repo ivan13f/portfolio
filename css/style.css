@@ -117,7 +117,7 @@ button { font: inherit; color: inherit; }
   transition: background-color 0.25s ease, box-shadow 0.4s var(--ease-spring), color 0.25s ease;
 }
 .btn--dark { min-width: 170px; background: var(--ink); color: #f4f4f4; font-weight: 500; }
-.btn--dark:hover { background: #3a3a3a; }
+.btn--dark:hover { background: var(--bg); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); } /* inset, so the size doesn't shift */
 .btn--outline { border: 1px solid var(--line); color: var(--ink); background: transparent; text-transform: uppercase; }
 .btn--outline:hover { background: var(--surface); }
 .btn--lg { height: 50px; }
@@ -484,6 +484,7 @@ button { font: inherit; color: inherit; }
 }
 .plus svg { width: 20px; height: 20px; }
 .pcard:hover .plus { transform: rotate(90deg); }
+.pcard:hover .plus--out { transform: translate(2px, -2px); } /* links out of the site: nudge, don't spin the arrow */
 
 /* ==========================================================================
    Simple pages: Works, About, Imprint
@@ -642,6 +643,9 @@ button { font: inherit; color: inherit; }
 .case-content { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 80px; }
 .cs-hero { width: 100%; height: var(--side-h); border-radius: 16px; overflow: hidden; background: var(--fact); }
 .cs-hero img, .cs-hero video { width: 100%; height: 100%; object-fit: cover; }
+/* For a chart that must stay whole: fits inside the hero, on a background that matches the media */
+.cs-hero--fit { background: var(--hero-bg, var(--fact)); }
+.cs-hero--fit img, .cs-hero--fit video { object-fit: contain; }
 .facts {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -670,6 +674,7 @@ button { font: inherit; color: inherit; }
 .prose { max-width: 628px; }
 .prose > * + * { margin-top: 12px; }
 .prose ul { padding-left: 20px; list-style: disc; }
+.prose .list--spaced > li + li { margin-top: 12px; } /* for bullets that are a few lines long */
 .prose strong { font-weight: 600; }
 .cs-media { width: 100%; border-radius: 16px; overflow: hidden; }
 .cs-media img, .cs-media video { width: 100%; height: auto; }
@@ -734,6 +739,8 @@ button { font: inherit; color: inherit; }
   border-radius: 16px;
   background: var(--surface);
 }
+.note--icon { display: flex; align-items: flex-start; gap: 16px; }
+.note__icon { width: 24px; height: 24px; flex: none; color: var(--accent); }
 
 .badge {
   display: grid;
@@ -750,6 +757,8 @@ button { font: inherit; color: inherit; }
 .steps { display: flex; flex-direction: column; gap: 40px; max-width: 628px; }
 .step { display: flex; gap: 30px; align-items: flex-start; }
 .step .prose > * + * { margin-top: 12px; }
+.steps--compact { gap: 12px; padding: 0; list-style: none; } /* a short numbered list, one line per item */
+.steps--compact .step { gap: 12px; align-items: center; }
 
 .annotated { position: relative; width: min(564px, 100%); }
 .annotated img { width: 100%; height: auto; }
@@ -772,6 +781,7 @@ button { font: inherit; color: inherit; }
 .concept { display: flex; flex-direction: column; gap: 40px; }
 .concept__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start; }
 .concept__row--center { align-items: center; }
+.concept__row--thumb { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); } /* text with a small picture */
 .concept__img { width: 100%; height: auto; max-height: 396px; object-fit: contain; object-position: 50% 0; }
 
 /* ---------- More projects carousel ---------- */
@@ -916,6 +926,7 @@ button { font: inherit; color: inherit; }
   .cols-3, .cols-2, .concept__row { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .persona { min-height: 0; gap: 32px; }
   .step { gap: 16px; }
+  .annotated .badge { width: 20px; height: 20px; font-size: 11px; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6); }
 
   .more { padding-top: 80px; padding-bottom: 80px; }
   .mcard { flex-basis: min(320px, 85vw); }
