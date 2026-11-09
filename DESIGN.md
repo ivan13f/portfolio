@@ -300,7 +300,7 @@ Built by `site.js`. Background `--ink`, padding `100px gutter 60px`, a 4-column 
 
 ### 4.13 Lightbox
 
-Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image up to 1200px wide and at most the window height minus 80px (so tall charts open whole), with radius 16, scaling up from 0.96 with a spring. An image from a `.cs-media--pad` frame keeps a 30px margin in its frame's background. Click or Esc closes it, and focus returns to the image. Zoomable images are keyboard-focusable and show a zoom-in cursor.
+Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image centred with flexbox, up to 1200px wide (and the window width minus 80px) and at most the window height minus 80px, so tall charts open whole. These limits use window units, not percentages, so every browser sizes and centres it the same, with radius 16, scaling up from 0.96 with a spring. An image from a `.cs-media--pad` frame keeps a 30px margin in its frame's background. Click or Esc closes it, and focus returns to the image. Zoomable images are keyboard-focusable and show a zoom-in cursor.
 
 ---
 

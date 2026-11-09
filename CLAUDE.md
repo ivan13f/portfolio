@@ -17,6 +17,10 @@ Read `DESIGN.md` first and follow it: tokens, components, motion, accessibility 
 - `_redirects`: redirect rules for old Framer URLs. The Pages workflow turns each rule into a redirect page.
 - `.github/workflows/pages.yml`: publishes the site to GitHub Pages on every push to `main`.
 
+## Cache busting
+
+GitHub Pages lets browsers cache files for 10 minutes, so an edited file can look unchanged. Every page links the stylesheet and scripts with a version tag (`css/style.css?v=20261109`). When `css/style.css`, `js/site.js` or `js/projects.js` changes, set the tag to the current date on every page. When an image's content changes, give it a new filename rather than overwriting it.
+
 ## Checking changes
 
 Preview with any local static server from this folder, for example `python3 -m http.server 8080`. Check 1440×900, 1280×800, 1024 wide, tablet (~900) and phone (375), and confirm the console has no errors.

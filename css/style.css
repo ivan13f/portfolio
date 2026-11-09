@@ -839,8 +839,9 @@ button { font: inherit; color: inherit; }
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 40px;
   background: rgba(33, 33, 33, 0.7);
   opacity: 0;
@@ -849,9 +850,13 @@ button { font: inherit; color: inherit; }
   cursor: zoom-out;
 }
 .lightbox.is-open { opacity: 1; visibility: visible; transition: opacity 0.3s ease; }
+/* Sized from the window, not with percentages, so every browser centres it and fits it whole */
 .lightbox img {
-  max-width: min(1200px, 100%);
-  max-height: calc(100vh - 80px); /* the window minus the lightbox padding, so tall images fit */
+  flex: none;
+  width: auto;
+  height: auto;
+  max-width: min(1200px, calc(100vw - 80px));
+  max-height: calc(100vh - 80px);
   max-height: calc(100dvh - 80px);
   border-radius: 16px;
   background: var(--surface);
