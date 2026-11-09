@@ -19,8 +19,9 @@ window.PROJECTS = [
     slug: "uneven-ground",
     title: "Uneven Ground",
     summary:
-      "An exploration of the Trans Rights Indicator Project, the record that political scientist Myles Williamson built to follow the legal status of trans people across 173 countries.",
+      "An exploration of the Trans Rights Indicator Project, a record built to follow the legal status of trans people worldwide.",
     tags: ["Python", "Data Story", "D3.js"],
+    pageTags: ["Data Story", "Python", "D3.js"],
     accent: "#5A37D1",
     cover: "assets/img/uneven-ground-cover.jpg",
     card: "assets/img/uneven-ground-card.jpg",

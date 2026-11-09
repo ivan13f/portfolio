@@ -452,6 +452,10 @@
         opener = img;
         big.src = img.dataset.zoom || img.currentSrc || img.src;
         big.alt = img.alt;
+        // An image in a padded frame keeps its margin and background when enlarged
+        var frame = img.closest(".cs-media--pad");
+        box.classList.toggle("lightbox--pad", !!frame);
+        if (frame) box.style.setProperty("--lightbox-bg", getComputedStyle(frame).backgroundColor);
         box.classList.add("is-open");
         box.focus();
       }

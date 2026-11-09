@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Uneven Ground — I-AB</title>
-  <meta name="description" content="An exploration of the Trans Rights Indicator Project, the record that political scientist Myles Williamson built to follow the legal status of trans people across 173 countries.">
+  <meta name="description" content="An exploration of the Trans Rights Indicator Project, a record built to follow the legal status of trans people worldwide.">
   <meta property="og:title" content="Uneven Ground — I-AB">
-  <meta property="og:description" content="An exploration of the Trans Rights Indicator Project, the record that political scientist Myles Williamson built to follow the legal status of trans people across 173 countries.">
+  <meta property="og:description" content="An exploration of the Trans Rights Indicator Project, a record built to follow the legal status of trans people worldwide.">
   <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/uneven-ground-cover.jpg">
   <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
   <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
@@ -77,22 +77,18 @@
           </div>
           <p class="note note--icon">
             <svg class="note__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 11v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg>
-            <em>TRIP records what the law says, not how it is enforced. The score should be read as a map of the law, not as a portrait of daily life.</em>
+            <em>One important caveat I kept front and center: TRIP records what the law says, not how it’s enforced on the ground. It’s a map of legal frameworks, not a portrait of daily life.</em>
           </p>
         </section>
 
-        <section class="cs-section" id="story" data-toc="Choosing the Story">
-          <div class="concept">
-            <header class="cs-head"><p class="eyebrow">Choosing the Story</p><h2>The average was hiding the story</h2></header>
-            <div class="concept__row">
-              <div class="prose">
-                <p>I explored the data in a Python notebook before deciding what the article should say. The headline looked like good news: the average score more than doubled, from 10.9% in 2000 to 23.5% in 2021.</p>
-                <p>Then I plotted the median and percentiles next to it, and the average stopped looking like a fair summary. A few dozen countries rewrote their laws, often more than once, while 88 ended 2021 with exactly the score they had in 2000. The bottom quarter scored 7.7% in both years.</p>
-                <p>That gap became the story: not whether the world made progress, but who it reached. Comparing scores by region and by income then pointed to the exceptions the article’s map is built around, like Pakistan, which scores 11 of 13 with a GDP per capita of about $1,500, far below every other country scoring 10 or more.</p>
-              </div>
-              <div class="cs-media">
-                <img src="assets/img/ug-explore-pivot.png" alt="Exploratory chart from the Python notebook: the average, median, middle half, top 10% threshold and bottom quarter of TRIP scores from 2000 to 2021. The bottom quarter stays flat while the top 10% threshold climbs past 60%." width="777" height="451" loading="lazy" decoding="async" data-zoom>
-              </div>
+        <section class="cs-section" id="story" data-toc="Finding the Story">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">Finding the Story</p><h2>Beyond the average</h2></header>
+            <div class="prose">
+              <p>When I first explored the data in Python, the headline seemed like a classic piece of good news: the average global score more than doubled, jumping from 10.9% in 2000 to 23.5% in 2021.</p>
+              <p>It’s easy to stop there and build a cheerful trend line. But when I plotted the median and percentiles right alongside that average, the picture completely fell apart.</p>
+              <p>The global average was hiding a massive divergence. A handful of countries had aggressively rewritten their laws, while 88 countries ended 2021 with the exact same score they had in 2000. In fact, the bottom 25% of countries sat stubbornly at 7.7% in both years.</p>
+              <p>That gap became the real story. Progress was happening, but it wasn’t a rising tide lifting all boats—it was concentrated at the top. Looking closer at regional and income brackets helped unearth fascinating outliers.</p>
             </div>
           </div>
         </section>
@@ -101,60 +97,62 @@
           <div class="stack">
             <header class="cs-head"><p class="eyebrow">Design Process &amp; Decisions</p><h2>From a dashboard to one story</h2></header>
             <div class="prose">
-              <p>The project didn’t start as an article. My first version, in February 2026, was a dark, multi-page explorer with global, regional and country views, and a chart for each: trend lines, a map, a beeswarm, country comparisons.</p>
-              <p>Once the finding was clear, the structure changed. By June I had cut it down to a single page built on four questions, with one main chart to answer each.</p>
-              <p>In October I redesigned it as a light, editorial piece: a warm paper background, Besley and Inter type, and charts that change as you scroll. I also rewrote the text and checked every number against the notebook.</p>
+              <p>The project didn’t start as an article. My first version was a dark, multi-page explorer with global, regional and country views, and a chart for each: trend lines, a map, a beeswarm, country comparisons. This played too much in the ranking system and was not telling a specific story. I fell into the trap of “dashboarding” without a clear storyline.</p>
+              <p>Once the finding was clear, I cut it down to a single page driven by four central questions, anchored by one primary chart each.</p>
+              <p>Once I structured the questions and story arc, I gave it its final editorial polish:</p>
+              <ul>
+                <li>Shifting from a moody dark mode to a warm, paper-inspired background.</li>
+                <li>Using clean, publication-grade typography.</li>
+                <li>Designing charts that actively evolve as the reader scrolls that will represent each question.</li>
+              </ul>
             </div>
+          </div>
+
+          <div class="stack">
+            <h3 class="cs-subhead">Bringing the narrative to life</h3>
+            <div class="prose"><p>Here is how those four core questions shaped the final piece:</p></div>
           </div>
 
           <div class="concept__row concept__row--thumb">
             <div class="stack">
-              <h3 class="tile__title">Fig. 1: Did the world progress?</h3>
-              <div class="prose"><p>One average line would answer this with a flat yes. So the chart starts with the average, then adds the median, the middle half, the top tenth and the bottom quarter one scroll step at a time. By the end, the top tenth’s threshold has reached 61.5% and the bottom quarter hasn’t moved.</p></div>
+              <h4 class="tile__title">1. What the average hides</h4>
+              <div class="prose"><p>Instead of relying on a single, misleading average line, the chart opens with the average and then layers on the median, the middle half, the top 10% threshold, and the bottom quarter—step-by-step as you scroll. By the end, you see the top threshold climbing past 60% while the bottom quarter sits flat.</p></div>
             </div>
-            <div class="cs-media"><img src="assets/img/uneven-ground-fig1.png" alt="Fig. 1: the distribution of TRIP scores from 2000 to 2021, with the top 10% threshold climbing to 61.5% while the bottom quarter stays at 7.7%" width="1440" height="1198" loading="lazy" decoding="async" data-zoom></div>
+            <div class="cs-media cs-media--pad" style="--media-bg:#F7F5F0"><img src="assets/img/uneven-ground-fig1.png" alt="Fig. 1: the distribution of TRIP scores from 2000 to 2021, with the top 10% threshold climbing to 61.5% while the bottom quarter stays at 7.7%" width="1440" height="1198" loading="lazy" decoding="async" data-zoom></div>
           </div>
 
           <div class="concept__row concept__row--thumb">
             <div class="stack">
-              <h3 class="tile__title">Fig. 2: Where did progress happen?</h3>
-              <div class="prose">
-                <p>A map keeps the geography in view. It flies from region to region as you scroll, so each regional pattern and the countries that break it share one frame, with names and scores written directly on the map.</p>
-                <p>Earlier versions used a continuous colour scale. But 78% of all country-years score 0, 1 or 2 out of 13, so a gradient squeezed most of the world into a sliver of its range. Six fixed classes keep those small differences visible.</p>
-              </div>
+              <h4 class="tile__title">2. A map of exceptions</h4>
+              <div class="prose"><p>A global map keeps geography grounded. Instead of forcing users to pan and zoom, the page flies from region to region on scroll, highlighting regional patterns and calling out exceptions directly on the canvas. I also changed the continuous color scale used at the beginning; since 78% of countries score 0, 1, or 2, a gradient turned most of the world into a blur. Six fixed classes make the differences clearer.</p></div>
             </div>
-            <div class="cs-media"><img src="assets/img/uneven-ground-map.png" alt="Fig. 2: the world map zoomed into South Asia, with Pakistan at 11 of 13 and India at 8 labelled directly on the map" width="1838" height="1482" loading="lazy" decoding="async" data-zoom></div>
+            <div class="cs-media cs-media--pad" style="--media-bg:#F7F5F0"><img src="assets/img/uneven-ground-map.png" alt="Fig. 2: the world map zoomed into South Asia, with Pakistan at 11 of 13 and India at 8 labelled directly on the map" width="1838" height="1482" loading="lazy" decoding="async" data-zoom></div>
           </div>
 
           <div class="concept__row concept__row--thumb">
             <div class="stack">
-              <h3 class="tile__title">Fig. 3: Which rights improved most?</h3>
-              <div class="prose">
-                <p>Plotting each right over time in the notebook showed the order: gender marker change climbed first, and most protections grew after 2010. For the article, a dot plot keeps only 2000 and 2021, grouped by criminalization, recognition and protection, so all 13 rows read at a glance.</p>
-                <p>The one right that got worse is the only one in orange. Six country cards below the chart then show how different the same score can be.</p>
-              </div>
+              <h4 class="tile__title">3. Recognition before protection</h4>
+              <div class="prose"><p>Plotting the 13 indicators over time revealed a clear sequencing: legal gender marker changes climbed first, while broader anti-discrimination protections largely accelerated after 2010. A clean dumbbell plot comparing 2000 to 2021 made all 13 rows instantly readable at a glance.</p></div>
             </div>
-            <div class="cs-media"><img src="assets/img/uneven-ground-fig3-thumb.png" alt="Fig. 3: a dot plot of the share of countries with each of the 13 rights in 2000 and 2021, grouped into criminalization, recognition and protection" width="1838" height="1482" loading="lazy" decoding="async" data-zoom="assets/img/uneven-ground-fig3.png"></div>
+            <div class="cs-media cs-media--pad" style="--media-bg:#F7F5F0"><img src="assets/img/uneven-ground-fig3.png" alt="Fig. 3: a dumbbell plot of the share of countries with each of the 13 rights in 2000 and 2021, grouped into criminalization, recognition and protection" width="1838" height="2020" loading="lazy" decoding="async" data-zoom></div>
           </div>
 
           <div class="concept__row concept__row--thumb">
             <div class="stack">
-              <h3 class="tile__title">Fig. 4: What does it all look like at once?</h3>
-              <div class="prose">
-                <p>Every country and every year in one image, sorted by 2021 score, so the finding becomes a shape: a dark corner at the top right and a bottom that barely changes.</p>
-                <p>Scroll steps fade everything except the part being discussed, like the bottom quarter shown here, and a search box lets you find any country.</p>
-              </div>
+              <h4 class="tile__title">4. Every country, every year</h4>
+              <div class="prose"><p>The flagship chart at the end packs every country and every year into a single heatmap sorted by 2021 scores. The finding turns into a specific visual shape: a dark, dense corner at the top right, and a bottom half that barely flickers over two decades. A search box lets you find any country.</p></div>
             </div>
-            <div class="cs-media"><img src="assets/img/uneven-ground-heatmap.png" alt="Fig. 4: the heatmap with everything faded except the bottom quarter of 44 countries, whose colours barely change from 2000 to 2021" width="1300" height="1048" loading="lazy" decoding="async" data-zoom></div>
+            <div class="cs-media cs-media--pad" style="--media-bg:#F7F5F0"><img src="assets/img/uneven-ground-heatmap.png" alt="Fig. 4: the full heatmap of 173 countries by 22 years, sorted by 2021 score, with a dark corner at the top right and a bottom half whose colours barely change from 2000 to 2021" width="1400" height="2168" loading="lazy" decoding="async" data-zoom></div>
           </div>
         </section>
 
         <section class="cs-section" id="retrospective" data-toc="Retrospective">
           <header class="cs-head"><p class="eyebrow">Retrospective</p><h2>What I learned</h2></header>
-          <div class="prose" style="max-width:600px">
-            <p>I built charts before I had a story. The first version could show almost anything but argued nothing, and most of it was thrown away once the finding was clear. Next time I would start with the notebook and the question, and only then choose the charts.</p>
-            <p>Checking every number changed the article, not just the footnotes. An early draft presented Argentina as the complete case, at 100%. Checked indicator by indicator, it scores 46%: full recognition and no protection at all. The correction gave me a better example than the one I started with.</p>
-            <p>A dataset’s limits belong in the story. TRIP records the law, not daily life, and it stops in 2021. Saying so up front, and closing the article on what the data can’t see, made the argument more honest.</p>
+          <div class="prose">
+            <ul class="list--spaced">
+              <li><strong>Let the question drive the charts, not the other way around.</strong> Building a sprawling dashboard before I had a clear thesis taught me the hard way that a tool isn’t a story. Next time, notebook and narrative come first; the UI comes second.</li>
+              <li><strong>Lean into data limits.</strong> Being transparent about what TRIP doesn’t capture (enforcement, lived experience, and the post-2021 landscape) didn’t weaken the argument, it made the piece much more honest and grounded.</li>
+            </ul>
           </div>
         </section>
 

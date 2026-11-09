@@ -79,6 +79,7 @@ Font stack: `"Inter", system-ui, -apple-system, "Segoe UI", sans-serif`, loaded 
 | Carousel card title | `.mcard__info h3` | 27 / 1.5 | 600 | −0.01em | same |
 | Lead text, case-study section heading | `.t-lead`, `.cs-head h2` | 26 / 1.5 | 600 | −0.01em | 22 |
 | Question tile title | `.tile__q` | 23 / 1.5 | 600 | −0.01em | same |
+| Case-study sub-heading | `.cs-subhead` | 23 / 1.5 | 600 | −0.01em | same |
 | Accordion question | `.acc__head` | 20 / 1.5 | 600 | −0.01em | same |
 | Persona question | `.persona__q` | 20 / 1.5 | 400 | 0 | same |
 | Tile title | `.tile__title` | 18 / 1.5 | 600 | −0.01em | same |
@@ -257,9 +258,11 @@ Keep `.cs-hero` as the first block of `.case-content`, and don't remove `min-wid
 | Quick facts | `dl.facts` with 4 × `div > dt + dd` | Always Type · Category · Timeframe · Tools. `--fact` background, `1px --line`, radius 8, padding `12px 24px`; dt 13 ink, dd 14 `--muted`; 2 columns on phones. |
 | Section | `section.cs-section#id[data-toc]` | `scroll-margin-top: 120px`. Gap modifiers `--tight`, `--mid`, `--loose`. |
 | Section heading | `header.cs-head > p.eyebrow + h2` | Eyebrow 14px ink (repeats the index label); h2 26/600. Max 628. |
+| Sub-heading | `h3.cs-subhead` | 23/600, max 628. Splits a long section into groups (e.g. the four figures in Uneven Ground). Titles under it are `h4.tile__title`, so headings stay in order. |
 | Grouped heading and text | `.stack` (gap 20) / `.stack--40` | |
 | Body text | `.prose` | Max 628, paragraphs 12 apart, disc bullets indented 20. Add `.list--spaced` to a `ul` whose bullets run a few lines each, to set them 12 apart. |
 | Media | `.cs-media > img/video` | Full width, radius 16. Add `data-zoom` to an image to open it in the lightbox on click (optionally `data-zoom="larger.png"`). |
+| Padded media | `.cs-media.cs-media--pad` with inline `--media-bg` | For a chart exported edge to edge: 24px padding (16 on phones) on a background that matches the image, so it gets a margin without re-exporting. The lightbox keeps the margin (30px) and background. |
 | Inset image | `.inset-img` | 350 wide image, indented 24px; for small UI details. |
 | Callout | `aside.callout > img + .prose` | 60px icon, `0.5px --line` border, radius 16, padding `24px 20px`. For definitions ("What is a…?"). |
 | Note | `p.note > em` | White card, `1px --line`, radius 16, padding 24. One caveat or key takeaway in italics. `.note--icon` adds a 24px outlined icon on the left (`.note__icon`, in the accent colour): use a circled "i", not an exclamation point, for caveats. |
@@ -297,7 +300,7 @@ Built by `site.js`. Background `--ink`, padding `100px gutter 60px`, a 4-column 
 
 ### 4.13 Lightbox
 
-Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image up to 1200px wide with radius 16, scaling up from 0.96 with a spring. Click or Esc closes it, and focus returns to the image. Zoomable images are keyboard-focusable and show a zoom-in cursor.
+Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image up to 1200px wide and at most the window height minus 80px (so tall charts open whole), with radius 16, scaling up from 0.96 with a spring. An image from a `.cs-media--pad` frame keeps a 30px margin in its frame's background. Click or Esc closes it, and focus returns to the image. Zoomable images are keyboard-focusable and show a zoom-in cursor.
 
 ---
 

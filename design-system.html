@@ -457,7 +457,7 @@
         </section>
 
         <section class="ds-section" id="c10" data-code="C10" data-ds-title="Section heading &amp; text" data-ds-group="Components">
-          <p class="ds-desc">Every case-study section: eyebrow (repeats the index label) + h2 that says something about it, then <code>.prose</code> (max 628, paragraphs 12 apart, bold for key terms).</p>
+          <p class="ds-desc">Every case-study section: eyebrow (repeats the index label) + h2 that says something about it, then <code>.prose</code> (max 628, paragraphs 12 apart, bold for key terms). A long section can be split with an <code>h3.cs-subhead</code>.</p>
           <div class="ds-demo ds-demo--col">
             <header class="cs-head"><p class="eyebrow">Sources</p><h2>Public Data. Private Effort.</h2></header>
             <div class="prose">
@@ -467,6 +467,10 @@
                 <li>Rent burden and ownership rates came from the <strong>Mikrozensus</strong>.</li>
               </ul>
               <p>Some of these figures were buried inside PDF tables and required manual extraction.</p>
+            </div>
+            <div class="stack">
+              <h3 class="cs-subhead">A sub-heading inside a section</h3>
+              <div class="prose"><p><code>.cs-subhead</code> (23/600) introduces a group of blocks within a section, such as four figures. Titles under it step down to <code>h4.tile__title</code>.</p></div>
             </div>
           </div>
         </section>
@@ -558,10 +562,11 @@
         </section>
 
         <section class="ds-section" id="c18" data-code="C18" data-ds-title="Lightbox &amp; media" data-ds-group="Components">
-          <p class="ds-desc">Add <code>data-zoom</code> to an image to open it full size on click (Esc closes). Media blocks are full width with radius 16. Videos: <code>muted loop playsinline preload="metadata" data-autoplay</code>; they play only while on screen.</p>
+          <p class="ds-desc">Add <code>data-zoom</code> to an image to open it full size on click (Esc closes); it fits the window, so tall images are never cut off. Media blocks are full width with radius 16. For a chart exported edge to edge, add <code>.cs-media--pad</code> with an inline <code>--media-bg</code> matching the image: a 24px margin (16 on phones), kept in the lightbox. Videos: <code>muted loop playsinline preload="metadata" data-autoplay</code>; they play only while on screen.</p>
           <div class="ds-demo">
             <div class="cs-media" style="width:220px"><img src="assets/img/ho-dbt-dag.png" alt="dbt lineage graph" width="1524" height="2048" data-zoom></div>
-            <span class="ds-caption">Click the diagram to try the lightbox.</span>
+            <div class="cs-media cs-media--pad" style="width:220px; --media-bg:#F7F5F0"><img src="assets/img/uneven-ground-fig3.png" alt="Dumbbell plot from Uneven Ground" width="1838" height="2020" data-zoom></div>
+            <span class="ds-caption">Click either image to try the lightbox. Right: <code>.cs-media--pad</code>.</span>
           </div>
         </section>
 
@@ -610,6 +615,15 @@
         <section class="ds-section" id="log" data-code="LOG" data-ds-title="Design changes" data-ds-group="Changelog">
           <p class="ds-desc">Newest first. Claude adds an entry here (and updates <code>DESIGN.md</code>) whenever the design changes.</p>
           <ol class="ds-log" id="ds-log">
+            <li data-date="2026-11-09">
+              <time>9 Nov 2026</time>
+              <ul>
+                <li><span class="ds-code">C10</span>New <code>.cs-subhead</code>: a 23/600 sub-heading inside a case-study section.</li>
+                <li><span class="ds-code">C18</span>New <code>.cs-media--pad</code>: a 24px margin (16 on phones) around a chart exported edge to edge, on an inline <code>--media-bg</code> that matches the image. The lightbox keeps the margin.</li>
+                <li><span class="ds-code">C18</span>Lightbox images now fit the window height, so tall charts open whole instead of running off the bottom.</li>
+                <li>Uneven Ground case study: new text, “Finding the Story” section without its chart, full Fig. 3 and a full, unfaded Fig. 4 heatmap.</li>
+              </ul>
+            </li>
             <li data-date="2026-11-05">
               <time>5 Nov 2026</time>
               <ul>
@@ -779,6 +793,7 @@
       ["Lead", ".t-lead", '<p class="t-lead c-muted"><span class="c-ink">Key sentence in ink.</span> The rest in the secondary gray.</p>'],
       ["Case-study heading", ".cs-head h2", '<header class="cs-head"><p class="eyebrow">Eyebrow · 14px</p><h2>Who is it for?</h2></header>'],
       ["Question tile", ".tile__q", '<p class="tile__q">Who is actually being priced out?</p>'],
+      ["Case-study sub-heading", ".cs-subhead", '<p class="cs-subhead">Bringing the narrative to life</p>'],
       ["Tile title", ".tile__title", '<p class="tile__title">Staging layers</p>'],
       ["Body", "body / .prose", '<p class="t-body">Berlin has 3.8 million residents and roughly 85% of them rent.</p>'],
       ["Small: eyebrows, UI, chips", ".t-small", '<p class="t-small">Overview · Selected Works · VIEW ALL PROJECTS</p>'],
