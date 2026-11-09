@@ -163,7 +163,7 @@ Rules:
 
 | Breakpoint | Width | What changes |
 |---|---|---|
-| Desktop | ≥ 1024px | Full layout. Case studies have the sticky sidebar. |
+| Desktop | ≥ 1024px | Full layout. Case studies have the sticky sidebar. From 1024 to 1199px, `.cols-3--stack-narrow` grids stack to one column (see §4.9, Grids). |
 | Tablet | 810–1023px | Gutter 30. Case-study sidebar stacks above the content. Nav unchanged. |
 | Phone | < 810px | Gutter 16. Nav collapses (see §4.1). All multi-column grids become one column. Project cards stack with the image on top. Type scales down (see §2.3). |
 
@@ -267,7 +267,7 @@ Keep `.cs-hero` as the first block of `.case-content`, and don't remove `min-wid
 | Callout | `aside.callout > img + .prose` | 60px icon, `0.5px --line` border, radius 16, padding `24px 20px`. For definitions ("What is a…?"). |
 | Note | `p.note > em` | White card, `1px --line`, radius 16, padding 24. One caveat or key takeaway in italics. `.note--icon` adds a 24px outlined icon on the left (`.note__icon`, in the accent colour): use a circled "i", not an exclamation point, for caveats. |
 | Tile | `.tile` | `--fact` background, `1px --line`, radius 20, padding 24, gap 12. Set `--tile-bg` / `--tile-border` inline for colored tiles. Variants: numbered (`.tile--drs` + `.tile__big`), question (`.badge--lg` + `.tile__q`). |
-| Grids | `.cols-2`, `.cols-3` | Gap 40, single column on phones. |
+| Grids | `.cols-2`, `.cols-3` | Gap 40, single column on phones. Items align to the top; add `.cols--equal` to stretch every card in a row to the tallest (e.g. the question tiles in Affordable for Whom?). Add `.cols-3--stack-narrow` to cards that need room: they stack between 1024 and 1199px, where three columns beside the sidebar would be under 220 wide (narrower than on any tablet). |
 | Persona card | `article.persona` with `style="--accent:…"` | Accent background, `#F5F5F5` text, radius 20, padding 24, gap 50, min-height 394. Number in a 33px outlined circle, Georgia name, 14px description, 20px quoted question. |
 | Numbered step | `.step > .badge + .prose` | 30px accent badge, 30 gap. Pair with `.annotated` to point at parts of an image. For a short numbered list, use `ol.steps.steps--compact > li.step > .badge + span`: gap 12, one line per item. |
 | Annotated image | `figure.annotated > img + .badge×n` | Badges positioned with `left`/`top` in % of the image, with a white halo. Badges shrink to 20px on phones. 564 wide by default; set `width:100%` inline for a wide screenshot. |

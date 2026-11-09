@@ -686,6 +686,7 @@ button { font: inherit; color: inherit; }
 .cols-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; align-items: start; }
 .cols-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
 .cols-2--tight { gap: 20px; }
+.cols--equal { align-items: stretch; } /* every card in a row as tall as the tallest */
 
 .persona {
   display: flex;
@@ -892,6 +893,12 @@ button { font: inherit; color: inherit; }
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
+/* Desktop case studies on small windows: beside the sidebar, three columns would be under 220px
+   (narrower than on any tablet), so cards that need room stack instead */
+@media (min-width: 1024px) and (max-width: 1199.98px) {
+  .cols-3--stack-narrow { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+
 @media (max-width: 1023.98px) {
   .case { flex-direction: column; padding-top: calc(var(--nav-h) + 16px); }
   .case-side { position: static; flex: none; width: 100%; height: auto; }

@@ -491,9 +491,9 @@
         </section>
 
         <section class="ds-section" id="c12" data-code="C12" data-ds-title="Tiles" data-ds-group="Components">
-          <p class="ds-desc">Default tile on <code>--fact</code>; colored tiles set <code>--tile-bg</code> / <code>--tile-border</code> inline; numbered and question variants. Usually in <code>.cols-2</code> / <code>.cols-3</code>.</p>
+          <p class="ds-desc">Default tile on <code>--fact</code>; colored tiles set <code>--tile-bg</code> / <code>--tile-border</code> inline; numbered and question variants. Usually in <code>.cols-2</code> / <code>.cols-3</code>; add <code>.cols--equal</code> so every tile in a row matches the tallest, and <code>.cols-3--stack-narrow</code> to stack them on desktop windows from 1024 to 1199px, where the columns beside the sidebar get too narrow.</p>
           <div class="ds-demo ds-demo--col">
-            <div class="cols-3 ds-accented" style="width:100%">
+            <div class="cols-3 cols--equal ds-accented" style="width:100%">
               <div class="tile"><h3 class="tile__title">Default tile</h3><p>Short explanation of one idea.</p></div>
               <div class="tile" style="--tile-bg:#d6eaf8; --tile-border:#1d4e89"><h3 class="tile__title">Colored tile</h3><p>Staging layer colors from Housing Observatory.</p></div>
               <div class="tile"><span class="badge badge--lg">1</span><h3 class="tile__q">Question tile?</h3><p>Accent badge + 23px question.</p></div>
@@ -618,6 +618,9 @@
             <li data-date="2026-11-09">
               <time>9 Nov 2026</time>
               <ul>
+                <li><span class="ds-code">C12</span>New <code>.cols--equal</code>: stretches every tile in a <code>.cols-2</code> / <code>.cols-3</code> row to the height of the tallest. The three question tiles in Affordable for Whom? now match.</li>
+                <li><span class="ds-code">C12</span>New <code>.cols-3--stack-narrow</code>: a <code>.cols-3</code> grid stacks to one column from 1024 to 1199px, where three columns beside the case-study sidebar would be under 220 wide. Used on the Affordable for Whom? question tiles, the Uneven Ground tiles, and the Housing Observatory persona cards and layer tiles.</li>
+                <li>Affordable for Whom? case study: dashes in the copy replaced with commas, and year and size ranges written with “to”.</li>
                 <li><span class="ds-code">C10</span>New <code>.cs-subhead</code>: a 23/600 sub-heading inside a case-study section.</li>
                 <li><span class="ds-code">C18</span>New <code>.cs-media--pad</code>: a 24px margin (16 on phones) around a chart exported edge to edge, on an inline <code>--media-bg</code> that matches the image. The lightbox keeps the margin.</li>
                 <li><span class="ds-code">C18</span>Lightbox images now fit the window height, so tall charts open whole instead of running off the bottom. The lightbox centres with flexbox and sizes the image from the window, not with percentages, so it opens in the middle in every browser.</li>

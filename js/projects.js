@@ -46,7 +46,7 @@ window.PROJECTS = [
   {
     slug: "affordable-for-whom",
     title: "Affordable for Whom?",
-    summary: "Exploring Rental Affordability in Berlin (2013–2023)",
+    summary: "Exploring Rental Affordability in Berlin (2013 to 2023)",
     tags: ["Python", "Data Viz", "Geoanalysis"],
     accent: "#D4583B",
     cover: "assets/img/affordable-cover.png",
