@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I-AB, Iván Alfonso Burgos (home redesign draft)</title>
+  <meta name="description" content="Portfolio of Iván Alfonso Burgos, a data visualization designer with an analyst’s toolkit, blending design, research and analytics.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/img/favicon-light.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=Fragment+Mono&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <style>
+    /* ==================================================================
+       TOKENS
+       One neutral canvas, black ink, one interface colour (signal blue).
+       All other colour on the page is data: each project's own accent.
+       ================================================================== */
+    :root {
+      /* colour */
+      --canvas: #EBEBEA;      /* page */
+      --ink: #000000;         /* text, rules at full strength */
+      --ink-2: #595958;       /* secondary text: 5.6:1 on canvas */
+      --line: #C4C4C1;        /* hairlines, leader lines */
+      --off: #D3D3D0;         /* data marks that are out of focus */
+      --plate: #DCDCD9;       /* image placeholder while loading */
+      --signal: #0050F0;      /* links, focus, status, selection: 5.1:1 on canvas */
+      --on-signal: #FFFFFF;
+
+      /* type */
+      --sans: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "Fragment Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      --wide: 116%;           /* font-stretch for display text */
+      --t-display: clamp(2.5rem, 1.3rem + 5.2vw, 6.25rem); /* 40 to 100 */
+      --t-h2: clamp(2rem, 1.4rem + 2vw, 3rem);              /* 32 to 48 */
+      --t-lead: clamp(1.25rem, 1.05rem + .6vw, 1.5rem);     /* 20 to 24 */
+      --t-body: 1rem;         /* 16 */
+      --t-small: .875rem;     /* 14 */
+      --t-data: .75rem;       /* 12, mono only */
+
+      /* space */
+      --m: clamp(16px, 3.4vw, 48px);   /* page margin */
+      --gap: clamp(16px, 1.7vw, 24px); /* column gap */
+      --s-section: clamp(96px, 12vw, 176px);
+
+      /* motion */
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+      --fast: 160ms;
+      --med: 280ms;
+    }
+
+    /* ==================================================================
+       BASE
+       ================================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: var(--t-body);
+      line-height: 1.5;
+      font-stretch: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: clip;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, p, figure, dl, dd, ul, ol { margin: 0; padding: 0; }
+    ul, ol { list-style: none; }
+    ::selection { background: var(--signal); color: var(--on-signal); }
+    :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: var(--t-data);
+      line-height: 1.4;
+      font-variant-numeric: tabular-nums;
+    }
+    .wrap { max-width: 1600px; margin-inline: auto; padding-inline: var(--m); }
+    .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+    .skip {
+      position: absolute; left: var(--m); top: 8px; z-index: 20;
+      padding: 10px 14px; background: var(--ink); color: var(--canvas);
+      font-size: var(--t-small); font-weight: 500;
+      transform: translateY(-200%);
+    }
+    .skip:focus { transform: none; }
+
+    /* Text link: underline sits low and thin, turns signal blue on hover */
+    .link {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: .22em;
+      text-decoration-color: var(--line);
+      transition: color var(--fast), text-decoration-color var(--fast);
+    }
+    .link:hover { color: var(--signal); text-decoration-color: currentColor; }
+
+    /* Button: sharp, outlined, inverts on hover */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      min-height: 44px; padding: 0 18px;
+      border: 1px solid var(--ink); border-radius: 0;
+      background: transparent; color: var(--ink);
+      font: 500 var(--t-small)/1 var(--sans);
+      cursor: pointer;
+      transition: background-color var(--fast), color var(--fast);
+    }
+    .btn:hover { background: var(--ink); color: var(--canvas); }
+
+    /* ==================================================================
+       NAV
+       ================================================================== */
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--canvas) 90%, transparent);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--med);
+    }
+    .nav.is-scrolled { border-bottom-color: var(--line); }
+    .nav__in { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo {
+      font-weight: 700; font-stretch: 125%; font-size: 1.125rem; letter-spacing: -.02em;
+      display: inline-flex; align-items: center; min-height: 44px;
+    }
+    .nav__links { display: flex; gap: clamp(8px, 2vw, 32px); }
+    .nav__links a {
+      display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px;
+      font-size: var(--t-small); font-weight: 500;
+      transition: color var(--fast);
+    }
+    .nav__links a:hover { color: var(--signal); }
+
+    /* ==================================================================
+       HERO
+       ================================================================== */
+    .hero { padding-top: clamp(40px, 6.5vw, 104px); }
+    .hero__title {
+      font-size: var(--t-display);
+      font-stretch: var(--wide);
+      font-weight: 500;
+      line-height: .98;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+      max-width: 14.5em;
+    }
+    .hero__meta { margin-top: clamp(28px, 3.6vw, 52px); row-gap: 20px; align-items: start; }
+    .hero__lead {
+      grid-column: 1 / span 6;
+      font-size: var(--t-lead); line-height: 1.35; letter-spacing: -.01em;
+      max-width: 30em; text-wrap: pretty;
+    }
+    .hero__status { grid-column: 9 / -1; display: grid; gap: 6px; justify-items: end; text-align: right; padding-top: .35em; }
+    .status { display: inline-flex; align-items: center; gap: 10px; font-size: var(--t-small); font-weight: 500; }
+    .status__dot { width: 8px; height: 8px; background: var(--signal); flex: none; }
+    .clock { color: var(--ink-2); }
+
+    /* ---------- Unit chart: one square per place ---------- */
+    .units { margin-top: clamp(48px, 6.5vw, 96px); }
+    .units__head {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+      padding-bottom: 14px;
+    }
+    .units__title { font-size: var(--t-small); font-weight: 500; }
+    .units__n { color: var(--ink-2); }
+    .units__plot { position: relative; }
+    .units__plot svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .units__plot.is-live svg { cursor: pointer; }
+
+    .seg rect { fill: var(--c); transition: fill var(--fast) ease; }
+    .units[data-active] .seg:not(.is-on) rect { fill: var(--off); }
+
+    /* Labels hang from each segment on a leader line, like chart annotations.
+       site script picks the level so no two labels collide. */
+    .units__labels { position: relative; height: calc(var(--levels, 1) * 46px + 16px); }
+    .units__labels li {
+      position: absolute; top: 0; left: var(--x, 0);
+      padding-top: calc(var(--lvl, 0) * 46px + 14px);
+      border-left: 1px solid var(--line);
+      pointer-events: none;
+      transition: border-color var(--fast);
+    }
+    .units__labels li[data-align="end"] { border-left: 0; border-right: 1px solid var(--line); text-align: right; }
+    .units__labels li[data-align="end"] a { padding: 0 8px 0 0; justify-items: end; }
+    .units__labels a {
+      pointer-events: auto;
+      display: grid; gap: 1px; padding: 0 0 0 8px;
+      white-space: nowrap;
+      transition: color var(--fast);
+    }
+    .units__count { display: inline-flex; align-items: center; gap: 6px; }
+    .units__key { width: 8px; height: 8px; background: var(--c); flex: none; }
+    .units__name { font-size: var(--t-small); font-weight: 500; line-height: 1.35; }
+    .units[data-active] .units__labels li:not(.is-on) a { color: var(--ink-2); }
+    .units__labels li.is-on { border-color: var(--ink); }
+
+    /* Narrow screens: labels become a plain legend */
+    .units.is-list .units__labels {
+      height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px var(--gap); padding-top: 16px;
+    }
+    .units.is-list .units__labels li { position: static; padding: 0; border: 0; }
+    .units.is-list .units__labels a { padding: 4px 0; white-space: normal; min-height: 44px; }
+
+    .units__note {
+      margin-top: 20px; max-width: 46em;
+      font-size: var(--t-small); color: var(--ink-2);
+    }
+
+    /* Intro: squares sweep in column by column, once */
+    @media (prefers-reduced-motion: no-preference) {
+      html.js .hero__title, html.js .hero__meta {
+        animation: rise 520ms var(--ease-out) both;
+      }
+      html.js .hero__meta { animation-delay: 80ms; }
+      html.js .units.is-intro rect {
+        transform-box: fill-box; transform-origin: 50% 50%;
+        animation: pop 360ms var(--ease-out) both;
+        animation-delay: calc(var(--col) * 5ms + 120ms);
+      }
+      html.js .units.is-intro .units__labels { animation: fade 400ms ease-out 520ms both; }
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+    @keyframes pop  { from { opacity: 0; transform: scale(.2); } }
+    @keyframes fade { from { opacity: 0; } }
+
+    /* ==================================================================
+       SECTIONS
+       ================================================================== */
+    .section { padding-top: var(--s-section); }
+    .section__head {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+      padding-top: 16px; border-top: 1px solid var(--ink);
+      margin-bottom: clamp(32px, 4vw, 56px);
+    }
+    .section__title {
+      font-size: var(--t-h2); font-stretch: var(--wide); font-weight: 500;
+      line-height: 1; letter-spacing: -.035em;
+    }
+    .section__aside { color: var(--ink-2); display: inline-flex; align-items: center; min-height: 44px; }
+
+    /* ---------- Selected work: catalogue, two staggered columns ---------- */
+    .works { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--gap); align-items: start; }
+    .works__col { display: grid; row-gap: clamp(56px, 7vw, 112px); }
+    .works__col + .works__col { padding-top: clamp(80px, 12vw, 200px); }
+
+    .work__link { display: block; }
+    .work__media {
+      aspect-ratio: 4 / 3; overflow: hidden; background: var(--plate);
+    }
+    .work__media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 700ms var(--ease-out);
+    }
+    .work__cap {
+      display: grid; grid-template-columns: 1fr auto; column-gap: 16px; row-gap: 8px;
+      padding-top: 16px;
+    }
+    .work__title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: var(--t-lead); font-weight: 500; line-height: 1.2; letter-spacing: -.02em;
+    }
+    .work__key {
+      width: 10px; height: 10px; background: var(--c); flex: none;
+      transition: width var(--med) var(--ease-out);
+    }
+    .work__ext { font-size: .8em; color: var(--ink-2); }
+    .work__n { align-self: center; color: var(--ink-2); text-align: right; }
+    .work__sum { grid-column: 1 / -1; color: var(--ink-2); max-width: 36em; text-wrap: pretty; }
+    .work__tools { grid-column: 1 / -1; font-size: var(--t-small); }
+
+    @media (hover: hover) and (pointer: fine) {
+      .work__link:hover .work__key { width: 28px; }
+      .work__link:hover .work__media img { transform: scale(1.025); }
+    }
+
+    /* ---------- About ---------- */
+    .about__photo { grid-column: 1 / span 4; }
+    .about__photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; }
+    .about__body { grid-column: 6 / span 7; display: grid; gap: 24px; align-content: start; }
+    .about__lead {
+      font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); font-stretch: 108%;
+      font-weight: 500; line-height: 1.12; letter-spacing: -.03em; text-wrap: balance;
+    }
+    .about__text { font-size: var(--t-lead); line-height: 1.4; color: var(--ink-2); max-width: 32em; text-wrap: pretty; }
+
+    .spec { border-top: 1px solid var(--line); margin-top: 8px; }
+    .spec div {
+      display: grid; grid-template-columns: minmax(120px, 1fr) 3fr; gap: var(--gap);
+      padding: 12px 0; border-bottom: 1px solid var(--line);
+      font-size: var(--t-small);
+    }
+    .spec dt { color: var(--ink-2); }
+    .about__body .btn { justify-self: start; margin-top: 8px; }
+
+    /* ---------- Contact ---------- */
+    .contact { padding-bottom: 32px; }
+    .contact__intro { font-size: var(--t-lead); line-height: 1.35; max-width: 30em; }
+    .contact__email {
+      display: inline-block; margin-top: 12px; padding-block: 4px;
+      font-size: clamp(2rem, .6rem + 6.6vw, 7.5rem);
+      font-stretch: var(--wide); font-weight: 500; line-height: 1.05; letter-spacing: -.05em;
+      color: var(--signal);
+      text-decoration: underline; text-decoration-thickness: .04em; text-underline-offset: .12em;
+      text-decoration-color: transparent;
+      transition: text-decoration-color var(--med);
+      overflow-wrap: anywhere;
+    }
+    .contact__email:hover { text-decoration-color: currentColor; }
+    .contact__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; margin-top: 32px; }
+    .socials { display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: var(--t-small); font-weight: 500; }
+    .socials a { display: inline-flex; min-height: 44px; align-items: center; }
+    .copy[data-state="done"] { background: var(--ink); color: var(--canvas); }
+
+    .base {
+      margin-top: clamp(96px, 12vw, 176px); padding-top: 16px; border-top: 1px solid var(--line);
+      font-size: var(--t-small); color: var(--ink-2); row-gap: 8px;
+    }
+    .base > :nth-child(1) { grid-column: 1 / span 4; }
+    .base > :nth-child(2) { grid-column: 5 / span 4; }
+    .base > :nth-child(3) { grid-column: 9 / span 4; justify-self: end; }
+    .base a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -12px; }
+
+    /* ==================================================================
+       RESPONSIVE
+       ================================================================== */
+    @media (max-width: 1023px) {
+      .hero__lead { grid-column: 1 / span 8; }
+      .hero__status { grid-column: 9 / span 4; }
+      .about__photo { grid-column: 1 / span 5; }
+      .about__body { grid-column: 6 / span 7; }
+    }
+    @media (max-width: 759px) {
+      .hero__lead, .hero__status { grid-column: 1 / -1; }
+      .hero__status { padding-top: 0; justify-items: start; text-align: left; }
+      .works { grid-template-columns: 1fr; }
+      .works__col + .works__col { padding-top: clamp(56px, 7vw, 112px); }
+      .about__photo, .about__body { grid-column: 1 / -1; }
+      .about__photo { max-width: 360px; margin-bottom: 32px; }
+      .spec div { grid-template-columns: 1fr 2fr; }
+      .base > :nth-child(n) { grid-column: 1 / -1; justify-self: start; }
+    }
+    @media (max-width: 480px) {
+      .nav__links { gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <header class="nav" data-nav>
+    <div class="wrap nav__in">
+      <a class="logo" href="#top" aria-label="I-AB, back to top">I-AB</a>
+      <nav aria-label="Main">
+        <ul class="nav__links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO: who, then what the work is made of -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <h1 class="hero__title" id="hero-title">I’m Iván Alfonso Burgos, a data visualization designer with an analyst’s toolkit.</h1>
+
+      <div class="hero__meta grid">
+        <p class="hero__lead">I take a dataset from raw tables to a published story, blending design, research and analytics.</p>
+        <div class="hero__status">
+          <p class="status"><span class="status__dot" aria-hidden="true"></span>Available for work</p>
+          <p class="mono clock">Berlin <time data-clock>--:--</time></p>
+        </div>
+      </div>
+
+      <figure class="units" data-units>
+        <figcaption class="units__head">
+          <span class="units__title">One square, one place.</span>
+          <span class="mono units__n" data-units-n></span>
+        </figcaption>
+        <div class="units__plot" data-units-plot></div>
+        <ol class="units__labels" data-units-labels aria-label="Projects in the chart"></ol>
+        <p class="units__note">Every country, neighbourhood and planning area in the data behind the four projects below. Berlin appears twice, at two scales.</p>
+      </figure>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section class="section wrap" id="work" aria-labelledby="work-title">
+      <header class="section__head">
+        <h2 class="section__title" id="work-title">Selected work</h2>
+        <a class="link section__aside" href="../works.html">All projects</a>
+      </header>
+      <div class="works" data-works></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section wrap" id="about" aria-labelledby="about-title">
+      <header class="section__head">
+        <h2 class="section__title" id="about-title">About</h2>
+      </header>
+      <div class="grid">
+        <div class="about__photo">
+          <img src="../assets/img/about-card.jpg" alt="Portrait of Iván Alfonso Burgos" width="1024" height="932" loading="lazy">
+        </div>
+        <div class="about__body">
+          <p class="about__lead">I turn complex data into visuals that people can read and use.</p>
+          <p class="about__text">I trained in architecture and urban research, so I treat a dataset like a design problem: find its structure, then give it a clear form.</p>
+          <dl class="spec">
+            <div><dt>Background</dt><dd>Architecture, urban research, data analytics</dd></div>
+            <div><dt>Analysis</dt><dd>Python, SQL, PostgreSQL, dbt</dd></div>
+            <div><dt>Visualization</dt><dd>D3.js, Observable Framework, Tableau, MapLibre</dd></div>
+            <div><dt>Design</dt><dd>Figma, Photoshop</dd></div>
+            <div><dt>Based in</dt><dd>Berlin</dd></div>
+          </dl>
+          <a class="btn" href="../about.html">More about me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONTACT -->
+  <footer class="section wrap contact" id="contact" aria-labelledby="contact-title">
+    <header class="section__head">
+      <h2 class="section__title" id="contact-title">Contact</h2>
+    </header>
+    <p class="contact__intro">Open to new roles and projects. Write to me directly:</p>
+    <a class="contact__email" href="mailto:ivan13f@gmail.com" data-email>ivan13f@gmail.com</a>
+    <div class="contact__actions">
+      <button class="btn copy" type="button" data-copy>Copy email</button>
+      <ul class="socials" data-socials></ul>
+    </div>
+    <div class="base grid">
+      <p>© <span data-year>2026</span> Iván Alfonso Burgos</p>
+      <p class="mono">52.52° N, 13.40° E</p>
+      <p><a class="link" href="../imprint.html">Imprint</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/projects.js?v=20261109"></script>
+  <script>
+  (function () {
+    "use strict";
+
+    var PROJECTS = window.PROJECTS || [];
+    var SITE = window.SITE || {};
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* Facts the redesign adds per project. Counts come from each case study. */
+    var META = {
+      "uneven-ground":          { n: 173, unit: "countries",          alt: "Heatmap of trans rights scores for 173 countries, 2000 to 2021" },
+      "housing-observatory":    { n: 58,  unit: "neighbourhoods",     alt: "Map of Berlin’s neighbourhoods over a photo of apartment blocks, with three trend charts" },
+      "affordable-for-whom":    { n: 542, unit: "planning areas",     alt: "Map of rent burden across Berlin’s planning areas" },
+      "barcelona-green-spaces": { n: 73,  unit: "neighbourhoods",     alt: "Map of green space across Barcelona’s eastern neighbourhoods" }
+    };
+
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+      });
+    }
+    function href(p) { return p.external ? p.live : "../" + p.slug + ".html"; }
+    function linkAttrs(p) {
+      return 'href="' + esc(href(p)) + '"' + (p.external ? ' target="_blank" rel="noopener"' : "");
+    }
+
+    var items = PROJECTS.filter(function (p) { return META[p.slug]; }).map(function (p) {
+      var m = META[p.slug];
+      return { p: p, n: m.n, unit: m.unit, alt: m.alt };
+    });
+
+    /* ------------------------------------------------------------------
+       NAV: hairline appears once the page scrolls
+       ------------------------------------------------------------------ */
+    var nav = document.querySelector("[data-nav]");
+    function onScroll() { nav.classList.toggle("is-scrolled", window.scrollY > 8); }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    /* ------------------------------------------------------------------
+       CLOCK: Berlin time, refreshed every 15s
+       ------------------------------------------------------------------ */
+    var clock = document.querySelector("[data-clock]");
+    var fmt = new Intl.DateTimeFormat("en-GB", { timeZone: SITE.timeZone || "Europe/Berlin", hour: "2-digit", minute: "2-digit" });
+    function tick() { clock.textContent = fmt.format(new Date()); }
+    tick(); setInterval(tick, 15000);
+    document.querySelector("[data-year]").textContent = new Date().getFullYear();
+
+    /* ------------------------------------------------------------------
+       UNIT CHART
+       One square per place. Each project is a block of columns, filled
+       top to bottom, in its own accent. Rows adapt to the width so the
+       band keeps a long, low proportion on desktop and grows taller on
+       phones.
+       ------------------------------------------------------------------ */
+    var fig = document.querySelector("[data-units]");
+    var plot = document.querySelector("[data-units-plot]");
+    var labelList = document.querySelector("[data-units-labels]");
+    var total = items.reduce(function (a, d) { return a + d.n; }, 0);
+    var readout = document.querySelector("[data-units-n]");
+    readout.textContent = "n = " + total;
+
+    var SVGNS = "http://www.w3.org/2000/svg";
+    var segs = [];
+    var active = null;
+
+    labelList.innerHTML = items.map(function (d, i) {
+      return '<li data-i="' + i + '" style="--c:' + d.p.accent + '">' +
+        '<a ' + linkAttrs(d.p) + '>' +
+          '<span class="units__count mono"><span class="units__key" aria-hidden="true"></span>' + d.n + " " + esc(d.unit) + "</span>" +
+          '<span class="units__name">' + esc(d.p.title) + (d.p.external ? '&nbsp;<span aria-hidden="true">↗</span>' : "") + "</span>" +
+        "</a></li>";
+    }).join("");
+    var labels = Array.prototype.slice.call(labelList.children);
+
+    function draw() {
+      var W = plot.clientWidth;
+      if (!W) return;
+      var rows = W >= 760 ? 8 : W >= 480 ? 12 : 18;
+      var gapCols = 1;
+      var totalCols = 0;
+      items.forEach(function (d, i) { totalCols += Math.ceil(d.n / rows) + (i ? gapCols : 0); });
+      var pitch = W / totalCols;
+      var size = pitch * 0.72;
+      var inset = (pitch - size) / 2;
+      var H = rows * pitch;
+
+      var svg = document.createElementNS(SVGNS, "svg");
+      svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+      svg.setAttribute("width", W);
+      svg.setAttribute("height", H);
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label",
+        total + " squares, one per place: " +
+        items.map(function (d) { return d.n + " " + d.unit + " in " + d.p.title; }).join(", ") + ".");
+
+      segs = [];
+      var col = 0;
+      items.forEach(function (d, i) {
+        if (i) col += gapCols;
+        var g = document.createElementNS(SVGNS, "g");
+        g.setAttribute("class", "seg");
+        g.style.setProperty("--c", d.p.accent);
+        var cols = Math.ceil(d.n / rows);
+        for (var k = 0; k < d.n; k++) {
+          var c = col + Math.floor(k / rows);
+          var r = k % rows;
+          var rect = document.createElementNS(SVGNS, "rect");
+          rect.setAttribute("x", (c * pitch + inset).toFixed(2));
+          rect.setAttribute("y", (r * pitch + inset).toFixed(2));
+          rect.setAttribute("width", size.toFixed(2));
+          rect.setAttribute("height", size.toFixed(2));
+          rect.style.setProperty("--col", c);
+          g.appendChild(rect);
+        }
+        svg.appendChild(g);
+        segs.push({ g: g, x0: col * pitch, x1: (col + cols) * pitch, d: d });
+        col += cols;
+      });
+
+      plot.replaceChildren(svg);
+      placeLabels(W);
+      setActive(active);
+    }
+
+    /* Hang each label from its segment on one of two levels. Labels on the
+       same level must not overlap, and a leader line may not cut through a
+       label above it. Every combination of levels is tried (2^4 = 16) and
+       the one with the fewest lowered labels wins. If none fits, or a
+       label would run off the edge, the labels become a plain legend. */
+    function placeLabels(W) {
+      fig.classList.remove("is-list");
+      var GAP = 20, LEVELS = 2;
+      var boxes = labels.map(function (li, i) {
+        var s = segs[i];
+        li.removeAttribute("data-align");
+        li.style.setProperty("--x", "0px");
+        li.style.setProperty("--lvl", 0);
+        var w = li.getBoundingClientRect().width;
+        var end = s.x0 + w > W;
+        var x = end ? s.x1 - w : s.x0;
+        return { x: x, w: w, end: end, anchor: end ? x + w : x };
+      });
+      if (boxes.some(function (b) { return b.x < 0; })) { fig.classList.add("is-list"); return; }
+
+      var best = null, n = boxes.length;
+      for (var mask = 0; mask < Math.pow(LEVELS, n); mask++) {
+        var lv = [], m = mask, cost = 0;
+        for (var i = 0; i < n; i++) { lv.push(m % LEVELS); cost += m % LEVELS; m = Math.floor(m / LEVELS); }
+        if (best && cost >= best.cost) continue;
+        var ok = true;
+        for (var a = 0; a < n && ok; a++) {
+          for (var b = 0; b < n && ok; b++) {
+            if (a === b) continue;
+            var A = boxes[a], B = boxes[b];
+            if (lv[a] === lv[b] && a < b && A.x + A.w + GAP > B.x && B.x + B.w + GAP > A.x) ok = false;
+            if (lv[a] > lv[b] && A.anchor > B.x - GAP / 2 && A.anchor < B.x + B.w + GAP / 2) ok = false;
+          }
+        }
+        if (ok) best = { cost: cost, lv: lv };
+      }
+      if (!best) { fig.classList.add("is-list"); return; }
+
+      labels.forEach(function (li, i) {
+        if (boxes[i].end) li.setAttribute("data-align", "end");
+        li.style.setProperty("--x", boxes[i].x + "px");
+        li.style.setProperty("--lvl", best.lv[i]);
+      });
+      labelList.style.setProperty("--levels", Math.max.apply(null, best.lv) + 1);
+    }
+
+    function setActive(i) {
+      active = i;
+      if (i == null) fig.removeAttribute("data-active");
+      else fig.setAttribute("data-active", "");
+      segs.forEach(function (s, k) { s.g.classList.toggle("is-on", k === i); });
+      readout.textContent = i == null ? "n = " + total : "n = " + segs[i].d.n + " of " + total;
+      labels.forEach(function (li, k) { li.classList.toggle("is-on", k === i); });
+    }
+
+    function segAt(evt) {
+      var r = plot.getBoundingClientRect();
+      var x = evt.clientX - r.left;
+      for (var k = 0; k < segs.length; k++) {
+        var pad = (segs[k].x1 - segs[k].x0) ? 6 : 0;
+        if (x >= segs[k].x0 - pad && x <= segs[k].x1 + pad) return k;
+      }
+      return null;
+    }
+
+    plot.addEventListener("pointermove", function (e) {
+      var k = segAt(e);
+      plot.classList.toggle("is-live", k != null);
+      if (k !== active) setActive(k);
+    });
+    plot.addEventListener("pointerleave", function () { plot.classList.remove("is-live"); setActive(null); });
+    plot.addEventListener("click", function (e) {
+      var k = segAt(e);
+      if (k == null) return;
+      var p = segs[k].d.p;
+      if (p.external) window.open(p.live, "_blank", "noopener");
+      else window.location.href = href(p);
+    });
+    labels.forEach(function (li, k) {
+      var a = li.querySelector("a");
+      a.addEventListener("pointerenter", function () { setActive(k); });
+      a.addEventListener("pointerleave", function () { setActive(null); });
+      a.addEventListener("focus", function () { setActive(k); });
+      a.addEventListener("blur", function () { setActive(null); });
+    });
+
+    if (!reduced) {
+      fig.classList.add("is-intro");
+      setTimeout(function () { fig.classList.remove("is-intro"); }, 1600);
+    }
+    draw();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+    var lastW = plot.clientWidth;
+    new ResizeObserver(function () {
+      var w = plot.clientWidth;
+      if (w !== lastW) { lastW = w; draw(); }
+    }).observe(plot);
+
+    /* ------------------------------------------------------------------
+       SELECTED WORK: two columns, the second one dropped to stagger
+       ------------------------------------------------------------------ */
+    var works = document.querySelector("[data-works]");
+    function card(d) {
+      var p = d.p;
+      return '<article class="work">' +
+        '<a class="work__link" ' + linkAttrs(p) + ' style="--c:' + p.accent + '">' +
+          '<div class="work__media"><img src="../' + esc(p.cover) + '" alt="' + esc(d.alt) + '" loading="lazy"></div>' +
+          '<div class="work__cap">' +
+            '<h3 class="work__title"><span class="work__key" aria-hidden="true"></span>' + esc(p.title) +
+              (p.external ? '&nbsp;<span class="work__ext" aria-label="(opens the live project)">↗</span>' : "") + "</h3>" +
+            '<span class="work__n mono">' + d.n + " " + esc(d.unit) + "</span>" +
+            '<p class="work__sum">' + esc(p.summary) + "</p>" +
+            '<p class="work__tools">' + p.tags.map(esc).join(", ") + "</p>" +
+          "</div>" +
+        "</a></article>";
+    }
+    var colA = items.filter(function (_, i) { return i % 2 === 0; }).map(card).join("");
+    var colB = items.filter(function (_, i) { return i % 2 === 1; }).map(card).join("");
+    works.innerHTML = '<div class="works__col">' + colA + '</div><div class="works__col">' + colB + "</div>";
+
+    /* ------------------------------------------------------------------
+       CONTACT: socials and copy-to-clipboard
+       ------------------------------------------------------------------ */
+    var email = SITE.email || "ivan13f@gmail.com";
+    document.querySelector("[data-socials]").innerHTML = (SITE.socials || []).map(function (s) {
+      return '<li><a class="link" href="' + esc(s.href) + '" target="_blank" rel="noopener">' + esc(s.label === "Linkedin" ? "LinkedIn" : s.label) + ' <span aria-hidden="true">↗</span></a></li>';
+    }).join("");
+
+    var copyBtn = document.querySelector("[data-copy]");
+    var copyTimer;
+    copyBtn.addEventListener("click", function () {
+      function done(ok) {
+        copyBtn.textContent = ok ? "Copied" : "Press Ctrl+C to copy";
+        copyBtn.setAttribute("data-state", ok ? "done" : "");
+        clearTimeout(copyTimer);
+        copyTimer = setTimeout(function () {
+          copyBtn.textContent = "Copy email";
+          copyBtn.removeAttribute("data-state");
+        }, 1800);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function () { done(true); }, function () { done(false); });
+      } else { done(false); }
+    });
+    copyBtn.setAttribute("aria-live", "polite");
+  })();
+  </script>
+</body>
+</html>
