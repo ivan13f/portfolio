@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=20261109">
+  <link rel="stylesheet" href="css/style.css?v=20261111">
   <script>document.documentElement.classList.add("js")</script>
   <style>
     /* Styles for this reference page only (prefixed ds-). The site's own components come from css/style.css. */
@@ -414,9 +414,10 @@
         </section>
 
         <section class="ds-section" id="c7" data-code="C7" data-ds-title="Project card" data-ds-group="Components">
-          <p class="ds-desc">Rendered from <code>js/projects.js</code> (first project shown). 904 × 520, info column 346, image with “+” button. Hover: shadow, “+” turns 90°. Reveals on scroll. On phones: image on top. A project with <code>external: true</code> has no case study: it links straight to the live project in a new tab, and the “+” becomes a “↗” that nudges on hover.</p>
+          <p class="ds-desc">Rendered from <code>js/projects.js</code> (first project shown). 904 × 520, info column 346, image with “+” button. Hover: shadow, “+” turns 90°. Reveals on scroll. On phones: image on top. On Home, <code>.project-list--grid</code> sets the cards in two columns across the full width, each with its image on top (second demo). A project with <code>external: true</code> has no case study: it links straight to the live project in a new tab, and the “+” becomes a “↗” that nudges on hover.</p>
           <div class="ds-demo ds-demo--bg ds-demo--col">
             <div class="project-list" data-project-list data-limit="1" style="margin-top:0; width:100%"></div>
+            <div class="project-list project-list--grid" data-project-list data-limit="2" style="margin-top:0; width:100%"></div>
             <div style="display:flex; align-items:center; gap:12px">
               <span class="plus" style="position:static" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M12 6v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
               <span class="ds-caption">Case study</span>
@@ -615,6 +616,13 @@
         <section class="ds-section" id="log" data-code="LOG" data-ds-title="Design changes" data-ds-group="Changelog">
           <p class="ds-desc">Newest first. Claude adds an entry here (and updates <code>DESIGN.md</code>) whenever the design changes.</p>
           <ol class="ds-log" id="ds-log">
+            <li data-date="2026-11-11">
+              <time>11 Nov 2026</time>
+              <ul>
+                <li><span class="ds-code">C7</span>New <code>.project-list--grid</code>: the Home project cards sit in a 2×2 grid across the full content width, each with its image on top (4:3) and text below. One column on phones. Selected Works keeps the wide cards.</li>
+                <li>Home copy: new headline (“a data visualization designer with an analyst’s toolkit”), new rotating lines and a new About teaser.</li>
+              </ul>
+            </li>
             <li data-date="2026-11-09">
               <time>9 Nov 2026</time>
               <ul>
@@ -625,7 +633,7 @@
                 <li><span class="ds-code">C10</span>New <code>.cs-subhead</code>: a 23/600 sub-heading inside a case-study section.</li>
                 <li><span class="ds-code">C18</span>New <code>.cs-media--pad</code>: a 24px margin (16 on phones) around a chart exported edge to edge, on an inline <code>--media-bg</code> that matches the image. The lightbox keeps the margin.</li>
                 <li><span class="ds-code">C18</span>Lightbox images now fit the window height, so tall charts open whole instead of running off the bottom. The lightbox centres with flexbox and sizes the image from the window, not with percentages, so it opens in the middle in every browser.</li>
-                <li>Stylesheet and scripts are linked with a version tag (<code>?v=20261109</code>) so browsers fetch new versions after a change.</li>
+                <li>Stylesheet and scripts are linked with a version tag (<code>?v=20261111</code>) so browsers fetch new versions after a change.</li>
                 <li>Uneven Ground case study: new text, “Finding the Story” section without its chart, full Fig. 3 and a full, unfaded Fig. 4 heatmap.</li>
               </ul>
             </li>
@@ -712,8 +720,8 @@
     document.getElementById("ds-toc").innerHTML = html;
   })();
   </script>
-  <script src="js/projects.js?v=20261109"></script>
-  <script src="js/site.js?v=20261109"></script>
+  <script src="js/projects.js?v=20261111"></script>
+  <script src="js/site.js?v=20261111"></script>
   <script>
   /* Reference-page behaviour: live token readouts, generated demos, notes and the section index. */
   (function () {

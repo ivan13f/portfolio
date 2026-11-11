@@ -108,7 +108,7 @@ The scale in use is 4 · 8 · 10 · 12 · 16 · 20 · 24 · 30 · 40 · 60 · 80
 | Inside a case-study section (`.cs-section`) | 40 by default · `--tight` 20 · `--mid` 60 · `--loose` 80 |
 | Between case-study blocks (`.case-content`) | 80 |
 | Between case-study sections (`.cs-sections`) | 120 (80 on phones) |
-| Home sections | 80 above and below each divider; project cards 60 apart |
+| Home sections | 80 above and below each divider; project cards in a 2-column grid, 24 apart across and 40 down |
 | Top padding, simple pages (`.page`) | nav height + 109 = 193 |
 | Top padding, case studies (`.case`) | 122 |
 
@@ -169,7 +169,7 @@ Rules:
 
 Key widths:
 - **Content:** max `1440px` (`--max`), centered
-- **Project cards:** max `904px`, left-aligned (not centered)
+- **Project cards:** max `904px`, left-aligned (not centered), on Selected Works. On Home they fill the content width in two columns (`.project-list--grid`).
 - **Text columns:** `628px` max
 - **Home hero text:** `653px`
 - **Link cards:** `432px`
@@ -233,6 +233,7 @@ The hero's image is `assets/img/hero-projects.gif`: 392×366 to fit the card exa
 - **Hover:** `--shadow-card`, and the "+" rotates 90°.
 - **Scroll:** reveals once (`data-reveal`).
 - **Phone:** image on top (4:3), text below.
+- **Home grid (`.project-list--grid`):** two columns across the full content width, 24 apart (40 between rows). Each card uses the phone layout (image on top, 4:3, text below), and both cards in a row stretch to the taller one. One column below 810px. Selected Works keeps the wide one-per-row cards.
 - **No case study:** a project with `external: true` links straight to `live` in a new tab, from its cards, the "More projects" carousel and the nav, where its label has no arrow. On cards, the "+" becomes a "↗" that nudges 2px on hover (`.plus--out`) instead of rotating.
 
 ### 4.8 Case-study sidebar
@@ -308,7 +309,7 @@ Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image centr
 
 | Page | Structure |
 |---|---|
-| Home (`index.html`) | Full-height hero aligned to the bottom: "Available" pill, headline, tagline, "Scroll for more ↓" on the left; link card to Works on the right. Then a divider, "Overview / Selected Works" with project cards and a "View all projects →" button, then a divider and the "About me" lead with a link card to About. Then the footer. |
+| Home (`index.html`) | Full-height hero aligned to the bottom: "Available" pill, headline, tagline, "Scroll for more ↓" on the left; link card to Works on the right. Then a divider, "Overview / Selected Works" with project cards in a two-column grid and a "View all projects →" button, then a divider and the "About me" lead with a link card to About. Then the footer. |
 | Selected Works (`works.html`) | Page title, then project cards (all projects). |
 | About (`about.html`) | Two columns: intro (32px statement + 26px `--muted` lead) and a black-and-white portrait (ratio 633/400). Then the accordion (4 questions) beside a bordered card saying "Currently open for new opportunities…". |
 | Case study (`<slug>.html`) | Sidebar + content. Content order: hero → quick facts → sections (each with an `id`, `data-toc`, eyebrow and h2) → usually ends with "Retrospective / What I learned". Then "More projects" and the footer. Start from `project-template.html`. |
