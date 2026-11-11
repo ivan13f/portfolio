@@ -432,6 +432,14 @@ button { font: inherit; color: inherit; }
   margin-top: 60px;
 }
 .project-list__more { display: flex; justify-content: flex-end; max-width: 904px; margin-top: 80px; }
+/* Home: 2-column grid at full content width, image on top of each card */
+.project-list--grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; max-width: none; }
+.project-list--grid + .project-list__more { max-width: none; }
+.project-list--grid .pcard { height: 100%; }
+.project-list--grid .pcard__box { flex-direction: column; height: 100%; gap: 0; }
+.project-list--grid .pcard__media { order: -1; aspect-ratio: 4 / 3; flex: none; }
+.project-list--grid .pcard__info { flex: 1 1 auto; padding: 24px 8px 8px; }
+.project-list--grid .pcard__head { gap: 12px; }
 
 .home-about { display: flex; flex-direction: column; gap: 75px; padding: 80px 0 200px; }
 .home-about__row { display: flex; justify-content: space-between; gap: 40px; align-items: flex-start; }
@@ -921,6 +929,7 @@ button { font: inherit; color: inherit; }
   .link-card { max-width: none; }
 
   .project-list, .works-list { margin-top: 40px; gap: 40px; }
+  .project-list--grid { grid-template-columns: 1fr; }
   .pcard__box { flex-direction: column; height: auto; gap: 0; }
   .pcard__media { order: -1; aspect-ratio: 4 / 3; flex: none; }
   .pcard__info { flex: none; padding: 24px 8px 8px; }
