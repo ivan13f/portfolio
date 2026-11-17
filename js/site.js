@@ -9,6 +9,7 @@
   and leaves empty mount points that this script fills in:
     <div data-nav></div>            → the fixed two-level nav
     <div data-project-list></div>   → project cards (Home, Works)
+    <div data-project-list="other"></div> → smaller Other Projects cards (Works)
     <aside data-case-side></aside>  → case-study sidebar (card, section index, live link)
     <section data-more-projects>    → "More projects" carousel
     <div data-footer></div>         → footer
@@ -22,6 +23,12 @@
   var page = body.dataset.page;
   var currentSlug = body.dataset.project;
   var current = PROJECTS.filter(function (p) { return p.slug === currentSlug; })[0];
+  // Projects come in two groups: the main data projects, and "other" (earlier UX case studies).
+  function inGroup(group) {
+    return PROJECTS.filter(function (p) { return (p.group || "main") === group; });
+  }
+  var MAIN = inGroup("main");
+  var currentGroup = (current && current.group) || "main";
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
 
@@ -79,9 +86,14 @@
       return '<a class="dd__item" href="' + p.href + '"' + (isCurrent ? ' aria-current="page"' : "") + ">" + esc(p.label) + "</a>";
     }).join("");
 
-    var projectItems = PROJECTS.map(function (p) {
+    // Level 2 lists the data projects. On an Other Project's page, a divider and the Other Projects follow;
+    // everywhere else they stay out of the menu.
+    function projectItem(p) {
       return '<a class="dd__item" ' + projectLink(p) + (p.slug === currentSlug ? ' aria-current="page"' : "") + ">" + esc(p.title) + "</a>";
-    }).join("");
+    }
+    var otherProjects = currentGroup === "other" ? inGroup("other") : [];
+    var projectItems = MAIN.map(projectItem).join("") +
+      (otherProjects.length ? '<span class="dd__divider" role="separator"></span>' + otherProjects.map(projectItem).join("") : "");
 
     // On phones the second level folds into the first dropdown (see .dd__sub in the CSS).
     var showSub = page === "works" || page === "project";
@@ -173,10 +185,23 @@
     );
   }
 
+  // Smaller, quieter card for the Other Projects section of Selected Works
+  function otherCard(p) {
+    return (
+      '<a class="ocard" ' + projectLink(p) + ' data-reveal style="--accent:' + p.accent + '">' +
+      '<div class="ocard__media"><img src="' + p.cover + '" alt="" loading="lazy" decoding="async"><span class="plus' + (p.external ? " plus--out" : "") + '" aria-hidden="true">' + (p.external ? icons.arrowOut : icons.plus) + "</span></div>" +
+      '<div class="ocard__info"><h3 class="ocard__title">' + esc(p.title) + '</h3><p class="ocard__desc">' + esc(p.summary) + "</p></div>" +
+      "</a>"
+    );
+  }
+
+  // <div data-project-list> shows the main projects; <div data-project-list="other"> the Other Projects
   function renderProjectLists() {
     [].forEach.call(document.querySelectorAll("[data-project-list]"), function (mount) {
-      var limit = parseInt(mount.dataset.limit, 10) || PROJECTS.length;
-      mount.innerHTML = PROJECTS.slice(0, limit).map(projectCard).join("");
+      var other = mount.dataset.projectList === "other";
+      var list = other ? inGroup("other") : MAIN;
+      var limit = parseInt(mount.dataset.limit, 10) || list.length;
+      mount.innerHTML = list.slice(0, limit).map(other ? otherCard : projectCard).join("");
     });
   }
 
@@ -201,7 +226,9 @@
   function renderMore() {
     var mount = document.querySelector("[data-more-projects]");
     if (!mount) return;
-    var others = PROJECTS.filter(function (p) { return p.slug !== currentSlug; });
+    // The rest of the current project's group; an Other Project's page then adds the main projects
+    var others = inGroup(currentGroup).concat(currentGroup === "main" ? [] : MAIN)
+      .filter(function (p) { return p.slug !== currentSlug; });
     if (!others.length) { mount.remove(); return; }
     mount.classList.add("more");
     mount.setAttribute("aria-label", "More projects");
@@ -470,6 +497,42 @@
     });
   }
 
+  // Before/after sliders: the range input moves the edge of the "before" image
+  function initCompare() {
+    [].forEach.call(document.querySelectorAll(".compare input[type=range]"), function (input) {
+      var box = input.closest(".compare");
+      function set() { box.style.setProperty("--pos", input.value + "%"); }
+      input.addEventListener("input", set);
+      set();
+    });
+  }
+
+  // Slideshows: arrows step through the slides, which also scroll and snap by touch
+  function initSlides() {
+    [].forEach.call(document.querySelectorAll("[data-slides]"), function (box) {
+      var track = box.querySelector(".slides__track");
+      var nav = document.createElement("div");
+      nav.className = "slides__nav";
+      nav.innerHTML =
+        '<button type="button" data-dir="-1" aria-label="Previous slide">' + icons.arrowLeft + "</button>" +
+        '<button type="button" data-dir="1" aria-label="Next slide">' + icons.arrowRight + "</button>";
+      box.appendChild(nav);
+      var buttons = nav.querySelectorAll("button");
+      function sync() {
+        buttons[0].disabled = track.scrollLeft <= 2;
+        buttons[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      }
+      nav.addEventListener("click", function (e) {
+        var b = e.target.closest("button");
+        if (!b) return;
+        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth, behavior: reducedMotion ? "auto" : "smooth" });
+      });
+      track.addEventListener("scroll", sync, { passive: true });
+      window.addEventListener("resize", sync);
+      sync();
+    });
+  }
+
   // Muted looping videos play only while on screen
   function initVideos() {
     var vids = document.querySelectorAll("video[data-autoplay]");
@@ -507,6 +570,8 @@
   initCaseHeights();
   initScrollSpy();
   initLightbox();
+  initCompare();
+  initSlides();
   initVideos();
   initClock();
 

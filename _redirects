@@ -1,6 +1,5 @@
-# Redirects for old Framer project pages that are no longer in the portfolio:
-# they send visitors to Selected Works instead of a 404. The Pages workflow
-# (.github/workflows/pages.yml) turns each rule into a small redirect page.
-/onsite      /works  301
-/aside       /works  301
-/spotlight   /works  301
+# Redirects for old URLs that no longer have a page. The Pages workflow
+# (.github/workflows/pages.yml) turns each rule into a small redirect page:
+#   /old-path    /new-path  301
+# A rule must never name a page that exists, or its redirect page would replace it.
+# /onsite, /aside and /spotlight are real pages again (Other Projects, 2026-11-17).

@@ -52,11 +52,15 @@ Each project has one accent color, set in `js/projects.js` (`accent`). It's appl
 |---|---|
 | Housing Observatory | `#9F693C` |
 | Affordable for Whom? | `#D4583B` |
-| *(Framer projects not ported: Aside `#8B80CC`, On Site `#FB5C1F`, Spotlight `#8C7822`)* | |
+| On Site | `#C94A14` (Framer brand `#FB5C1F`, darkened for contrast) |
+| Aside | `#6E62B8` (Framer brand `#8B80CC`, darkened) |
+| Spotlight | `#80701F` (Framer brand `#8C7822`, darkened) |
 
 Content colors that only apply inside one case study are set inline in that page's HTML, not as tokens:
 
 - **Housing Observatory persona cards:** Newcomer `#C8440A`, Resident `#2952CC`, Researcher `#1A6B5C`
+- **Aside icon headings** (Painpoints, Priority, Recommendation): `#F45336`, set inline as `--icon`
+- **Spotlight wireframe notes:** badges in `#0004CC`, matching the badges drawn in the wireframes (inline `--accent`)
 - **Housing Observatory dbt layer tiles** (background / border):
   - Staging: `#D6EAF8` / `#1D4E89`
   - Intermediate: `#D1F2EB` / `#0E6655`
@@ -170,6 +174,7 @@ Rules:
 Key widths:
 - **Content:** max `1440px` (`--max`), centered
 - **Project cards:** max `904px`, left-aligned (not centered), on Selected Works. On Home they fill the content width in two columns (`.project-list--grid`).
+- **Other project cards:** three columns within the same `904px`, 24 apart, under the project cards on Selected Works.
 - **Text columns:** `628px` max
 - **Home hero text:** `653px`
 - **Link cards:** `432px`
@@ -188,14 +193,14 @@ Built by `site.js` from `SITE.pages` and `PROJECTS` in `js/projects.js`. Never h
 
 - **Layout:** logo, 30px gap, crumbs, then the dark "Get in touch ↗︎" button on the right.
 - **Level 1:** a dropdown with Home · About · Selected Works. Its label shows the current section: Home and Imprint show "Home", About shows "About", Works and case studies show "Selected Works".
-- **Level 2:** only on case studies. A separator chevron (rotated −90°, `--muted`) is followed by a second dropdown, labelled with the current project and listing all projects.
+- **Level 2:** only on case studies. A separator chevron (rotated −90°, `--muted`) is followed by a second dropdown, labelled with the current project. On a main case study it lists only the main projects. On an Other Project (see §4.7) it lists the main projects first, then a divider (`.dd__divider`, 1px `--line`) and the Other Projects, so those pages still lead back to the data work.
 - **Trigger:** 36px tall; min-width 175 (level 2: 235); padding `4px 24px`; `0.5px` border in `--line`; background `--bg`, which changes to `--trigger-hover` on hover or open. Label 14/500. The 20px chevron flips 180° with a spring when open.
 - **Panel:** white, radius 10, `--shadow-menu`, 10px below the trigger. Level 1: padding `24px 16px`, gap 16. Level 2: padding `16px 8px`, gap 10. Items are 36px tall, radius 8, centered 14/500, with a `--bg` hover; the current item uses `--active`. It fades in over 0.25s while moving 4px.
 - **Behavior:**
   - Desktop opens on hover, with a 140ms close delay and an invisible 10px hover bridge.
   - Click or tap toggles it. A mouse click on a menu already opened by hover keeps it open.
   - Keyboard: Enter opens, ↑/↓ move through items, Esc closes, and the menu closes when focus leaves it.
-- **Phone:** the CTA, separator and level-2 dropdown are hidden. On Works and case-study pages, the project list appears as a sub-list inside the level-1 dropdown, below a divider (smaller, `--muted`, current item in ink). The panel aligns right and is at least 230 wide.
+- **Phone:** the CTA, separator and level-2 dropdown are hidden. On Works and case-study pages, the level-2 project list appears as a sub-list inside the level-1 dropdown, below a divider (smaller, `--muted`, current item in ink). It follows the same rule: main projects only, plus the divider and the Other Projects on an Other Project's page. The panel aligns right and is at least 230 wide.
 
 ### 4.2 Buttons
 
@@ -236,6 +241,14 @@ The hero's image is `assets/img/hero-projects.gif`: 392×366 to fit the card exa
 - **Home grid (`.project-list--grid`):** two columns across the full content width, 24 apart (40 between rows). Each card uses the phone layout (image on top, 4:3, text below), and both cards in a row stretch to the taller one. One column below 810px. Selected Works keeps the wide one-per-row cards.
 - **No case study:** a project with `external: true` links straight to `live` in a new tab, from its cards, the "More projects" carousel and the nav, where its label has no arrow. On cards, the "+" becomes a "↗" that nudges 2px on hover (`.plus--out`) instead of rotating.
 
+**Other project card** (`.ocard`, in `.other-list`): the secondary card for earlier UX case studies, the projects with `group: "other"` in `projects.js`. Rendered into `<div data-project-list="other">` on Selected Works only (never hand-write one). It's meant to read as secondary: a third of the project card's width, a smaller radius, and title and text only, with no chips.
+- White, radius 16, `1px --line`, padding 11 (12 inside the border).
+- Image on top at 4:3 (radius 8, cover, from `cover`), with a 32px "+" circle 8px from the corner.
+- Title 18/600, then the summary at 14px in `--ink` (not `--muted`, so small text stays at 4.5:1). Padding `16px 8px 8px`, gap 4.
+- **Hover:** `--shadow-card`, and the "+" rotates 90°. **Scroll:** reveals once (`data-reveal`).
+- **Layout:** three columns, 24 apart, max 904. **Phone:** one column of compact rows, 12 apart: a 112px image beside the text, no "+".
+- **Elsewhere:** Other Projects stay off Home, and out of the nav and the "More projects" carousel on the main case studies and Works. On their own pages the project nav lists the main projects, a divider, then the Other Projects (§4.1). Their own case studies keep the case-study sidebar, hero and facts, and their sections follow the original Framer layouts (§4.14). Their nav lists the Other Projects, and their carousel shows the other Other Projects first, then the main projects.
+
 ### 4.8 Case-study sidebar
 
 `<aside class="case-side" data-case-side>`, built by `site.js`. It contains:
@@ -265,6 +278,7 @@ Keep `.cs-hero` as the first block of `.case-content`, and don't remove `min-wid
 | Media | `.cs-media > img/video` | Full width, radius 16. Add `data-zoom` to an image to open it in the lightbox on click (optionally `data-zoom="larger.png"`). |
 | Padded media | `.cs-media.cs-media--pad` with inline `--media-bg` | For a chart exported edge to edge: 24px padding (16 on phones) on a background that matches the image, so it gets a margin without re-exporting. The lightbox keeps the margin (30px) and background. |
 | Inset image | `.inset-img` | 350 wide image, indented 24px; for small UI details. |
+| Phone screen | `img.cs-screen` (or `video`) | A phone screenshot or recording at most 300 wide, so a long screen stays readable without filling the page. Use it in `.cols-3` or beside text in a `.concept__row`. Grids of phone screens skip `.cols-3--stack-narrow`, because stacked they'd run about 1000px tall. |
 | Callout | `aside.callout > img + .prose` | 60px icon, `0.5px --line` border, radius 16, padding `24px 20px`. For definitions ("What is a…?"). |
 | Note | `p.note > em` | White card, `1px --line`, radius 16, padding 24. One caveat or key takeaway in italics. `.note--icon` adds a 24px outlined icon on the left (`.note__icon`, in the accent colour): use a circled "i", not an exclamation point, for caveats. |
 | Tile | `.tile` | `--fact` background, `1px --line`, radius 20, padding 24, gap 12. Set `--tile-bg` / `--tile-border` inline for colored tiles. Variants: numbered (`.tile--drs` + `.tile__big`), question (`.badge--lg` + `.tile__q`). |
@@ -281,7 +295,7 @@ Keep `.cs-hero` as the first block of `.case-content`, and don't remove `min-wid
 
 ### 4.11 "More projects" carousel
 
-`<section data-more-projects>` at the bottom of each case study, built from every project except the current one. It's removed if no other projects exist.
+`<section data-more-projects>` at the bottom of each case study, built from the other projects in the current project's group. On an Other Project's page the main projects follow (see §4.7), so the carousel always leads back to the data work. It's removed if no other projects exist.
 - **Header:** outline button "More projects →" (50h) linking to Works, with prev/next arrow buttons that only appear when the cards overflow.
 - **Cards** (`.mcard`): 408 wide, white, radius 20, padding 19. Image at ratio `368/459` (portrait; uses `card`, falling back to `cover`), title 27/600, summary `--muted`. Hover adds `--shadow-card` and lifts the card 4px.
 - **Scrolling:** horizontal with scroll-snap and no visible scrollbar.
@@ -303,6 +317,32 @@ Built by `site.js`. Background `--ink`, padding `100px gutter 60px`, a 4-column 
 
 Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image centred with flexbox, up to 1200px wide (and the window width minus 80px) and at most the window height minus 80px, so tall charts open whole. These limits use window units, not percentages, so every browser sizes and centres it the same, with radius 16, scaling up from 0.96 with a spring. An image from a `.cs-media--pad` frame keeps a 30px margin in its frame's background. Click or Esc closes it, and focus returns to the image. Zoomable images are keyboard-focusable and show a zoom-in cursor.
 
+### 4.14 UX case-study blocks
+
+Ported from the Framer layouts of the Other Projects, so On Site, Aside and Spotlight match their originals. Use them on those pages; prefer §4.9 blocks on new case studies.
+
+| Block | Markup | Specs |
+|---|---|---|
+| Tile variants | `.tile--surface` · `.tile--sm` · `.tile--outline` | White tile · small tile (padding 15, radius 12, 14px) · white with an accent border (a "need" in a user-story table). |
+| Tile icon | `img.tile__icon` (`--sm`) | 80px (60px with `--sm`, and on phones) black line icon at the top of a tile. Icons are shared as `ux-icon-*.png`. |
+| Ring number | `span.ring` | 40px white circle, `1px --line`, 18/600 number. For numbered questions and features. |
+| Lead in a tile | `.tile__lead` | 18/500, for a scenario, hypothesis or card title. |
+| Icon heading | `.icon-head > svg + text` | 32px outlined icon in `--icon` (default the accent) beside an 18/500 label: Problem, Solution, Priority… |
+| Quote | `blockquote.quote` | 18/500, `1px --line` rule on the left, 24 padding. Interview quotes, usually in `.cols-3`. |
+| Persona with photo | `article.profile > img + .profile__body` | White card, radius 20, photo column 265 beside name (18/500), goals and frustrations (14px) and a 14/500 quote. One column on phones. |
+| Card table | `.grid-table[style="--cols:3"]` | Grid of cards with `.grid-table__head` headers (20/600, centred) or `.icon-head` headers; `.grid-table__gap` keeps an empty cell; `.grid-table__row-start` marks the first cell of a row. On phones it's one column; headers hide and each cell shows its column through `data-label`. |
+| Formats list | `ul.formats > li(.is-open) > b > img + text` | Format names with 40px icons; the open one sits on `--fact` with its description, the others at 60% opacity (like the Framer accordion). |
+| Before/after | `.compare > img + .compare__before > img` + handle + `input[type=range]` | The "after" screen, with the "before" over it up to the handle. Width `--compare-w` (309 by default). `site.js` moves `--pos`; drag, tap or use the arrow keys. Pair with notes in `.compare-row`. |
+| Slideshow | `.slides[data-slides] > .slides__track > img…` | One slide at a time on `--fact`, scroll-snap, arrow buttons added by `site.js` (hidden at the ends). Pair with a notes tile in `.slides-row` (2:1). |
+| Sideways scroller | `.cs-scroll > img` | For a very wide image (the On Site style kit): the image keeps `--scroll-h` (624, 400 on phones) and scrolls sideways. Keyboard-focusable. Put its text in an `.sr-only` block after it. |
+| Pinned notes | `.pinned > ul.pinned__side--left + img.pinned__screen + ul.pinned__side--right` | A screen (`--pinned-w`, 302) with notes beside it; each `li` sets `--y`, its top as a % of the screen height, and a ringed dot marks the screen edge. Below 1200 the notes move under the screen. |
+| Screen flow | `.flow` | Phone screens three across (two on phones), notes as small `.tile`s in the gaps, `.flow__span` over two columns, `.flow__gap` for an empty cell (hidden on phones). |
+| Picture pair | `.cs-media.cs-pair > img + img` | Two pictures side by side as one rounded image, each cropped to `--ratio`. |
+| Prototype embed | `iframe.cs-embed` | Embedded Figma prototype, full width, `--embed-h` tall (650; 560 on phones), `1px` border, radius 16. Use `loading="lazy"` and a `title`. |
+| Helpers | `.cs-figure` · `.callout--wide` · `.callout--surface` · `.cs-narrow` · `.stack--tight` · `.cols-3--pairs` · `.cols-3--keep` | Image with a 12px caption · full-width callout · white callout · 650 max width · 8px stack · two blocks per column with aligned rows · three columns kept on phones. |
+
+Captures: blocks that were layered Framer drawings (the On Site style kit, the Aside phone mockups and final composite, the Spotlight style guide and objectives phone) are 2× screenshots of the live Framer pages, taken with headless Chrome. Text inside them is repeated in an `.sr-only` block or the alt text.
+
 ---
 
 ## 5. Page templates
@@ -310,9 +350,10 @@ Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image centr
 | Page | Structure |
 |---|---|
 | Home (`index.html`) | Full-height hero aligned to the bottom: "Available" pill, headline, tagline, "Scroll for more ↓" on the left; link card to Works on the right. Then a divider, "Overview / Selected Works" with project cards in a two-column grid and a "View all projects →" button, then a divider and the "About me" lead with a link card to About. Then the footer. |
-| Selected Works (`works.html`) | Page title, then project cards (all projects). |
+| Selected Works (`works.html`) | Page title, then the project cards (main projects). Then a divider (120 above, 80 below; 80 and 40 on phones), a "UX/UI Design / Other Projects" section title, and the Other project cards 40 below it (§4.7). |
 | About (`about.html`) | Two columns: intro (32px statement + 26px `--muted` lead) and a black-and-white portrait (ratio 633/400). Then the accordion (4 questions) beside a bordered card saying "Currently open for new opportunities…". |
 | Case study (`<slug>.html`) | Sidebar + content. Content order: hero → quick facts → sections (each with an `id`, `data-toc`, eyebrow and h2) → usually ends with "Retrospective / What I learned". Then "More projects" and the footer. Start from `project-template.html`. |
+| Other Project (`onsite.html`, `aside.html`, `spotlight.html`) | The same sidebar, hero and facts. Sections, text and images follow the original Framer pages, built with §4.14 blocks; headings keep their original Title Case, and only spelling slips were fixed. No live button: the Figma prototypes are embedded in the page. |
 | Imprint (`imprint.html`) | Title + date, then an address card (300 wide) beside the legal text (14px `--muted`, headings in ink). |
 
 ---
@@ -330,7 +371,8 @@ Click-to-enlarge for `img[data-zoom]`. Backdrop `rgba(33,33,33,.7)`, image centr
 - **Proportions:** keep the `width` and `height` attributes on every `<img>`. The base CSS sets `height: auto`, so images scale without stretching. Only boxes that deliberately crop (hero, card images) set a fixed height with `object-fit: cover`.
 - **Alt text:** describe what the image shows and why it matters. Use `alt=""` for decorative images, such as icons beside text that already says the same thing.
 - **Videos:** always `muted loop playsinline preload="metadata" data-autoplay`. They play only while on screen.
-- **Projects:** add, remove or reorder them only in `js/projects.js`. Cards, nav, sidebars and the carousel all follow from it.
+- **Projects:** add, remove or reorder them only in `js/projects.js`. Cards, nav, sidebars and the carousel all follow from it. A project with `group: "other"` is an Other Project (§4.7).
+- **Prototypes:** the Other Projects embed their Figma prototypes in the page (`iframe.cs-embed`, §4.14), as the originals did, so they have no `live` link.
 
 ---
 
@@ -346,6 +388,9 @@ Contrast, measured against WCAG 2.1, where small text needs 4.5:1 and large text
 | `--soft` on `--bg` (hero tagline, 38px) | 2.7 | ⚠️ below 3 even for large text |
 | Chip text on its tint: Housing / Affordable | 3.2 / 2.8 | ⚠️ |
 | White badge text on accent: Housing / Affordable | 4.6 / 4.0 | ✅ / ⚠️ |
+| White badge text on accent: On Site / Aside / Spotlight | 4.7 / 5.1 / 4.9 | ✅ |
+| Chip text on its tint: On Site / Aside / Spotlight | 3.3 / 3.7 / 3.6 | ⚠️ (same pattern as above) |
+| Other project card summary (`--ink` on white) | 16.1 | ✅ |
 | Persona text: orange / blue / green | 4.5 / 6.1 / 5.8 | ✅ |
 
 The ⚠️ pairs come from the original Framer design and are kept for visual fidelity. **Don't spread them further:**

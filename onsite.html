@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>On Site — I-AB</title>
+  <meta name="description" content="On Site: geo-location of historical imagery, stories, audio tours and AR experiences for curious Berliners. UX case study by Iván Alfonso Burgos.">
+  <meta property="og:title" content="On Site — I-AB">
+  <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/onsite-cover.jpg">
+  <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=20261117">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="project" data-project="onsite">
+  <div data-nav></div>
+
+  <main class="case">
+    <aside class="case-side" data-case-side></aside>
+
+    <article class="case-content">
+      <div class="cs-hero">
+        <img src="assets/img/onsite-hero.jpg" alt="The On Site app on a phone, between cards of historical sites, on orange" width="1440" height="658">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Concept Project</dd></div>
+        <div><dt>Category</dt><dd>History Learning App</dd></div>
+        <div><dt>Timeframe</dt><dd>2 Months</dd></div>
+        <div><dt>Tools</dt><dd>Figma, Photoshop, Illustrator</dd></div>
+      </dl>
+
+      <div class="cs-sections">
+
+        <section class="cs-section" id="overview" data-toc="Overview">
+          <header class="cs-head"><p class="eyebrow">Overview</p><h2>The Brief and Idea</h2></header>
+          <div class="concept__row concept__row--thumb">
+            <div class="prose">
+              <p>The brief for this project was about working in an app with <strong>geo-located content.</strong></p>
+              <p>The idea for this project came after visiting the Archive of the State of Berlin, discovering thousands of <strong>historical pictures</strong> of every street in the city, chronologically and alphabetically organised, but not easily accessible to the public.</p>
+              <p>At the same time, cities, especially Berlin, are complex, layered history is often difficult to discern in its urban fabric.</p>
+            </div>
+            <figure class="cs-figure">
+              <img src="assets/img/onsite-archive.jpg" alt="The red-brick building of the Landesarchiv Berlin" width="1600" height="1067" loading="lazy">
+              <figcaption>© Landesarchiv Berlin</figcaption>
+            </figure>
+          </div>
+          <aside class="callout callout--wide">
+            <img src="assets/img/ux-icon-idea.png" alt="" width="60" height="60" loading="lazy">
+            <div class="prose"><p>I saw an opportunity to bridge this gap by creating a <strong>platform</strong> that makes these <strong>historical layers</strong> more accessible and engaging for everyone.</p></div>
+          </aside>
+        </section>
+
+        <section class="cs-section" id="problem" data-toc="Problem">
+          <header class="cs-head"><p class="eyebrow">Problem</p><h2>What are the challenges in accessing historical information?</h2></header>
+          <div class="cols-2 cols--equal cs-narrow">
+            <div class="tile tile--drs"><p class="tile__big">1</p><p>Online information is often <strong>overwhelming</strong> or too <strong>vague</strong>.</p></div>
+            <div class="tile tile--drs"><p class="tile__big">2</p><p>It's hard to know <strong>where to start</strong> when researching unfamiliar sites.</p></div>
+            <div class="tile tile--drs"><p class="tile__big">3</p><p>Museums and archives can be <strong>intimidating</strong>, and many people aren’t aware of their resources.</p></div>
+            <div class="tile tile--drs"><p class="tile__big">4</p><p><strong>Tourist guides</strong> are plentiful but lack accessible, detailed historical content.</p></div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="objectives" data-toc="Objectives">
+          <header class="cs-head"><p class="eyebrow">Objectives</p><h2>Connecting User Learning Needs with Cultural Institutions' Educational Goals</h2></header>
+          <ol class="arc">
+            <li class="arc__row"><span class="arc__num">1</span><p>Use geolocation to make Berlin's historical imagery easily accessible.</p></li>
+            <li class="arc__row"><span class="arc__num">2</span><p>Curate and present archival material in a user-friendly format.</p></li>
+            <li class="arc__row"><span class="arc__num">3</span><p>Serve as a platform for digitising historical content.</p></li>
+            <li class="arc__row"><span class="arc__num">4</span><p>Act as a bridge between cultural institutions and the public.</p></li>
+            <li class="arc__row"><span class="arc__num">5</span><p>Be the go-to starting point for anyone curious about the history of their surroundings.</p></li>
+          </ol>
+          <img src="assets/img/onsite-explore.jpg" alt="A hand holds a phone showing On Site's Explore screen in front of the Oberbaumbrücke" width="940" height="860" loading="lazy" style="width:min(470px, 100%)">
+        </section>
+
+        <section class="cs-section" id="research" data-toc="Research &amp; Insights">
+          <header class="cs-head"><p class="eyebrow">Research &amp; Insights</p><h2>An approach with 3 main discovery pillars</h2></header>
+          <div class="cols-3 cols--equal cols-3--stack-narrow">
+            <div class="tile tile--surface"><img class="tile__icon" src="assets/img/ux-icon-curiosity.png" alt="" width="80" height="80" loading="lazy"><h3 class="tile__title">Curiosity</h3><p>What sparks and satiates the curiosity around urban history?</p></div>
+            <div class="tile tile--surface"><img class="tile__icon" src="assets/img/ux-icon-frustration.png" alt="" width="80" height="80" loading="lazy"><h3 class="tile__title">Frustrations</h3><p>At which point does frustration surpasses the curiosity?</p></div>
+            <div class="tile tile--surface"><img class="tile__icon" src="assets/img/ux-icon-resources.png" alt="" width="80" height="80" loading="lazy"><h3 class="tile__title">Resources</h3><p>What are the go to tools for learning and what is missing?</p></div>
+          </div>
+
+          <h3 class="cs-subhead">Direct Interviews</h3>
+          <div class="tile">
+            <div class="prose">
+              <p><strong>What?</strong> Ways of learning about the history of a place</p>
+              <p><strong>Who?</strong> 10 Curious Berliners and Researchers/Students</p>
+              <p><strong>How to reach them?</strong> Social Media, University Ad</p>
+            </div>
+            <aside class="callout callout--surface">
+              <img src="assets/img/ux-icon-question.png" alt="" width="60" height="60" loading="lazy">
+              <div class="prose"><p class="tile__lead">Hypothesis</p><p>An App that could geolocate historical material could serve as a catalogue for researchers and a useful learning platform for curious residents.</p></div>
+            </aside>
+          </div>
+          <div class="cols-3 cols-3--stack-narrow">
+            <blockquote class="quote">“I didn’t even know what I had to search for”</blockquote>
+            <blockquote class="quote">“Sometimes there is too little information, or too much! Or not in the right place.”</blockquote>
+            <blockquote class="quote">“I appreciate when long texts are avoided or there is an audio option.”</blockquote>
+          </div>
+
+          <h3 class="cs-subhead">Research Results</h3>
+          <div class="cols-2 cols--equal">
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-patterns.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Patterns</h4>
+              <div class="prose">
+                <p>Users rely on <strong>Google/Wikipedia</strong> first.</p>
+                <p>Online info is often either <strong>too sparse</strong> or <strong>overwhelming</strong>.</p>
+                <p>Users prefer control over <strong>how much</strong> they learn.</p>
+                <p><strong>Audio tours</strong> offer flexible, in-situ learning.</p>
+                <p><strong>Location-specific</strong> info is hard to find.</p>
+              </div>
+            </div>
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-pain.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Pain Points</h4>
+              <div class="prose">
+                <p>Online information is either <strong>too much or too little</strong>.</p>
+                <p>Users struggle with <strong>where to start</strong> their research.</p>
+                <p>Information on <strong>outer neighbourhood sites</strong> is lacking.</p>
+              </div>
+            </div>
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-findings.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Surprising Findings</h4>
+              <div class="prose">
+                <p><strong>Trustworthy sources</strong> are valued; tourist guides are avoided.</p>
+                <p>Users want a <strong>single reference point</strong> for curiosities.</p>
+                <p>Information should be in <strong>small, manageable</strong> chunks.</p>
+                <p>Users prefer spending <strong>2-5 minutes</strong> on topics of interest.</p>
+              </div>
+            </div>
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-goals.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Goals Mentioned</h4>
+              <div class="prose">
+                <p>Connect hard facts with <strong>narratives</strong> or specific <strong>themes</strong>.</p>
+                <p>Use <strong>audio</strong> for those who struggle with small screens.</p>
+                <p>Break down long information into <strong>smaller chunks</strong>.</p>
+                <p>Include both <strong>fun and factual</strong> content for each site.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="cs-subhead">Defining Requirements</h3>
+          <article class="profile">
+            <img src="assets/img/onsite-persona-david.jpg" alt="Black-and-white portrait of David, the first persona" width="530" height="486" loading="lazy">
+            <div class="profile__body">
+              <h4 class="profile__name">David, 33</h4>
+              <p><strong>Goals:</strong> Access quick, reliable information while on the go, and save favorite locations for future reference.</p>
+              <p><strong>Frustrations:</strong> Confusing apps and contradictory information slow him down.</p>
+              <p class="profile__q">"Berlin’s architecture fascinates me, but I often don’t know where to find information beyond the usual highlights like the Wall or WWII. I wish there was a resource to help me understand what I’m seeing."</p>
+            </div>
+          </article>
+          <article class="profile">
+            <img src="assets/img/onsite-persona-eva.jpg" alt="Portrait of Eva, the second persona, smiling" width="530" height="486" loading="lazy">
+            <div class="profile__body">
+              <h4 class="profile__name">Eva, 44</h4>
+              <p><strong>Goals:</strong> Explore new places and teach her children about history through engaging, narrative-driven content.</p>
+              <p><strong>Frustrations:</strong> Overcomplicated interfaces and too much information at once.</p>
+              <p class="profile__q">"Narratives help me make sense of the world, both in how I learn and work, especially when I'm with my kids. I value trustworthy sources that provide curated information, allowing me to build a story in my mind.”</p>
+            </div>
+          </article>
+
+          <div class="grid-table" style="--cols:3">
+            <p class="grid-table__head">User Stories</p>
+            <p class="grid-table__head">Requirements NEED</p>
+            <p class="grid-table__head">Requirements WANT</p>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>local Berliner</strong>, I want to know what specific sites in my surroundings are.</p></div>
+            <div class="tile tile--outline tile--sm" data-label="Requirements NEED"><div class="prose"><p>Create <strong>map</strong> with geolocations to be able to explore</p><p>Include <strong>GPS location</strong> to personalise view</p></div></div>
+            <div class="grid-table__gap" aria-hidden="true"></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>local Berliner</strong>, I want to learn more about specific <strong>topics</strong> that interest me.</p></div>
+            <div class="tile tile--outline tile--sm" data-label="Requirements NEED"><div class="prose"><p>Associate <strong>stories</strong> with specific sites.</p><p>Create a <strong>list of the stories</strong> available.</p></div></div>
+            <div class="grid-table__gap" aria-hidden="true"></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>busy user on the go</strong>, I want to have the <strong>main facts</strong> first and decide what I want to know more about.</p></div>
+            <div class="tile tile--outline tile--sm" data-label="Requirements NEED"><p>Organise content to show <strong>quick facts</strong> first.</p></div>
+            <div class="grid-table__gap" aria-hidden="true"></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>user</strong>, I want to <strong>filter</strong> out material according to theme/time period.</p></div>
+            <div class="grid-table__gap" aria-hidden="true"></div>
+            <div class="tile tile--surface tile--sm" data-label="Requirements WANT"><div class="prose"><p><strong>Categorize</strong> content according to themes and/or time period.</p><p>Introduce <strong>filter options</strong> in lists and on the map.</p></div></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>curious user</strong>, I want to be able to <strong>search</strong> for a specific address to see if there is a picture available.</p></div>
+            <div class="tile tile--outline tile--sm" data-label="Requirements NEED"><p>Add versatile <strong>search function.</strong></p></div>
+            <div class="grid-table__gap" aria-hidden="true"></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>returning user</strong>, I would like to access my <strong>bookmarked</strong> places and share them.</p></div>
+            <div class="tile tile--outline tile--sm" data-label="Requirements NEED"><p>Formal <strong>referencing</strong> of all material, to protect property rights.</p></div>
+            <div class="tile tile--surface tile--sm" data-label="Requirements WANT"><p>Add more <strong>links</strong> for further reading</p></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>curious user</strong>, I would like to be <strong>notified</strong> when I am close to a place that might interest me.</p></div>
+            <div class="tile tile--outline tile--sm" data-label="Requirements NEED"><div class="prose"><p>Send <strong>notification</strong> when a point of interest is near</p><p>Start <strong>game mode</strong> to find the right spot</p><p><strong>AR</strong> images to several locations</p></div></div>
+            <div class="tile tile--surface tile--sm" data-label="Requirements WANT"><div class="prose"><p>Collect interest of users in database</p><p><strong>Geolocation</strong> of user if allowed</p></div></div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="design-goals" data-toc="Design Goals">
+          <header class="cs-head"><p class="eyebrow">Design Goals</p><h2>A powerful yet simple platform that makes exploring history engaging and accessible.</h2></header>
+          <div class="tile cs-narrow"><p class="tile__lead">The goal is to create a platform that would serve both historical institutions achieve their educational goals, and make learning history more accessible:</p></div>
+          <div class="cols-2 cs-narrow">
+            <div class="stack stack--tight"><h3 class="tile__title">Digital Catalogue</h3><p>It will function as an expanding geo-located digital catalogue for historical imagery that are in process of digitisation.</p></div>
+            <div class="stack stack--tight"><h3 class="tile__title">Narrative-Driven</h3><p>With curated content from trusted institutions, it will offer users a narrative-driven experience.</p></div>
+            <div class="stack stack--tight"><h3 class="tile__title">Progressive Disclosure</h3><p>The design focuses on progressive disclosure, making historical information less intimidating and more engaging.</p></div>
+            <div class="stack stack--tight"><h3 class="tile__title">On-the-go Knowledge</h3><p>Users can connect their real-world experiences with the city’s historical layers, learning as they explore.</p></div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="mvp" data-toc="MVP &amp; User Flows">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">MVP &amp; User Flows</p><h2>Making Extensive Data Accessible and Easy to Navigate</h2></header>
+            <div class="prose"><p>Based on research insights and goals, I chose <strong>4 standardised formats</strong> to present information, ensuring history is easy and accessible to access:</p></div>
+          </div>
+          <div class="concept__row concept__row--center">
+            <ul class="formats">
+              <li class="is-open"><b><img src="assets/img/onsite-format-sites.png" alt="" width="40" height="40">Sites</b><p>Curated by partner institutions, stories offer bite-sized narratives tied to specific locations, making history digestible and engaging.</p></li>
+              <li><b><img src="assets/img/onsite-format-stories.png" alt="" width="40" height="40">Stories</b></li>
+              <li><b><img src="assets/img/onsite-format-audio.png" alt="" width="40" height="40">Audio Tours</b></li>
+              <li><b><img src="assets/img/onsite-format-ar.png" alt="" width="40" height="40">Augmented Reality</b></li>
+            </ul>
+            <video class="cs-screen" src="assets/video/onsite-site.mp4" width="548" height="976" muted loop playsinline preload="metadata" data-autoplay aria-label="Prototype scrolling through the Bethanien site page: photo, related places, quick facts and a fun fact"></video>
+          </div>
+          <div class="stack">
+            <h3 class="cs-subhead">Diagram of User Flows</h3>
+            <div class="prose"><p>By integrating user flows from the stories, I designed a navigation system that handles extensive content. The Home screen is centered on a versatile map-based search, allowing results to be viewed as a list or on the map, with easy access to bookmarked content.</p></div>
+          </div>
+          <div class="cs-media">
+            <img src="assets/img/onsite-flows.png" alt="Diagram of On Site's user flows, from the splash screen and onboarding to the map Home, search, bookmarks and the side menu" width="1898" height="2082" loading="lazy" data-zoom>
+          </div>
+        </section>
+
+        <section class="cs-section" id="testing" data-toc="Usability Testing">
+          <header class="cs-head"><p class="eyebrow">Usability Testing</p><h2>Assessing first-time users' ability to navigate and easily access content</h2></header>
+          <div class="concept__row concept__row--thumb concept__row--center">
+            <div class="stack">
+              <div class="prose"><p>I aimed to see if users could easily navigate the app and find content, testing key functionalities to identify any pain points or areas of confusion:</p></div>
+              <div class="tile"><p class="t-small">Scenario</p><p class="tile__lead">You are walking around a new part the city where you’ve never been before and find an interesting monument but have no idea what it is.</p></div>
+            </div>
+            <img src="assets/img/onsite-scenario.jpg" alt="On Site on a phone, showing a site page, on an orange disc" width="394" height="482" loading="lazy" style="width:min(302px, 100%); justify-self:center">
+          </div>
+          <div class="cols-3 cols--equal cols-3--stack-narrow">
+            <div class="tile tile--surface"><span class="ring">1</span><p class="tile__lead">How would you find the content to inform yourself about its history?</p></div>
+            <div class="tile tile--surface"><span class="ring">2</span><p class="tile__lead">How would you find the content about one of your favourite places in the city?</p></div>
+            <div class="tile tile--surface"><span class="ring">3</span><p class="tile__lead">Find the content that you have bookmarked as favourite and share it with a friend that might find it interesting.</p></div>
+          </div>
+          <div class="cols-3 cols-3--pairs cols-3--stack-narrow">
+            <div class="stack">
+              <h3 class="icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="M12.5 12.5a3.5 3.5 0 1 1 5 3.2c-1 .5-1.5 1.2-1.5 2.3v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22.5" r="1.3" fill="currentColor"/></svg>Problem</h3>
+              <div class="prose"><p>Participants tried to <strong>center the map</strong> on their GPS location to start understanding the content.</p><p>Participants confused the <strong>Near You menu</strong> for the <strong>Location</strong> button, and didn’t consider to obtain their goals.</p></div>
+            </div>
+            <div class="stack">
+              <h3 class="icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="m10.5 16.5 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Solution</h3>
+              <div class="prose"><p>Add <strong>Location</strong> icon near the map navigation. Mark the position on the map and the direction that the phone is pointing.</p><p>Include <strong>List/Map of nearby content</strong> in the Search menu before typing, making the Near You menu redundant.</p></div>
+            </div>
+            <div class="stack">
+              <h3 class="icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="M12.5 12.5a3.5 3.5 0 1 1 5 3.2c-1 .5-1.5 1.2-1.5 2.3v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22.5" r="1.3" fill="currentColor"/></svg>Problem</h3>
+              <div class="prose"><p>Participants wanted to filter their search <strong>by distance</strong> and/or location on the map.</p><p>All participants couldn’t figure out the stories listed <strong>without labels</strong>.</p></div>
+            </div>
+            <div class="stack">
+              <h3 class="icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="m10.5 16.5 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Solution</h3>
+              <div class="prose"><p>Include <strong>List/Map view</strong> options in search results. Filter feature reserved for the search results.</p><p><strong>Add label</strong> and information when listing stories to attract interest.</p></div>
+            </div>
+            <div class="stack">
+              <h3 class="icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="M12.5 12.5a3.5 3.5 0 1 1 5 3.2c-1 .5-1.5 1.2-1.5 2.3v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22.5" r="1.3" fill="currentColor"/></svg>Problem</h3>
+              <div class="prose"><p>Participants valued the <strong>Bookmarks</strong> feature but found it not very prominent.</p></div>
+            </div>
+            <div class="stack">
+              <h3 class="icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="m10.5 16.5 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Solution</h3>
+              <div class="prose"><p>Move up <strong>Bookmarks</strong> one navigation level to go directly on the navigation bar.</p></div>
+            </div>
+          </div>
+
+          <div class="compare-row">
+            <div class="compare">
+              <img src="assets/img/onsite-after-map.png" alt="After: the final dark map, with a location button and an Explore this area button" width="390" height="812" loading="lazy">
+              <div class="compare__before"><img src="assets/img/onsite-before-location.png" alt="Before: the wireframe map, with no location button" width="390" height="812" loading="lazy"></div>
+              <span class="compare__handle" aria-hidden="true"></span>
+              <input type="range" min="0" max="100" value="50" aria-label="Location icon: drag to compare before and after">
+            </div>
+            <div class="stack">
+              <div class="tile"><p class="t-small">Location Icon</p><p>To center map, the Location Icon is added. Previously being used as Near You, that now migrates to Search screen. The perspective direction has been added, as well as a "Explore Area" function.</p></div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div class="compare">
+              <img src="assets/img/onsite-after-map.png" alt="After: bookmarks sit in the navigation bar of the final map" width="390" height="812" loading="lazy">
+              <div class="compare__before"><img src="assets/img/onsite-before-menu.png" alt="Before: bookmarks hidden in the side menu" width="390" height="812" loading="lazy"></div>
+              <span class="compare__handle" aria-hidden="true"></span>
+              <input type="range" min="0" max="100" value="50" aria-label="Bookmarks: drag to compare before and after">
+            </div>
+            <div class="stack">
+              <div class="tile"><p class="t-small">Bookmarks</p><p>Saved locations goes from Hamburger side menu to main Navigation Bar.</p></div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div class="compare" style="--compare-w:343px">
+              <img src="assets/img/onsite-after-list.png" alt="After: the search screen with today's picks and a list of nearby sites, filtered by distance" width="397" height="1543" loading="lazy">
+              <div class="compare__before"><img src="assets/img/onsite-before-list.png" alt="Before: the wireframe search screen with On this Day and a short list" width="390" height="1549" loading="lazy"></div>
+              <span class="compare__handle" aria-hidden="true"></span>
+              <input type="range" min="0" max="100" value="50" aria-label="Search screen: drag to compare before and after">
+            </div>
+            <div class="stack">
+              <div class="tile"><p class="t-small">List/Map Near You</p><p>Near You list migrates to the search screen, and direct link to their location on the Map is added.</p></div>
+              <div class="tile"><p class="t-small">Filtering and Distances</p><p>The filtering is reserved for search results. The user can filter by type of content or distance to live location.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="style-guide" data-toc="UI Style Kit">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">UI Style Guide</p><h2>A Berlin-inspired, bold, clear, and content-friendly design system</h2></header>
+            <div class="prose"><p>The design system was inspired by Berlin's urban landscape. Bold, clear visuals with a touch of orange echo the city’s recognisable elements, ensuring the app remains visually appealing while accommodating large amounts of content.</p></div>
+          </div>
+          <div class="cols-3 cols-3--keep">
+            <div class="cs-media"><img src="assets/img/onsite-mood-bin.jpg" alt="An orange Berlin street bin printed with “Danke!”" width="800" height="771" loading="lazy"></div>
+            <div class="cs-media"><img src="assets/img/onsite-mood-memorial.jpg" alt="Concrete slabs of the Memorial to the Murdered Jews of Europe" width="800" height="771" loading="lazy"></div>
+            <div class="cs-media"><img src="assets/img/onsite-mood-rooftops.jpg" alt="Berlin rooftops and a church spire at dusk" width="800" height="771" loading="lazy"></div>
+          </div>
+          <div class="cs-scroll" tabindex="0" role="region" aria-label="On Site style kit (scrolls sideways)">
+            <img src="assets/img/onsite-style-kit.jpg" alt="On Site style kit: color palette, Archivo type scale, map styling, imagery, buttons, iconography and other UI elements" width="12744" height="1248" loading="lazy">
+          </div>
+          <div class="sr-only">
+            <p>Color palette: accent #FB5C1F, background #F1F2F3, typography #0D0D0D, white #FFFFFF.</p>
+            <p>Typography: Archivo. Title 31 pt bold, H1 25 pt bold, H2 20 pt bold, H3 16 pt bold, body 16 pt regular at 150%, label 1 14 pt bold, label 2 14 pt regular, secondary text 12 pt regular at 120%.</p>
+            <p>Map styling: The map is monochrome and dark to contrast with other UI elements, serving as the base. Geolocated content is marked in the brand color with surfaces at 50% opacity. Buildings #232323, background #2D2B2C, streets #797979, accent #FB5C1F at 50%.</p>
+            <p>Imagery: Historical images should be mostly black and white with consistent grey tones. Use perspectives with long vanishing points for striking effects, and ensure colors are saturated and well-contrasted.</p>
+          </div>
+        </section>
+
+        <section class="cs-section" id="final-design" data-toc="Final Design">
+          <header class="cs-head"><p class="eyebrow">Final Design</p><h2>Integrating learnings to create a proposal to be validated</h2></header>
+          <iframe class="cs-embed" src="https://embed.figma.com/proto/evkLkITTCJ3cr9whbXAGDL/On-Site?page-id=0%3A1&amp;node-id=1449-4897&amp;node-type=frame&amp;viewport=1080%2C1386%2C0.14&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=443%3A1531&amp;embed-host=share" title="On Site prototype in Figma" loading="lazy" allowfullscreen></iframe>
+          <div class="cs-media">
+            <img src="assets/img/onsite-final.jpg" alt="Final On Site screens: the side menu, the map Home, search results, bookmarks and a site page" width="1960" height="955" loading="lazy" data-zoom>
+          </div>
+        </section>
+
+        <section class="cs-section" id="retrospective" data-toc="Retrospective">
+          <header class="cs-head"><p class="eyebrow">Retrospective</p><h2>A first step towards accessible history learning</h2></header>
+          <div class="cols-2">
+            <p>Throughout the project, I found inspiration in refining my initial idea, revealing the potential of making currently inaccessible historical images available. My goal was to present history in a more approachable and engaging way, with great potential for collaboration with educational institutions.</p>
+            <p>Juggling the task of making a conventionally "tedious" subject enjoyable, practical, and captivating, examinations and discussions revealed varied educational inclinations. The outcome is an encouraging initial version that resonates with both history aficionados and laypeople. Further rounds of testing will be needed to finalize and refine the numerous functionalities, as is typical in ambitious ventures like this one.</p>
+          </div>
+          <div class="cs-media">
+            <img src="assets/img/onsite-outro.jpg" alt="A hand holds up On Site in front of a Berlin street, with the TV tower in the distance" width="1304" height="558" loading="lazy">
+          </div>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <section data-more-projects></section>
+  <div data-footer></div>
+
+  <script src="js/projects.js?v=20261117"></script>
+  <script src="js/site.js?v=20261117"></script>
+</body>
+</html>

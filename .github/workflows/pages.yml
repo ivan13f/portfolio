@@ -34,7 +34,10 @@ jobs:
 
       - name: Turn old Framer links into redirect pages (rules in _redirects)
         run: |
-          grep -vE '^[[:space:]]*(#|$)' _redirects | while read -r from to _; do
+          # "|| true": a file with no rules is fine (grep exits 1 when nothing matches)
+          { grep -vE '^[[:space:]]*(#|$)' _redirects || true; } | while read -r from to _; do
+            # never let a redirect page replace a real page
+            if [ -e "_site/${from#/}.html" ]; then echo "skip $from: a page already exists"; continue; fi
             page="_site/${from#/}.html"
             target="${to#/}"
             printf '%s\n' \

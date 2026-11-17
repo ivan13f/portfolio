@@ -11,6 +11,8 @@
                       (start from project-template.html).
   To add one without a case study: set `external: true`. Its cards and nav item then
                       link straight to `live` in a new tab, and it needs no `<slug>.html`.
+  To add an Other Project (smaller card under "Other Projects" on Selected Works only):
+                      add `group: "other"` and put it with the others at the end.
   To remove one:      delete its entry (and its .html file if you like).
   To reorder:         reorder the entries.
 */
@@ -64,6 +66,42 @@ window.PROJECTS = [
     cover: "assets/img/barcelona-green-cover.jpg",
     live: "https://ivan13f.github.io/how-green-is-your-neighbourhood/#12.46/41.39686/2.17551",
     external: true,
+  },
+
+  /* Other Projects: earlier UX case studies, marked `group: "other"`. They get smaller cards in
+     their own section at the bottom of Selected Works, and stay out of Home, the nav on the data
+     projects and their "More projects" carousel. On their own pages the nav lists this group. */
+  {
+    slug: "onsite",
+    group: "other",
+    title: "On Site",
+    summary:
+      "Geo-location of historical imagery, stories, audio tours and AR Experiences for curious Berliners.",
+    tags: ["UX Design", "User Research", "UI Design"],
+    accent: "#C94A14",
+    cover: "assets/img/onsite-cover.jpg", // Other Projects card
+    card: "assets/img/onsite-card.jpg", // "More projects" carousel
+    // No `live`: the Figma prototype is embedded in the page, as on the original
+  },
+  {
+    slug: "aside",
+    group: "other",
+    title: "Aside",
+    summary: "Money-saving App to simplify and motivate through visualisations.",
+    tags: ["UX Design", "UI Design", "Branding"],
+    accent: "#6E62B8",
+    cover: "assets/img/aside-cover.jpg",
+    card: "assets/img/aside-card.jpg",
+  },
+  {
+    slug: "spotlight",
+    group: "other",
+    title: "Spotlight",
+    summary: "One place with all stages in town, ticketing service and easy ticket exchange platform.",
+    tags: ["UI Design", "Prototyping"],
+    accent: "#80701F",
+    cover: "assets/img/spotlight-cover.jpg",
+    card: "assets/img/spotlight-card.jpg",
   },
 ];
 

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aside — I-AB</title>
+  <meta name="description" content="Aside: a money-saving app to simplify and motivate through visualisations. UX case study by Iván Alfonso Burgos.">
+  <meta property="og:title" content="Aside — I-AB">
+  <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/aside-cover.jpg">
+  <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/img/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=20261117">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="project" data-project="aside">
+  <div data-nav></div>
+
+  <main class="case">
+    <aside class="case-side" data-case-side></aside>
+
+    <article class="case-content">
+      <div class="cs-hero">
+        <img src="assets/img/aside-hero.jpg" alt="The Aside logo beside a phone showing the app’s dashboard, on purple" width="1960" height="1382">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Type</dt><dd>Concept Project</dd></div>
+        <div><dt>Category</dt><dd>Fin App</dd></div>
+        <div><dt>Timeframe</dt><dd>2 weeks</dd></div>
+        <div><dt>Tools</dt><dd>Figma</dd></div>
+      </dl>
+
+      <div class="cs-sections">
+
+        <section class="cs-section" id="challenge" data-toc="Challenge">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">Challenge</p><h2>From partial instructions to a distinguishable product</h2></header>
+            <div class="prose">
+              <p>This student project was a challenge to develop a product <strong>based on partial branding guidelines</strong> of a Money-Saving tool, and distill the instructions of a brief into a full developed and distinguishable product.</p>
+              <p>Many financial tools are overwhelming for those with limited financial knowledge. Saving and managing money is crucial, but it’s easy to lose track or miss patterns. People with less financial literacy and time need an accessible tool that offers smart money management tips.</p>
+            </div>
+          </div>
+          <div class="cs-media" style="width:min(650px, 100%)">
+            <img src="assets/img/aside-brief.jpg" alt="A hand holds a phone showing a savings plan in Aside" width="650" height="400" loading="lazy">
+          </div>
+        </section>
+
+        <section class="cs-section" id="problem" data-toc="Problem">
+          <header class="cs-head"><p class="eyebrow">Problem</p><h2>Striving for consistency and clarity</h2></header>
+          <div class="cols-2 cols--equal cs-narrow">
+            <div class="tile tile--drs"><p class="tile__big">1</p><p>Overwhelm from <strong>complexity</strong>, the <strong>amount of information</strong> and the <strong>technical jargon</strong> used</p></div>
+            <div class="tile tile--drs"><p class="tile__big">2</p><p>Difficulty identifying <strong>spending patterns</strong>.</p></div>
+            <div class="tile tile--drs"><p class="tile__big">3</p><p><strong>Lack of time</strong> for money management</p></div>
+            <div class="tile tile--drs"><p class="tile__big">4</p><p>Limited <strong>financial literacy</strong> and advice</p></div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="research" data-toc="User Research">
+          <header class="cs-head"><p class="eyebrow">User Research</p><h2>Uncovering Financial Habits, Pain Points, and Unique Saving Strategies</h2></header>
+          <div class="tile cs-narrow">
+            <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-question.png" alt="" width="60" height="60" loading="lazy">
+            <p style="font-weight:500">The goal of the research is to understand the <strong>goals</strong> and <strong>pain points</strong> of users with varying levels of <strong>financial literacy</strong> as they manage their personal finances. I am looking to inquire what <strong>tools</strong>, digital or analog, if any, do they use to keep track of their finances.</p>
+          </div>
+          <div class="prose">
+            <p>I target a diverse group of participants with different financial knowledge levels, income brackets, and financial management habits. I specifically began by exploring users’ current financial behaviors, their motivations for saving, and the challenges they face. The 10 Interviews were scheduled in 3 separate days, some performed online, and some in person.</p>
+          </div>
+
+          <h3 class="cs-subhead">Research Results</h3>
+          <div class="cols-2 cols--equal">
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-patterns.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Patterns</h4>
+              <div class="prose">
+                <p>Heavy reliance on <strong>manual methods</strong> (spreadsheets, note-taking).</p>
+                <p>Users often juggle <strong>multiple tools</strong> (banking apps, third-party apps) but lose track of the overall financial picture.</p>
+                <p>Most users focus on checking <strong>account balances</strong> rather than reviewing spending patterns or planning long-term.</p>
+              </div>
+            </div>
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-pain.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Pain Points</h4>
+              <div class="prose">
+                <p>Difficulty maintaining a <strong>consistent savings routine</strong>.</p>
+                <p>Struggles in identifying areas where expenses can be reduced.</p>
+                <p>Frustration with budgeting tools requiring <strong>too much manual input</strong>.</p>
+                <p>Confusion with <strong>financial jargon</strong>.</p>
+              </div>
+            </div>
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-findings.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Surprising Findings</h4>
+              <div class="prose">
+                <p>Some users use separate bank accounts to “<strong>hide</strong>” money from themselves as a saving strategy.</p>
+                <p>Recurring transfers to investment accounts are often used as a "<strong>forced</strong>" savings method.</p>
+                <p>A few users avoid digital payment options, relying on cash to limit impulse spending.</p>
+              </div>
+            </div>
+            <div class="tile tile--surface">
+              <img class="tile__icon tile__icon--sm" src="assets/img/ux-icon-goals.png" alt="" width="60" height="60" loading="lazy">
+              <h4 class="tile__lead">Goals Mentioned</h4>
+              <div class="prose">
+                <p>Users want a clear, easy-to-understand <strong>overview</strong> of their spending.</p>
+                <p>Desire for <strong>automation</strong> in saving and budgeting.</p>
+                <p>Flexibility to adjust financial plans.</p>
+                <p>Interest in personalized, contextual financial advice.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="cs-subhead">User Needs and Requirements</h3>
+          <div class="grid-table cs-narrow" style="--cols:2">
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>new user</strong>, I need to be able to <strong>create a profile</strong>, so that the financial advice I receive is personalised.</p></div>
+            <div class="tile tile--sm"><p class="tile__lead">Requirements</p><div class="prose"><ul><li>Onboarding with link to bank and first saving plan.</li></ul></div></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>money-saver</strong>, I need to input my <strong>income</strong> and <strong>expenses</strong> to get an <strong>overview</strong> of my finances.</p></div>
+            <div class="tile tile--sm"><p class="tile__lead">Requirements</p><div class="prose"><ul><li>Direct link to bank.</li><li>Manual input of Input and Spending.</li></ul></div></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>user</strong>, I want to see a <strong>dashboard</strong> of my finances clearly and visually, so that I can see how much I am spending on what <strong>at a glance</strong>.</p></div>
+            <div class="tile tile--sm"><p class="tile__lead">Requirements</p><div class="prose"><ul><li>Dashboard as Homepage, with period's balance and overview of budget.</li></ul></div></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>user</strong>, I want to see how my finances and savings have changed over time to <strong>stay on track</strong>.</p></div>
+            <div class="tile tile--sm"><p class="tile__lead">Requirements</p><div class="prose"><ul><li>Insights, Most common expenses, Advices, crossed with news and financial advices from experts.</li></ul></div></div>
+
+            <div class="tile tile--surface tile--sm grid-table__row-start"><p>As a <strong>user</strong>, I need to set my savings <strong>goal</strong> and <strong>deadline</strong>, so I can save accordingly.</p></div>
+            <div class="tile tile--sm"><p class="tile__lead">Requirements</p><div class="prose"><ul><li>Create new saving plan, with deadline or not. List of possibilities of achieving goal: <strong>Rounding up every transaction, scheduled transactions or custom.</strong></li></ul></div></div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="solution" data-toc="Solution">
+          <header class="cs-head"><p class="eyebrow">Solution</p><h2>A powerful yet simple platform that makes exploring history engaging and accessible.</h2></header>
+          <div class="tile cs-narrow">
+            <div class="prose">
+              <p><strong>Simplicity</strong> and <strong>clarity</strong> are prioritised throughout the product.</p>
+              <p><strong>Savings Plans</strong> are the focus, helping users link numbers to real-life goals.</p>
+              <p>Navigation is kept <strong>minimal</strong> for ease of use.</p>
+              <p>Consistent <strong>color coding</strong> for Income, Expenses, and Savings ensures clarity.</p>
+              <p><strong>Insights and tips</strong> are integrated where needed to improve saving habits.</p>
+            </div>
+          </div>
+          <div class="cols-3">
+            <div class="stack">
+              <div class="tile"><div class="step" style="gap:16px; align-items:center"><span class="ring">1</span><h3 class="tile__lead">Dashboard</h3></div><p class="t-small">Main screen displaying key information at a glance.</p></div>
+              <img src="assets/img/aside-phone-1.jpg" alt="Aside dashboard on a phone: balance for the period, income and expenses, accounts and insights" width="442" height="884" loading="lazy" style="width:min(221px, 100%); align-self:center">
+            </div>
+            <div class="stack">
+              <div class="tile"><div class="step" style="gap:16px; align-items:center"><span class="ring">2</span><h3 class="tile__lead">Analytics</h3></div><p class="t-small">Detailed view of trends and patterns, visual transaction overviews, and savings allocation.</p></div>
+              <img src="assets/img/aside-phone-2.jpg" alt="Aside analytics on a phone: a monthly bar chart of income, expenses and savings" width="442" height="884" loading="lazy" style="width:min(221px, 100%); align-self:center">
+            </div>
+            <div class="stack">
+              <div class="tile"><div class="step" style="gap:16px; align-items:center"><span class="ring">3</span><h3 class="tile__lead">Saving Plans</h3></div><p class="t-small">Overview of current goals and status, with a simple, intuitive process for creating new goals.</p></div>
+              <img src="assets/img/aside-phone-3.jpg" alt="An Aside saving plan for a trip to Mexico on a phone, with progress, deadline and saving options" width="442" height="884" loading="lazy" style="width:min(221px, 100%); align-self:center">
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section" id="user-flows" data-toc="User Flows">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">User Flows</p><h2>A minimal and intuitive navigation</h2></header>
+            <div class="prose"><p>I focused on creating the most straightforward way for users to create new saving plans and easily access the information they need. Since the app's main focus is on saving plans, the statistics are placed in their own dedicated section, directly from the main navigation.</p></div>
+          </div>
+          <div class="cs-media">
+            <img src="assets/img/aside-flows.png" alt="Diagram of Aside’s user flows, from the splash screen and sign-up to onboarding, the dashboard, analytics and saving plans" width="1960" height="967" loading="lazy" data-zoom>
+          </div>
+        </section>
+
+        <section class="cs-section" id="first-prototype" data-toc="First Prototype">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">First Prototype</p><h2>Wireframing for simplicity</h2></header>
+            <div class="prose"><p>I concentrated on presenting the data in a simple, clear way based on user stories, and designed the flow for creating new saving plans to be supportive without overwhelming the user. Several data visualization and chronological navigation patterns were explored before finalizing the current design.</p></div>
+          </div>
+          <img src="assets/img/aside-prototype.gif" alt="The first wireframe prototype, cycling through the dashboard, analytics and saving plan screens" width="148" height="489" loading="lazy" style="width:min(222px, 100%); align-self:center">
+        </section>
+
+        <section class="cs-section" id="branding" data-toc="Branding">
+          <header class="cs-head"><p class="eyebrow">Branding</p><h2>Balancing clarity and friendliness</h2></header>
+          <div class="tile cs-narrow"><p class="tile__lead">The brand prioritizes simplicity, focusing on <strong>trust</strong>, <strong>precision</strong>, and <strong>friendliness</strong>. The three app categories (<strong>Income</strong>, <strong>Expenses</strong>, and <strong>Savings</strong>) are color-coded, with Savings as the accent color.</p></div>
+          <div class="cs-media" style="width:min(650px, 100%)">
+            <img src="assets/img/aside-brand.jpg" alt="Cover of the Aside brand guidelines, with the logo and a hand holding the app" width="842" height="595" loading="lazy">
+          </div>
+        </section>
+
+        <section class="cs-section" id="testing" data-toc="Usability Testing" style="--icon:#f45336">
+          <div class="stack">
+            <header class="cs-head"><p class="eyebrow">Usability Testing</p><h2>Simplifying the savings plan setup for new users</h2></header>
+            <div class="prose"><p>To test the main feature I explored how new users approach setting up a Savings Plan within the app. The goal was to evaluate the ease of use and clarity of the process, focusing on users' understanding of key features.</p></div>
+          </div>
+          <div class="tile cs-narrow"><p class="t-small">Scenario</p><p class="tile__lead">You're a new user, and you would like to set up a new Savings Plan. How would you do it?</p></div>
+          <div class="grid-table" style="--cols:3; gap:24px 40px">
+            <p class="grid-table__head icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="M12.5 12.5a3.5 3.5 0 1 1 5 3.2c-1 .5-1.5 1.2-1.5 2.3v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22.5" r="1.3" fill="currentColor"/></svg>Painpoints</p>
+            <p class="grid-table__head icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4 29 27H3L16 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 13v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="23" r="1.3" fill="currentColor"/></svg>Priority</p>
+            <p class="grid-table__head icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="m10.5 16.5 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Recommendation</p>
+
+            <p class="grid-table__row-start" data-label="Painpoint">Users were confused by the <strong>color scheme</strong>, expecting it to have more meaning.</p>
+            <p data-label="Priority"><strong style="font-size:20px; margin-right:12px">2</strong>Moderate / High</p>
+            <p data-label="Recommendation">The color scheme is overwhelming and disrupts user flow. Use <strong>more neutrals</strong> and apply tertiary colors with <strong>lower opacity.</strong></p>
+
+            <p class="grid-table__row-start" data-label="Painpoint">Users wanted <strong>more detail</strong> on what was being deducted into savings accounts.</p>
+            <p data-label="Priority"><strong style="font-size:20px; margin-right:12px">2</strong>Moderate / High</p>
+            <p data-label="Recommendation">A <strong>screen is missing</strong> for additional details on <strong>recurring transfers</strong>. Add <strong>feedback</strong> for Saving Plans linked to specific goals.</p>
+          </div>
+          <div class="cols-3 cols-3--stack-narrow" style="row-gap:40px">
+            <blockquote class="quote">“It looks very nice, I like this first visualization. They make it pop and easy to read the information.”</blockquote>
+            <blockquote class="quote">“It seems very colorful to me. But I guess it helps to express different things”</blockquote>
+            <blockquote class="quote">“I like that there are only 3 icons in the bottom and that is floating, makes me feel that is not one of those overwhelming apps.”</blockquote>
+            <blockquote class="quote">“I like the overview in Analytics. I get it right away. I wish I could click and explore more.”</blockquote>
+            <blockquote class="quote">“Looks like a lot, but it’s not really too complicated. It takes some seconds to know what is going on but eventually feels super useful”</blockquote>
+            <blockquote class="quote">About the Saving Plan screen: “It seems that there is something off in this screen, I understand everything, but not as fast as in the other screens”</blockquote>
+          </div>
+        </section>
+
+        <section class="cs-section" id="final-design" data-toc="Final Design">
+          <header class="cs-head"><p class="eyebrow">Final Design</p><h2>Balancing clarity and friendliness</h2></header>
+          <div class="cs-media cs-pair">
+            <img src="assets/img/aside-final.jpg" alt="Two hands hold a phone showing the Aside dashboard" width="1964" height="1372" loading="lazy">
+            <img src="assets/img/aside-final-phone.jpg" alt="An Aside saving plan on a tilted phone, on dark blue" width="977" height="686" loading="lazy">
+          </div>
+
+          <div class="stack">
+            <h3 class="cs-subhead">Onboarding</h3>
+            <p style="max-width:300px">A step-by-step process designed to build trust while guiding users through inputting sensitive information. The tone and design balance trustworthiness with a friendly approach.</p>
+          </div>
+          <iframe class="cs-embed" style="--embed-h:533px" src="https://embed.figma.com/proto/fQxM6TMrMLu9Ixps6pRVG7/Aside?node-id=1-246&amp;node-type=frame&amp;scaling=scale-down&amp;content-scaling=responsive&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A244&amp;embed-host=share" title="Aside onboarding prototype in Figma" loading="lazy" allowfullscreen></iframe>
+
+          <div class="stack">
+            <h3 class="cs-subhead">Dashboard</h3>
+            <p style="max-width:300px">The main landing screen highlights key information at a glance. Users can view their current period's balance, bank account details, and insights based on transactions and goals.</p>
+          </div>
+          <div class="pinned">
+            <ul class="pinned__side pinned__side--left">
+              <li style="--y:50%">A bright box shows total savings achieved, with quick access to all savings plans.</li>
+            </ul>
+            <img class="pinned__screen" src="assets/img/aside-dashboard-full.png" alt="The full Aside dashboard, from the period balance down to insights and the savings box" width="390" height="1286" loading="lazy">
+            <ul class="pinned__side pinned__side--right">
+              <li style="--y:18.5%">Simple spending visualization for the current period, offering instant clarity on expenses.</li>
+              <li style="--y:31.6%">Allows users to manually input additional incomes or expenses outside the linked bank system.</li>
+              <li style="--y:49.6%">Displays total balance across all linked accounts, with easy access to breakdowns or account management.</li>
+              <li style="--y:68.3%">Rotating insights on finances to help users adjust their behavior and reach goals.</li>
+            </ul>
+          </div>
+
+          <div class="stack">
+            <h3 class="cs-subhead">Analytics</h3>
+            <p style="max-width:300px">Provides detailed, visually organized information with chronological listings and navigation options for full or category-specific overviews.</p>
+          </div>
+          <div class="pinned" style="--pinned-w:300px">
+            <ul class="pinned__side pinned__side--left">
+              <li style="--y:16.1%">Users can switch between weekly, monthly, or yearly views for detail or a broader picture.</li>
+              <li style="--y:35.3%">A stacked bar graph, consistent with color coding, allows quick reviews of specific time periods, navigable with gestures.</li>
+            </ul>
+            <img class="pinned__screen" src="assets/img/aside-analytics-full.png" alt="The full Aside analytics screen, with a stacked bar chart and a list of transactions" width="600" height="1922" loading="lazy">
+            <ul class="pinned__side pinned__side--right">
+              <li style="--y:11.6%">Small tips and insights appear at the top to guide users through their financial deep dive.</li>
+              <li style="--y:46.2%">Totals are displayed under the graph, followed by a categorized list of recorded transactions.</li>
+            </ul>
+          </div>
+
+          <div class="stack">
+            <h3 class="cs-subhead">Savings</h3>
+            <p style="max-width:300px">As the core feature, this section presents an overview of all saving plans with a clear structure focused on progress.</p>
+          </div>
+          <iframe class="cs-embed" style="--embed-h:533px" src="https://embed.figma.com/proto/fQxM6TMrMLu9Ixps6pRVG7/Aside?node-id=1-230&amp;node-type=frame&amp;scaling=scale-down&amp;content-scaling=responsive&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A230&amp;embed-host=share" title="Aside savings prototype in Figma" loading="lazy" allowfullscreen></iframe>
+
+          <div class="stack">
+            <h3 class="cs-subhead">Responsive and Adaptable</h3>
+            <p style="max-width:300px">The modular UI design ensures easy adaptation to various screen sizes. Larger screens offer new layout options and expanded possibilities for the dashboard.</p>
+          </div>
+          <div class="cs-media">
+            <img src="assets/img/aside-tablet.jpg" alt="The Aside dashboard on a tablet, with accounts and recent activity beside it" width="981" height="638" loading="lazy">
+          </div>
+        </section>
+
+        <section class="cs-section" id="retrospective" data-toc="Retrospective">
+          <header class="cs-head"><p class="eyebrow">Retrospective</p><h2>Balancing clarity and friendliness</h2></header>
+          <div class="cols-2">
+            <p>Working with partial guidelines and interpreting a brief was a valuable exercise in balancing client needs with user requirements while maintaining cohesive branding. Despite the abundance of financial tools, this project successfully focused on simplicity and ease of use for effective financial management.</p>
+            <p>The limited timeframe allowed me to streamline the essentials, though further exploration of data visualisations and additional testing would enhance the product. I look forward to delving deeper into this field.</p>
+          </div>
+          <div class="cs-media cs-pair" style="--ratio:488 / 325">
+            <img src="assets/img/aside-outro.jpg" alt="A hand holds a phone showing Aside’s analytics on a wooden desk" width="1490" height="1391" loading="lazy">
+            <img src="assets/img/aside-savings.jpg" alt="A hand holds a phone showing the Aside savings overview" width="1960" height="1300" loading="lazy">
+          </div>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <section data-more-projects></section>
+  <div data-footer></div>
+
+  <script src="js/projects.js?v=20261117"></script>
+  <script src="js/site.js?v=20261117"></script>
+</body>
+</html>

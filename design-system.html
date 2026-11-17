@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=20261111">
+  <link rel="stylesheet" href="css/style.css?v=20261117">
   <script>document.documentElement.classList.add("js")</script>
   <style>
     /* Styles for this reference page only (prefixed ds-). The site's own components come from css/style.css. */
@@ -234,7 +234,9 @@
                 <tr><td>Tile: Staging (bg / border)</td><td><code>#D6EAF8</code> <code>#1D4E89</code></td><td>Housing Observatory dbt layers (inline <code>--tile-bg</code> / <code>--tile-border</code>)</td></tr>
                 <tr><td>Tile: Intermediate</td><td><code>#D1F2EB</code> <code>#0E6655</code></td><td>Housing Observatory dbt layers</td></tr>
                 <tr><td>Tile: Mart</td><td><code>#DCCCFF</code> <code>#874FFF</code></td><td>Housing Observatory dbt layers</td></tr>
-                <tr><td>Not ported from Framer</td><td><code>#8B80CC</code> <code>#FB5C1F</code> <code>#8C7822</code></td><td>Aside, On Site, Spotlight (reference only)</td></tr>
+                <tr><td>Aside icon headings</td><td><code>#F45336</code></td><td>Painpoints / Priority / Recommendation icons (inline <code>--icon</code>)</td></tr>
+                <tr><td>Spotlight wireframe notes</td><td><code>#0004CC</code></td><td>Numbered notes beside the wireframe slideshows, matching the badges in the wireframes (inline <code>--accent</code>)</td></tr>
+                <tr><td>Original Framer brand colors</td><td><code>#FB5C1F</code> <code>#8B80CC</code> <code>#8C7822</code></td><td>On Site, Aside, Spotlight; darkened for the accents above</td></tr>
               </tbody>
             </table>
           </div>
@@ -414,10 +416,11 @@
         </section>
 
         <section class="ds-section" id="c7" data-code="C7" data-ds-title="Project card" data-ds-group="Components">
-          <p class="ds-desc">Rendered from <code>js/projects.js</code> (first project shown). 904 × 520, info column 346, image with “+” button. Hover: shadow, “+” turns 90°. Reveals on scroll. On phones: image on top. On Home, <code>.project-list--grid</code> sets the cards in two columns across the full width, each with its image on top (second demo). A project with <code>external: true</code> has no case study: it links straight to the live project in a new tab, and the “+” becomes a “↗” that nudges on hover.</p>
+          <p class="ds-desc">Rendered from <code>js/projects.js</code> (first project shown). 904 × 520, info column 346, image with “+” button. Hover: shadow, “+” turns 90°. Reveals on scroll. On phones: image on top. On Home, <code>.project-list--grid</code> sets the cards in two columns across the full width, each with its image on top (second demo). A project with <code>external: true</code> has no case study: it links straight to the live project in a new tab, and the “+” becomes a “↗” that nudges on hover. <b>Other project card</b> (third demo): the smaller, secondary card for the projects with <code>group: "other"</code>, in three columns under “Other Projects” on Selected Works only. Radius 16, 4:3 image, 18px title, summary in ink, no chips; compact rows with a 112px image on phones.</p>
           <div class="ds-demo ds-demo--bg ds-demo--col">
             <div class="project-list" data-project-list data-limit="1" style="margin-top:0; width:100%"></div>
             <div class="project-list project-list--grid" data-project-list data-limit="2" style="margin-top:0; width:100%"></div>
+            <div class="other-list" data-project-list="other" style="margin-top:0; width:100%"></div>
             <div style="display:flex; align-items:center; gap:12px">
               <span class="plus" style="position:static" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M12 6v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
               <span class="ds-caption">Case study</span>
@@ -552,7 +555,7 @@
         </section>
 
         <section class="ds-section" id="c16" data-code="C16" data-ds-title="“More projects” carousel" data-ds-group="Components">
-          <p class="ds-desc">Bottom of each case study, built from every other project. Portrait images (368:459, from <code>card</code>). Arrows only appear when the cards overflow. (Live; here it lists all projects.)</p>
+          <p class="ds-desc">Bottom of each case study, built from the other projects in the current group (an Other Project adds the main projects after its own group). Portrait images (368:459, from <code>card</code>). Arrows only appear when the cards overflow. (Live; here it lists the main projects.)</p>
           <div class="ds-demo ds-demo--bg ds-demo--col">
             <section data-more-projects style="width:100%"></section>
           </div>
@@ -569,6 +572,11 @@
             <div class="cs-media cs-media--pad" style="width:220px; --media-bg:#F7F5F0"><img src="assets/img/uneven-ground-fig3.png" alt="Dumbbell plot from Uneven Ground" width="1838" height="2020" data-zoom></div>
             <span class="ds-caption">Click either image to try the lightbox. Right: <code>.cs-media--pad</code>.</span>
           </div>
+          <p class="ds-desc">Phone screen: <code>img.cs-screen</code> (or a <code>video</code>) shows a phone screenshot or recording at most 300 wide, so long screens stay readable. Grids of phone screens skip <code>.cols-3--stack-narrow</code>.</p>
+          <div class="ds-demo">
+            <img class="cs-screen" src="assets/img/aside-dashboard-full.png" alt="Aside dashboard screen" width="390" height="1286" style="width:160px">
+            <span class="ds-caption">Aside dashboard, shown here at 160 wide.</span>
+          </div>
         </section>
 
         <section class="ds-section" id="c19" data-code="C19" data-ds-title="Small parts" data-ds-group="Components">
@@ -582,6 +590,30 @@
             </div>
           </div>
         </section>
+
+        <section class="ds-section" id="c20" data-code="C20" data-ds-title="UX case-study blocks" data-ds-group="Components">
+          <p class="ds-desc">Blocks ported from the Framer layouts of the Other Projects (On Site, Aside, Spotlight), so those pages match their originals. Tile variants (<code>--surface</code> white, <code>--sm</code>, <code>--outline</code> in the accent) with an <code>.tile__icon</code>, a <code>.ring</code> number, <code>.icon-head</code> headings, interview <code>.quote</code>s, a <code>.profile</code> persona with photo, a <code>.grid-table</code> of cards, a <code>.formats</code> list, a <code>.compare</code> before/after slider, a <code>.slides</code> slideshow, a sideways <code>.cs-scroll</code>, <code>.pinned</code> notes beside a screen, a <code>.flow</code> of screens, a <code>.cs-pair</code> of pictures and an embedded prototype (<code>.cs-embed</code>). The pages show every block in use.</p>
+          <div class="ds-demo ds-demo--col ds-accented">
+            <div class="cols-3 cols--equal" style="width:100%">
+              <div class="tile tile--surface"><img class="tile__icon" src="assets/img/ux-icon-curiosity.png" alt="" width="80" height="80"><h3 class="tile__title">Icon tile</h3><p><code>.tile--surface</code> + <code>.tile__icon</code></p></div>
+              <div class="tile tile--surface"><span class="ring">1</span><p class="tile__lead">Ring number and 18/500 lead</p></div>
+              <div class="tile tile--outline tile--sm"><p><code>.tile--outline.tile--sm</code>: a “need” card in a user-story table</p></div>
+            </div>
+            <div class="cols-2" style="width:100%">
+              <blockquote class="quote">“A short quote from an interview, with a rule on its left.”</blockquote>
+              <p class="icon-head"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="2"/><path d="m10.5 16.5 4 4 7-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Icon heading</p>
+            </div>
+            <div class="compare-row" style="width:100%">
+              <div class="compare" style="--compare-w:200px">
+                <img src="assets/img/onsite-after-map.png" alt="After" width="390" height="812">
+                <div class="compare__before"><img src="assets/img/onsite-before-location.png" alt="Before" width="390" height="812"></div>
+                <span class="compare__handle" aria-hidden="true"></span>
+                <input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after">
+              </div>
+              <span class="ds-caption">Before/after slider (<code>.compare</code>): drag across it, or use the arrow keys.</span>
+            </div>
+          </div>
+        </section>
       </div>
 
       <!-- ================= Pages ================= -->
@@ -591,7 +623,8 @@
           <p class="ds-desc">How the components combine on each page. Links open the real pages.</p>
           <div class="ds-pages">
             <a class="ds-page" href="index.html"><b>Home</b><p>Hero (pill, headline, tagline, link card) → Selected Works cards → About teaser → footer.</p></a>
-            <a class="ds-page" href="works.html"><b>Selected Works</b><p>Page title → all project cards.</p></a>
+            <a class="ds-page" href="works.html"><b>Selected Works</b><p>Page title → project cards → divider → “Other Projects” with smaller cards.</p></a>
+            <a class="ds-page" href="onsite.html"><b>Other Project case study</b><p>Same sidebar, hero and facts as a case study; sections follow the original Framer layouts with the C20 blocks. The nav and carousel list the Other Projects first.</p></a>
             <a class="ds-page" href="about.html"><b>About</b><p>Statement + lead beside portrait → accordion beside “open for opportunities” card.</p></a>
             <a class="ds-page" href="housing-observatory.html"><b>Case study</b><p>Sidebar + hero → quick facts → sections (eyebrow + h2) → retrospective → more projects.</p></a>
             <a class="ds-page" href="imprint.html"><b>Imprint</b><p>Title + date → address card beside legal text.</p></a>
@@ -616,6 +649,19 @@
         <section class="ds-section" id="log" data-code="LOG" data-ds-title="Design changes" data-ds-group="Changelog">
           <p class="ds-desc">Newest first. Claude adds an entry here (and updates <code>DESIGN.md</code>) whenever the design changes.</p>
           <ol class="ds-log" id="ds-log">
+            <li data-date="2026-11-17">
+              <time>17 Nov 2026</time>
+              <ul>
+                <li><span class="ds-code">C7</span>New Other project card (<code>.ocard</code>): a smaller, secondary card for the earlier UX case studies (<code>group: "other"</code> in <code>projects.js</code>). Three columns under a new “Other Projects” section at the bottom of Selected Works; compact rows with a small image on phones. Other Projects stay off Home.</li>
+                <li>On Site, Aside and Spotlight are back as case studies at their old addresses (<code>/onsite</code>, <code>/aside</code>, <code>/spotlight</code>), matching the original Framer pages: their text (spelling fixes only), section order, images and layouts, with the Figma prototypes embedded again. The style kits, phone mockups and a few layered Framer drawings are 2× captures of the originals.</li>
+                <li><span class="ds-code">T2</span>New accents, darkened from the Framer brand colors so white text reaches 4.5:1: On Site <code>#C94A14</code>, Aside <code>#6E62B8</code>, Spotlight <code>#80701F</code>.</li>
+                <li><span class="ds-code">C1</span>The level-2 project dropdown (and its phone sub-list) lists only the main projects on the data case studies and Works. On an Other Project it lists the main projects, then a divider (<code>.dd__divider</code>) and the Other Projects.</li>
+                <li><span class="ds-code">C16</span>The “More projects” carousel lists the current project’s group. On an Other Project, it then continues with the main projects.</li>
+                <li>Selected Works: the Other Projects section is labelled “UX/UI Design”.</li>
+                <li><span class="ds-code">C18</span>New <code>.cs-screen</code>: a phone screenshot or recording at most 300 wide.</li>
+                <li><span class="ds-code">C20</span>New UX case-study blocks, ported from Framer: tile variants, ring numbers, icon headings, quotes, persona with photo, card table, formats list, before/after slider, slideshow, sideways scroller, pinned notes, screen flow, picture pair and prototype embed. <code>site.js</code> runs the slider and the slideshow arrows.</li>
+              </ul>
+            </li>
             <li data-date="2026-11-11">
               <time>11 Nov 2026</time>
               <ul>
@@ -633,7 +679,7 @@
                 <li><span class="ds-code">C10</span>New <code>.cs-subhead</code>: a 23/600 sub-heading inside a case-study section.</li>
                 <li><span class="ds-code">C18</span>New <code>.cs-media--pad</code>: a 24px margin (16 on phones) around a chart exported edge to edge, on an inline <code>--media-bg</code> that matches the image. The lightbox keeps the margin.</li>
                 <li><span class="ds-code">C18</span>Lightbox images now fit the window height, so tall charts open whole instead of running off the bottom. The lightbox centres with flexbox and sizes the image from the window, not with percentages, so it opens in the middle in every browser.</li>
-                <li>Stylesheet and scripts are linked with a version tag (<code>?v=20261111</code>) so browsers fetch new versions after a change.</li>
+                <li>Stylesheet and scripts are linked with a version tag (<code>?v=20261117</code>) so browsers fetch new versions after a change.</li>
                 <li>Uneven Ground case study: new text, “Finding the Story” section without its chart, full Fig. 3 and a full, unfaded Fig. 4 heatmap.</li>
               </ul>
             </li>
@@ -720,8 +766,8 @@
     document.getElementById("ds-toc").innerHTML = html;
   })();
   </script>
-  <script src="js/projects.js?v=20261111"></script>
-  <script src="js/site.js?v=20261111"></script>
+  <script src="js/projects.js?v=20261117"></script>
+  <script src="js/site.js?v=20261117"></script>
   <script>
   /* Reference-page behaviour: live token readouts, generated demos, notes and the section index. */
   (function () {
@@ -875,7 +921,8 @@
       '<div style="display:flex; flex-direction:column; gap:8px"><span class="ds-small">Level 2 (case studies)</span>' +
         '<div style="display:flex; align-items:center; gap:10px"><span class="crumb-sep" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5 10 12.5 15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
         '<div class="dd dd--project is-open"><span class="dd__trigger"><span class="dd__label">' + esc(p0.title) + "</span>" + chev + "</span>" +
-        '<div class="dd__panel"><div class="dd__menu">' + PROJECTS.map(function (p, i) { return '<span class="dd__item"' + (i === 0 ? ' aria-current="page"' : "") + ">" + esc(p.title) + "</span>"; }).join("") + "</div></div></div></div></div>";
+        '<div class="dd__panel"><div class="dd__menu">' + PROJECTS.filter(function (p) { return !p.group; }).map(function (p, i) { return '<span class="dd__item"' + (i === 0 ? ' aria-current="page"' : "") + ">" + esc(p.title) + "</span>"; }).join("") + "</div></div></div></div>" +
+        '<span class="ds-small">On an Other Project: main projects, a divider, then the Other Projects.</span></div>';
 
     // --- C3 chips per project ---
     $("#ds-chips").innerHTML = PROJECTS.map(function (p) {

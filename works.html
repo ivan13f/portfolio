@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Selected Works — I-AB</title>
-  <meta name="description" content="Selected data visualization and analytics projects by Iván Alfonso Burgos.">
+  <meta name="description" content="Selected data visualization and analytics projects by Iván Alfonso Burgos, plus earlier UX and UI case studies.">
   <meta property="og:title" content="Selected Works — I-AB">
   <meta property="og:image" content="https://www.ivan-alfonsoburgos.com/assets/img/og-image.png">
   <link rel="icon" href="assets/img/favicon-light.png" media="(prefers-color-scheme: light)">
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=20261111">
+  <link rel="stylesheet" href="css/style.css?v=20261117">
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body data-page="works">
@@ -23,11 +23,21 @@
     <h1 class="t-page">Selected Works</h1>
     <!-- Cards come from js/projects.js -->
     <div class="works-list" data-project-list></div>
+
+    <!-- Earlier UX case studies: smaller cards, from the entries with group: "other" in js/projects.js -->
+    <section class="works-other" aria-labelledby="other-title">
+      <hr class="rule">
+      <div class="section-title">
+        <p class="t-small">UX/UI Design</p>
+        <h2 class="t-h2" id="other-title">Other Projects</h2>
+      </div>
+      <div class="other-list" data-project-list="other"></div>
+    </section>
   </main>
 
   <div data-footer></div>
 
-  <script src="js/projects.js?v=20261111"></script>
-  <script src="js/site.js?v=20261111"></script>
+  <script src="js/projects.js?v=20261117"></script>
+  <script src="js/site.js?v=20261117"></script>
 </body>
 </html>

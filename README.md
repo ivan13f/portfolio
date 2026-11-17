@@ -11,6 +11,9 @@ works.html                 Selected Works
 housing-observatory.html   Case study
 affordable-for-whom.html   Case study
 uneven-ground.html         Case study
+onsite.html                Other Project (UX case study)
+aside.html                 Other Project (UX case study)
+spotlight.html             Other Project (UX case study)
 imprint.html               Impressum
 project-template.html      Starting point for a new case study (not linked anywhere)
 design-system.html         Visual design system reference, kept off the live site (rules in DESIGN.md)
@@ -34,6 +37,8 @@ A new case study needs one entry in `projects.js` plus a `<slug>.html` page. Cop
 
 A project without a case study needs only an entry with `external: true` (see Barcelona Green Spaces). Its cards and nav item link straight to `live` in a new tab.
 
+**Other Projects** are the earlier UX case studies (On Site, Aside, Spotlight), marked `group: "other"` in `projects.js`. They get smaller cards in their own "Other Projects" section at the bottom of Selected Works, and stay off Home and out of the data projects' nav and "More projects" carousel. On their own pages the project dropdown lists the data projects, a divider, then the Other Projects. Their pages follow the original Framer pages (still published at flowing-square-886337.framer.app): same text, sections, images and layouts, built with the blocks in DESIGN.md §4.14, with the Figma prototypes embedded. The `*-text.md` notes for them hold the original Framer text, recovered from the Wayback Machine.
+
 **Case-study sidebar layout:** on desktop the sidebar (title card, section index, "See live project" button) and the hero image or video beside it share one height: from below the nav to just above the bottom of the window, so their lower edges line up. The title card fits its content and the section index fills the space down to the button, scrolling inside its card if it runs out of room. The sidebar stays fixed while the content scrolls. The hero crops to fit, so its shape changes with the window: export it at 966 × 746 or larger, with the important content near the center. Below 1024px the sidebar stacks above the content and the hero uses `--hero-ratio` (on `.case` in `css/style.css`).
 
 **Home only shows some projects?** Add `data-limit="3"` to `<div class="project-list" data-project-list>` in `index.html`.
@@ -43,7 +48,7 @@ A project without a case study needs only an entry with `external: true` (see Ba
 | | Desktop (≥ 810px) | Phone (< 810px) |
 |---|---|---|
 | Level 1 | Home · About · Selected Works dropdown, opens on hover | Same dropdown, opens on tap |
-| Level 2 | On project pages a breadcrumb appears: `Selected Works › Project ▾`, listing every project | Projects appear as a sub-list inside the level-1 dropdown on Works and project pages |
+| Level 2 | On project pages a breadcrumb appears: `Selected Works › Project ▾`, listing the data projects (on a UX project: the data projects, a divider, then the Other Projects) | Projects appear as a sub-list inside the level-1 dropdown on Works and project pages |
 
 Keyboard: Tab to a trigger, Enter opens it, arrow keys move through the items, Esc closes.
 
@@ -75,7 +80,7 @@ Then open http://localhost:8080.
 
 The site is hosted on **GitHub Pages** at www.ivan-alfonsoburgos.com. Every push to `main` publishes it automatically through `.github/workflows/pages.yml`; you can follow each run under the repo's **Actions** tab.
 
-The workflow uploads only the website files. `*.md` notes, `design-system.html` and `project-template.html` stay in the repo but aren't published. It also turns each rule in `_redirects` into a small redirect page, so old links like `/onsite` land on Selected Works.
+The workflow uploads only the website files. `*.md` notes, `design-system.html` and `project-template.html` stay in the repo but aren't published. It also turns each rule in `_redirects` into a small redirect page for an old link that has no page any more, and skips any rule that names a real page. There are no rules at the moment: `/onsite`, `/aside` and `/spotlight` are pages again.
 
 GitHub Pages serves `about.html` at `/about` too, so links to the old Framer URLs keep working.
 

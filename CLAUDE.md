@@ -14,7 +14,8 @@ Read `DESIGN.md` first and follow it: tokens, components, motion, accessibility 
 - `css/style.css`: all styles, with tokens in `:root`.
 - `js/site.js`: renders the nav, footer, project cards, case-study sidebar and "More projects" carousel, and runs the animations.
 - New case study: copy `project-template.html` (steps in `README.md`).
-- `_redirects`: redirect rules for old Framer URLs. The Pages workflow turns each rule into a redirect page.
+- `_redirects`: redirect rules for old Framer URLs. The Pages workflow turns each rule into a redirect page, and skips a rule that names a real page. It has no rules now: `/onsite`, `/aside` and `/spotlight` are pages again.
+- Other Projects (the UX case studies On Site, Aside, Spotlight) are the entries with `group: "other"` in `js/projects.js`. They get smaller cards at the bottom of Selected Works only. Their pages match the owner's original Framer pages (https://flowing-square-886337.framer.app/onsite, /aside, /spotlight): keep their text and layout, built with the blocks in `DESIGN.md` §4.14.
 - `.github/workflows/pages.yml`: publishes the site to GitHub Pages on every push to `main`.
 
 ## Cache busting
