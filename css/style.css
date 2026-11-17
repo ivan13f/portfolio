@@ -521,7 +521,7 @@ button { font: inherit; color: inherit; }
 .ocard:hover .plus--out { transform: translate(2px, -2px); }
 .ocard__info { display: flex; flex-direction: column; gap: 4px; padding: 16px 8px 8px; }
 .ocard__title { font-size: 18px; line-height: 1.5; font-weight: 600; letter-spacing: -0.01em; }
-.ocard__desc { font-size: 14px; letter-spacing: -0.01em; }
+.ocard__desc { font-size: 14px; letter-spacing: -0.01em; color: var(--muted); } /* same grey as the project card summary */
 
 /* ==========================================================================
    Simple pages: Works, About, Imprint

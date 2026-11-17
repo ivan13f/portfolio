@@ -244,7 +244,7 @@ The hero's image is `assets/img/hero-projects.gif`: 392×366 to fit the card exa
 **Other project card** (`.ocard`, in `.other-list`): the secondary card for earlier UX case studies, the projects with `group: "other"` in `projects.js`. Rendered into `<div data-project-list="other">` on Selected Works only (never hand-write one). It's meant to read as secondary: a third of the project card's width, a smaller radius, and title and text only, with no chips.
 - White, radius 16, `1px --line`, padding 11 (12 inside the border).
 - Image on top at 4:3 (radius 8, cover, from `cover`), with a 32px "+" circle 8px from the corner.
-- Title 18/600, then the summary at 14px in `--ink` (not `--muted`, so small text stays at 4.5:1). Padding `16px 8px 8px`, gap 4.
+- Title 18/600, then the summary at 14px in `--muted`, the same grey as the project card summary. Padding `16px 8px 8px`, gap 4.
 - **Hover:** `--shadow-card`, and the "+" rotates 90°. **Scroll:** reveals once (`data-reveal`).
 - **Layout:** three columns, 24 apart, max 904. **Phone:** one column of compact rows, 12 apart: a 112px image beside the text, no "+".
 - **Elsewhere:** Other Projects stay off Home, and out of the nav and the "More projects" carousel on the main case studies and Works. On their own pages the project nav lists the main projects, a divider, then the Other Projects (§4.1). Their own case studies keep the case-study sidebar, hero and facts, and their sections follow the original Framer layouts (§4.14). Their nav lists the Other Projects, and their carousel shows the other Other Projects first, then the main projects.
@@ -390,7 +390,7 @@ Contrast, measured against WCAG 2.1, where small text needs 4.5:1 and large text
 | White badge text on accent: Housing / Affordable | 4.6 / 4.0 | ✅ / ⚠️ |
 | White badge text on accent: On Site / Aside / Spotlight | 4.7 / 5.1 / 4.9 | ✅ |
 | Chip text on its tint: On Site / Aside / Spotlight | 3.3 / 3.7 / 3.6 | ⚠️ (same pattern as above) |
-| Other project card summary (`--ink` on white) | 16.1 | ✅ |
+| Other project card summary (`--muted` on white) | 4.0 | ⚠️ (same as the project card summary) |
 | Persona text: orange / blue / green | 4.5 / 6.1 / 5.8 | ✅ |
 
 The ⚠️ pairs come from the original Framer design and are kept for visual fidelity. **Don't spread them further:**
