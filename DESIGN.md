@@ -95,7 +95,7 @@ Font stack: `"Inter", system-ui, -apple-system, "Segoe UI", sans-serif`, loaded 
 
 Rules:
 - Headings are in sentence case. Uppercase appears only through CSS (`text-transform`) on outline buttons, link-card labels and "Scroll for more"; the HTML keeps normal case.
-- **Two-tone lead:** a lead paragraph opens with its key sentence in ink and continues in the secondary gray: `<p class="t-lead c-muted"><span class="c-ink">Key sentence.</span> The rest…</p>`. This is used for the Home "About me" teaser. The About intro follows the same idea across two paragraphs: an ink statement, then a `--muted` lead.
+- **Two-tone lead:** a lead paragraph opens with its key sentence in ink and continues in the secondary gray, as one paragraph at one size: `<p class="t-lead c-muted"><span class="c-ink">Key sentence.</span> The rest…</p>`. This is used for the Home "About me" teaser and the About intro (there as the page's `<h1>`).
 - Use bold (`<strong>`, 600) inside body text to highlight key terms, the way the case studies name data sources and concepts. Italic (`<em>`) is for foreign terms and caveats.
 - Each page has exactly one `<h1>`: the hero headline on Home, the page title on About, Works and Imprint, and the sidebar title on case studies (rendered by `site.js`).
 
@@ -351,7 +351,7 @@ Captures: blocks that were layered Framer drawings (the On Site style kit, the A
 |---|---|
 | Home (`index.html`) | Full-height hero aligned to the bottom: "Available" pill, headline, tagline, "Scroll for more ↓" on the left; link card to Works on the right. Then a divider, "Overview / Selected Works" with project cards in a two-column grid and a "View all projects →" button, then a divider and the "About me" lead with a link card to About. Then the footer. |
 | Selected Works (`works.html`) | Page title, then the project cards (main projects) in two columns, as on Home. Then a divider (120 above, 80 below; 80 and 40 on phones), a "UX/UI Design / Other Projects" section title, and the Other project cards 40 below it (§4.7). |
-| About (`about.html`) | Two columns: intro (32px statement + 26px `--muted` lead) and a black-and-white portrait (ratio 633/400). Then the accordion (4 questions) beside a bordered card saying "Currently open for new opportunities…". |
+| About (`about.html`) | Two columns: intro (one two-tone lead, the `<h1>`: ink statement continuing in `--muted`) and a black-and-white portrait (ratio 633/400). Then the accordion (4 questions, as wide as the intro) beside a bordered card (as wide as the photo) saying "Currently open for new opportunities…". |
 | Case study (`<slug>.html`) | Sidebar + content. Content order: hero → quick facts → sections (each with an `id`, `data-toc`, eyebrow and h2) → usually ends with "Retrospective / What I learned". Then "More projects" and the footer. Start from `project-template.html`. |
 | Other Project (`onsite.html`, `aside.html`, `spotlight.html`) | The same sidebar, hero and facts. Sections, text and images follow the original Framer pages, built with §4.14 blocks; headings keep their original Title Case, and only spelling slips were fixed. No live button: the Figma prototypes are embedded in the page. |
 | Imprint (`imprint.html`) | Title + date, then an address card (300 wide) beside the legal text (14px `--muted`, headings in ink). |
