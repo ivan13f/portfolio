@@ -103,6 +103,17 @@ window.PROJECTS = [
     cover: "assets/img/spotlight-cover.jpg",
     card: "assets/img/spotlight-card.jpg",
   },
+  {
+    slug: "sara-novi",
+    group: "other",
+    title: "Portfolio Sara Novi",
+    summary: "Portfolio website designed for an architect and artist, bringing together her architecture, performance and interdisciplinary art work.",
+    tags: ["Web Design", "UI Design"],
+    accent: "#B4567A",
+    cover: "assets/img/saranovi-cover.jpg",
+    live: "https://www.saranovi.com",
+    external: true, // no case study: links straight to the site
+  },
 ];
 
 /* Site-wide settings used by the nav and footer. */

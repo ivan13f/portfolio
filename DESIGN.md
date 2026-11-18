@@ -173,8 +173,8 @@ Rules:
 
 Key widths:
 - **Content:** max `1440px` (`--max`), centered
-- **Project cards:** max `904px`, left-aligned (not centered), on Selected Works. On Home they fill the content width in two columns (`.project-list--grid`).
-- **Other project cards:** three columns within the same `904px`, 24 apart, under the project cards on Selected Works.
+- **Project cards:** on Home and Selected Works they fill the content width in two columns (`.project-list--grid`). The single wide card (max `904px`) is no longer used on a page.
+- **Other project cards:** a horizontal carousel running to the right page margin, under the project cards on Selected Works.
 - **Text columns:** `628px` max
 - **Home hero text:** `653px`
 - **Link cards:** `432px`
@@ -238,15 +238,15 @@ The hero's image is `assets/img/hero-projects.gif`: 392×366 to fit the card exa
 - **Hover:** `--shadow-card`, and the "+" rotates 90°.
 - **Scroll:** reveals once (`data-reveal`).
 - **Phone:** image on top (4:3), text below.
-- **Home grid (`.project-list--grid`):** two columns across the full content width, 24 apart (40 between rows). Each card uses the phone layout (image on top, 4:3, text below), and both cards in a row stretch to the taller one. One column below 810px. Selected Works keeps the wide one-per-row cards.
+- **Home grid (`.project-list--grid`):** two columns across the full content width, 24 apart (40 between rows). Each card uses the phone layout (image on top, 4:3, text below), and both cards in a row stretch to the taller one. One column below 810px. Selected Works uses the same grid.
 - **No case study:** a project with `external: true` links straight to `live` in a new tab, from its cards, the "More projects" carousel and the nav, where its label has no arrow. On cards, the "+" becomes a "↗" that nudges 2px on hover (`.plus--out`) instead of rotating.
 
 **Other project card** (`.ocard`, in `.other-list`): the secondary card for earlier UX case studies, the projects with `group: "other"` in `projects.js`. Rendered into `<div data-project-list="other">` on Selected Works only (never hand-write one). It's meant to read as secondary: a third of the project card's width, a smaller radius, and title and text only, with no chips.
 - White, radius 16, `1px --line`, padding 11 (12 inside the border).
 - Image on top at 4:3 (radius 8, cover, from `cover`), with a 32px "+" circle 8px from the corner.
 - Title 18/600, then the summary at 14px in `--muted`, the same grey as the project card summary. Padding `16px 8px 8px`, gap 4.
-- **Hover:** `--shadow-card`, and the "+" rotates 90°. **Scroll:** reveals once (`data-reveal`).
-- **Layout:** three columns, 24 apart, max 904. **Phone:** one column of compact rows, 12 apart: a 112px image beside the text, no "+".
+- **Hover:** `--shadow-card`, and the "+" rotates 90° (a "↗" nudges for `external: true`, e.g. Portfolio Sara Novi, which links to its site). **Scroll:** the whole row reveals once.
+- **Layout:** a horizontal carousel from the content column to the right page margin: cards 286 wide (a third of the 904 project column), 24 apart, scroll-snap, swipeable, no visible scrollbar. Arrow buttons (`.more__arrows`, `[data-other-arrows]`) sit at the right end of the section title row and appear only when the cards overflow (`site.js`). **Phone:** cards 260 wide (at most 75% of the screen), 12 apart.
 - **Elsewhere:** Other Projects stay off Home, and out of the nav and the "More projects" carousel on the main case studies and Works. On their own pages the project nav lists the main projects, a divider, then the Other Projects (§4.1). Their own case studies keep the case-study sidebar, hero and facts, and their sections follow the original Framer layouts (§4.14). Their nav lists the Other Projects, and their carousel shows the other Other Projects first, then the main projects.
 
 ### 4.8 Case-study sidebar
@@ -350,7 +350,7 @@ Captures: blocks that were layered Framer drawings (the On Site style kit, the A
 | Page | Structure |
 |---|---|
 | Home (`index.html`) | Full-height hero aligned to the bottom: "Available" pill, headline, tagline, "Scroll for more ↓" on the left; link card to Works on the right. Then a divider, "Overview / Selected Works" with project cards in a two-column grid and a "View all projects →" button, then a divider and the "About me" lead with a link card to About. Then the footer. |
-| Selected Works (`works.html`) | Page title, then the project cards (main projects). Then a divider (120 above, 80 below; 80 and 40 on phones), a "UX/UI Design / Other Projects" section title, and the Other project cards 40 below it (§4.7). |
+| Selected Works (`works.html`) | Page title, then the project cards (main projects) in two columns, as on Home. Then a divider (120 above, 80 below; 80 and 40 on phones), a "UX/UI Design / Other Projects" section title, and the Other project cards 40 below it (§4.7). |
 | About (`about.html`) | Two columns: intro (32px statement + 26px `--muted` lead) and a black-and-white portrait (ratio 633/400). Then the accordion (4 questions) beside a bordered card saying "Currently open for new opportunities…". |
 | Case study (`<slug>.html`) | Sidebar + content. Content order: hero → quick facts → sections (each with an `id`, `data-toc`, eyebrow and h2) → usually ends with "Retrospective / What I learned". Then "More projects" and the footer. Start from `project-template.html`. |
 | Other Project (`onsite.html`, `aside.html`, `spotlight.html`) | The same sidebar, hero and facts. Sections, text and images follow the original Framer pages, built with §4.14 blocks; headings keep their original Title Case, and only spelling slips were fixed. No live button: the Figma prototypes are embedded in the page. |

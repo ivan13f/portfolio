@@ -188,7 +188,7 @@
   // Smaller, quieter card for the Other Projects section of Selected Works
   function otherCard(p) {
     return (
-      '<a class="ocard" ' + projectLink(p) + ' data-reveal style="--accent:' + p.accent + '">' +
+      '<a class="ocard" ' + projectLink(p) + ' style="--accent:' + p.accent + '">' +
       '<div class="ocard__media"><img src="' + p.cover + '" alt="" loading="lazy" decoding="async"><span class="plus' + (p.external ? " plus--out" : "") + '" aria-hidden="true">' + (p.external ? icons.arrowOut : icons.plus) + "</span></div>" +
       '<div class="ocard__info"><h3 class="ocard__title">' + esc(p.title) + '</h3><p class="ocard__desc">' + esc(p.summary) + "</p></div>" +
       "</a>"
@@ -533,6 +533,28 @@
     });
   }
 
+  // Other Projects carousel on Selected Works: arrows appear only when the cards overflow
+  function initOtherCarousel() {
+    var track = document.querySelector(".other-list");
+    var arrows = document.querySelector("[data-other-arrows]");
+    if (!track || !arrows) return;
+    var buttons = arrows.querySelectorAll("button");
+    function sync() {
+      arrows.hidden = track.scrollWidth <= track.clientWidth + 2;
+      buttons[0].disabled = track.scrollLeft <= 2;
+      buttons[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    }
+    arrows.addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (!b) return;
+      var card = track.querySelector(".ocard");
+      track.scrollBy({ left: Number(b.dataset.dir) * (card.offsetWidth + 24), behavior: reducedMotion ? "auto" : "smooth" });
+    });
+    track.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
+  }
+
   // Muted looping videos play only while on screen
   function initVideos() {
     var vids = document.querySelectorAll("video[data-autoplay]");
@@ -571,6 +593,7 @@
   initScrollSpy();
   initLightbox();
   initCompare();
+  initOtherCarousel();
   initSlides();
   initVideos();
   initClock();

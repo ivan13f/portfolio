@@ -500,7 +500,21 @@ button { font: inherit; color: inherit; }
    Secondary to the project card: a third of its width, smaller radius, title and text only. */
 .works-other { margin-top: 120px; }
 .works-other .section-title { margin-top: 80px; }
-.other-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 904px; margin-top: 40px; }
+.works-other__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: 80px; }
+.works-other__head .section-title { margin-top: 0; }
+/* Horizontal carousel to the right margin: swipe or use the arrows (site.js) */
+.other-list {
+  display: flex;
+  gap: 24px;
+  margin-top: 40px;
+  padding: 4px 4px 16px; /* room for the hover shadow inside the scroller */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.other-list::-webkit-scrollbar { display: none; }
+.other-list > .ocard { flex: 0 0 286px; scroll-snap-align: start; } /* a third of the 904 project column */
 .ocard {
   display: flex;
   flex-direction: column;
@@ -1154,12 +1168,9 @@ button { font: inherit; color: inherit; }
 
   /* Other Projects: compact rows, small picture beside the text */
   .works-other { margin-top: 80px; }
-  .works-other .section-title { margin-top: 40px; }
-  .other-list { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 24px; }
-  .ocard { flex-direction: row; align-items: center; gap: 16px; }
-  .ocard__media { width: 112px; }
-  .ocard .plus { display: none; }
-  .ocard__info { flex: 1 1 auto; min-width: 0; padding: 0 8px 0 0; }
+  .works-other__head { margin-top: 40px; }
+  .other-list { gap: 12px; margin-top: 24px; }
+  .other-list > .ocard { flex-basis: min(260px, 75vw); }
 
   .home-about { padding-bottom: 100px; gap: 40px; }
   .home-about__row { flex-direction: column; }
